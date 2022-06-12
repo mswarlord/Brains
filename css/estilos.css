@@ -1,0 +1,19 @@
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+    text-decoration: none;
+}
+
+body{
+    background-color: #15ce722f;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-around;
+    background-color: #888;
+    height: 2em;
+    align-items: center;
+    color: #ccc;
+}/* Creating a new date object. */
