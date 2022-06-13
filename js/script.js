@@ -3,7 +3,8 @@
 
 const ficha = [];
 class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y los metodos para cambiar la posicion de las mismas
-    constructor() {
+    constructor(id) {
+        this.id = id;
         this.posicion = 1;//inicia las fichas en una posicion determinada
     }
     
@@ -13,6 +14,7 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
         }else{
             this.posicion--
         }
+        console.log(`Ha girado la ficha ${this.id} en sentido antihorario`);
     }
 
     girarDerecha() {//Método para girar la ficha en sentido horario
@@ -21,11 +23,12 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
         }else{
             this.posicion++
         }
+        console.log(`Ha girado la ficha ${this.id} en sentido horario`);
     }
 }
 
   for(i=0;i<7;i++){ //iteración para la creación de las fichas
-    ficha[i]=new Ficha();
+    ficha[i]=new Ficha(i);
 }
 
 let girarFichaNro = 0; //variable que determina la ficha a girar
@@ -52,6 +55,17 @@ while (girar !="N"){
     girar = (prompt("Ingrese 'N' si desea finalizar")).toUpperCase();//consulto si se quiere mover otra ficha
 }
 
-for( const nroFicha of ficha ){//Recorre los valores array ficha.
-    console.log(nroFicha);; //Muestra los atributos de cada objeto.
+for(const nroFicha of ficha) {//Recorre los elementos del array ficha.
+    console.log(nroFicha); //Muestra los atributos y sus valores de los elementos del array.
 }
+
+//codigo agregado para la presentacion del desafio complementario
+//agregar alguna propiedad o metodo de los arrays
+console.log(`El total de elementos dentro de ficha es: ${ficha.length}`);//devuelve la cantidad de elementos dentro del arrays = 7
+
+let fichaSlice = ficha.slice(1,3);//muestro los elementos que estan entre los indices del conjunto: [1;3).
+console.log(fichaSlice);
+
+let fichaSplice = ficha.splice(2,3)//tomo desde el indice 2 un total de 3 elementos y los guardo en fichaSplice
+console.log(fichaSplice);
+//fin codigo para desafio complementario
