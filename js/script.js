@@ -59,13 +59,34 @@ for(const nroFicha of ficha) {//Recorre los elementos del array ficha.
     console.log(nroFicha); //Muestra los atributos y sus valores de los elementos del array.
 }
 
-//codigo agregado para la presentacion del desafio complementario
-//agregar alguna propiedad o metodo de los arrays
-console.log(`El total de elementos dentro de ficha es: ${ficha.length}`);//devuelve la cantidad de elementos dentro del arrays = 7
+
+
+//codigo agregado para la presentacion de la PREENTREGA
+
+/* 
+ELEMENTOS A CONSIDERAR PARA LA PRIMER PRE ENTREGA
+ARRAY DE OBJETOS - HECHO
+FUNCION CONSTRUCTORA DE OBJETOS - HECHO
+AL MENOS 2 METODOS DE ARRAYS (FIND FILTER SORT SOME SPLICE REDUCE ETC) - HECHO
+
+TODAS LAS INTERACCIONES CON EL USUARIO SERAN POR PROMPT, CONSOLE.LOG o ALERT! 
+NADA DE DOM NI EVENTOS - HECHO
+
+HTML SOLO EL INDEX - HECHO
+*/
+
+let fichaFilter = ficha.filter((elemento) => elemento.id > 3)
+
+console.log("Las fichas con ID mayor a 3 son las siguientes")
+console.log(fichaFilter)
+
+console.log(`El total de elementos dentro del array ficha es: ${ficha.length}`);//devuelve la cantidad de elementos dentro del arrays = 7
 
 let fichaSlice = ficha.slice(1,3);//muestro los elementos que estan entre los indices del conjunto: [1;3).
+console.log("Las fichas del array ficha, con los indeices entre el conjunto '[1;3)' son las siguientes")
 console.log(fichaSlice);
 
 let fichaSplice = ficha.splice(2,3)//tomo desde el indice 2 un total de 3 elementos y los guardo en fichaSplice
+console.log("Las 3 fichas del array ficha desde el indice 2, son las siguientes")
 console.log(fichaSplice);
 //fin codigo para desafio complementario
