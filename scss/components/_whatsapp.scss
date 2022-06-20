@@ -1,0 +1,13 @@
+/* chat__whatsapp -------------------------------------*/
+.chat__whatsapp {
+    position: fixed;
+    width: 3rem;
+    height: 3rem;
+    right: 2rem;
+    bottom: 2rem;
+    border-radius: 0.5rem;
+    transition: 0.5s;
+    &:hover {
+        transform: scale(1.5);}
+}
+/* FIN chat__whatsapp -------------------------------------*/

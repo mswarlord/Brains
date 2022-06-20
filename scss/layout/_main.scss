@@ -1,0 +1,28 @@
+/* MAIN */
+.main {
+    grid-area: main;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    &__seccion{
+        display: flex;}
+    &__img--left {
+        width: 20rem;
+        height: 20rem;
+        border-radius: 1rem;
+        margin-right: 4rem;}
+    &__seccion img {
+        border: 10px;
+        /*border-color: red;*/
+        padding: 0;}
+    &__img--right {
+        margin-left: 4rem;
+        right: 0;
+        width: 20rem;
+        height: 20rem;
+        border-radius: 1rem;}  
+    & p{
+        text-align: justify;
+        text-overflow: inherit;}  
+}

@@ -1,0 +1,7 @@
+/*------------------- GRID LAYOUT -------------------*/
+.grid__container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 11em 1.3em auto 10em;
+    grid-template-areas: 'header header header header header header' 'navegador navegador navegador navegador navegador navegador' 'main main main main main main' 'footer footer footer footer footer footer';
+}

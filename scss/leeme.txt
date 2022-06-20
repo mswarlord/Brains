@@ -1,0 +1,19 @@
+utilities: 	En esta carpeta se encuentran las funciones, variables y mixins que emplearemos en el resto de ficheros. 
+		Estos archivos no generan ninguna regla CSS al ser compilados sino que añaden funcionalidad extra para ser empleada por los otros partials.
+
+base:		Contiene el código base de nuestro proyecto como es las reglas de tipografía (y fuentes adicionales) así como los resets necesarios para sobrescribir
+		las reglas por defecto de los navegadores.
+
+components:	Contiene los estilos de los distintos componentes que emplearemos dentro de nuestra aplicación como pueden ser botones, jumbos, sliders, carruseles…
+		Separar cada componente en su propio archivo nos permitirá reutilizarlos en otros proyectos.
+
+layout:		En esta carpeta aparecen los estilos relacionados con la estructura de nuestra página web, como por ejemplo el sistema de grid que estemos empleando
+		así como los estilos de la cabecera, el footer…
+
+views:		Contiene los estilos específicos para determinadas vistas (páginas) de nuestro proyecto como puede ser la página de inicio o la de contacto.
+
+themes:		Seguramente esta sea la carpeta que más os ha llamado la atención ya que su uso no es muy común. Su razón de ser es la de almacenar los 
+		estilos referidos a diferentes themes que pueda adoptar nuestro proyecto en función, por ejemplo, del tipo de usuario o la sección que esté 
+		visualizándose.
+
+vendors:	Esta carpeta tiene dos opciones, en función de si estáis empleando webpack o no.

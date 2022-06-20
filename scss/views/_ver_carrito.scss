@@ -1,0 +1,78 @@
+
+  /* VER CARRITO -------------------------------------*/
+  .grid__carrito {
+    display: grid;
+    grid-template-rows: 1em auto auto;
+    grid-template-columns: repeat(5, auto);
+    grid-template-areas: "fila1      fila1       fila1       fila1       resumen" "articulo1  articulo1   articulo1   articulo1   resumen" "articulo2  articulo2   articulo2   articulo2   resumen";
+    gap: 1em;
+    margin: 1em;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .fila--superior {
+    grid-area: fila1;
+    background-color: $color-primario;
+    display: flex;
+    justify-content: space-around;
+  }
+  .articulo1 {
+    grid-area: articulo1;
+    background-color: $color-primario--alfa;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .articulo2 {
+    grid-area: articulo2;
+    background-color: $color-primario--alfa;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .resumen {
+    grid-area: resumen;
+    background-color: lightgray;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    h4 {
+      text-align: left;
+    }
+  }
+  
+  .articulo__thumbnail {
+    width: 5em;
+    height: 5em;
+  }
+  
+  .cupon {
+    background-color: #545454;
+    padding: 0.2em 0.3em 0.2em 0.3em;
+    color: #ac5;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-self: center;
+    margin: 1em 0 1em 0;
+  }
+  .button {
+    text-align: center;
+    display: inline-block;
+    font-size: 1em;
+    padding: 1em 2em;
+    margin: 0.25em 0.125em;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 2px solid $color-primario;
+    margin-top: 0.5em;
+    &:hover {
+        background-color: $color-primario;
+        color: white;}
+    &--finalizar {
+        width: 90%;
+        align-self: center;}
+    }
+/* ---------- FIN VER CARRITO ---------- */

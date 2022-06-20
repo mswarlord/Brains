@@ -1,0 +1,153 @@
+/* MEDIAQUERIES */
+
+@media screen and (max-width:580px) {
+    .grid__container {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 8em auto 10em;
+        grid-template-areas: 'header header header header header header' 'main main main main main main' 'footer footer footer footer footer footer';}
+    .fa-bars {
+        display: block;}
+    .menu {
+        position: absolute;
+        right: 0.8em;
+        top: 6em;}
+    .fa-solid {
+        position: relative;}
+    .navegador__menu--responsive {
+        position: absolute;
+        background-color: #afca74ca;
+        border-bottom: 0.5em;
+        font-size: 1.1em;
+        font-family: monospace;
+        width: 10em;
+        li {
+            padding: 0.2em 0.6em 0.2em 0;}}
+    .fa-solid:hover .navegador__menu--responsive {
+        display: block;
+        right: 0;
+        text-align: right;}
+    .novedades {
+        display: none;}
+    .header__columna1 {
+        width: 7em;}
+    .header__columna2 {
+        width: auto;
+        flex-grow: 2;}
+    .header__columna3 {
+        display: none;}
+    .logo {
+        height: 6em;
+        width: 6em;
+        margin-left: 0.5em;}
+    .titulo--logo {
+        margin-top: 2rem;
+        font-size: 2em;
+        text-align: left;}
+    .subtitulo--logo {
+        font-size: 1em;
+        text-align: left;}
+    .navegador {
+        display: none;}
+    .footer--principal {
+        flex-direction: column;}
+    .footer__columna--izquierda {
+        display: none;}
+    .footer__columna--derecha {
+        display: none;}
+    .footer__columna--centro {
+        padding-left: 1rem;
+        width: 100%;
+        background-color: #a8ca7411;}
+    .img__portada {
+        width: 100%;
+        height: auto;
+        margin: 1em 0 1em 0;
+        padding: 0;}
+    .main__seccion {
+        flex-direction: column;}
+    .main--verCarrito {
+        flex-direction: column;}
+    .logo--css{
+        width: 6em;
+        height: 6em;
+    }
+}
+@media (min-width:580.1px) and (max-width:670px) {
+    .header__columna1 {
+        width: 12em;}
+    .header__columna2 {
+        align-self: center;}
+    .header__columna3 {
+        display: none;}
+    .logo {
+        height: 8em;
+        width: 8em;}
+    .titulo--logo {
+        margin-top: 2rem;
+        text-align: left;}
+    .subtitulo--logo {
+        text-align: left;}
+    .img__portada {
+        width: 100%;
+        height: auto;
+        margin: 1em 0 1em 0;
+        padding: 0;}
+    .main__seccion {
+        flex-direction: column;}
+    .main--verCarrito {
+        flex-direction: column;}
+}
+@media (min-width:670.1px) and (max-width:800px) {
+    .titulo--logo {
+        text-align: left;}
+    .subtitulo--logo {
+        text-align: left;}
+    .main--verCarrito {
+        flex-direction: column;}
+    .columna--izquierda {
+        width: auto;
+        height: auto;}
+}
+@media screen and (max-width:600px) {
+    .seiscientos {
+        display: none;
+        font-display: none;}
+}
+@media screen and (max-width:800px) {
+    .grid__carrito {
+        /* modifico la grilla para que el resumen quede abajo */
+        display: grid;
+        grid-template-rows: 1em auto auto;
+        grid-template-columns: repeat(5, auto);
+        grid-template-areas: "fila1      fila1       fila1       fila1       fila1" "articulo1  articulo1   articulo1   articulo1   articulo1" "articulo2  articulo2   articulo2   articulo2   articulo2" "resumen    resumen     resumen     resumen     resumen";
+        gap: 1em;
+        margin: 1em;
+        padding: 0;
+        font-family: 'Courier New', Courier, monospace;}
+    .articulo__quienesSomos--integrante {
+        flex-direction: column;
+        /* coloco el articulo en columna */}
+    .imagen--integrante {
+        /* corrijo las dimensiones y margenes para el media querie*/
+        align-self: center;
+        width: 75%;
+        height: 75%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        margin: 1em 0rem;}
+    .betty {
+        order: -1;
+        /* cambio el orden para que aparezca la imagen de Betty sobre el texto */}
+}
+@media screen and (max-width:800px) {
+    .navegador__menu li{
+        font-size: 0.85em; } 
+    .centrado{
+        align-items: center;}
+    .grid--noticias {
+        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3em;
+        grid-template-areas: "columna1" "columna2" "columna3";}
+}

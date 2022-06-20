@@ -1,12 +1,23 @@
-*{
-    margin:0;
-    padding:0;
-    list-style: none;
+* {
+    margin: 0;
+    padding: 0;
     text-decoration: none;
+    list-style: none;
+    box-sizing: border-box; 
 }
 
-body{
-    background-color: #15ce722f;
+html {
+    height: auto;
+}
+
+body {
+    font-family: "Roboto Mono", monospace;
+    background-color: #c4d3af;
+    background-image: url("/assets/img/background/depositphotos_301437806-stock-illustration-japanese-blossom-sakura-background-mountains.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+    min-height: 100%;
 }
 
 nav ul{
@@ -16,4 +27,52 @@ nav ul{
     height: 2em;
     align-items: center;
     color: #ccc;
-}/* Creating a new date object. */
+}
+#sesion{
+    background-color: #0000;
+    border: 0;
+}
+/* ---------- LOADER ---------- */
+/* .loader {
+    width: 96px;
+    box-sizing: content-box;
+    height: 48px;
+    background: #6e972c;
+    border-color: #bfe0a0;
+    border-style: solid;
+    border-width: 2px 2px 50px 2px;
+    border-radius: 100%;
+    position: relative;
+    animation: 3s yinYang linear infinite;
+  }
+  .loader:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    background: #6e972c;
+    border: 18px solid #bfe0a0;
+    border-radius: 100%;
+    width: 12px;
+    height: 12px;
+    box-sizing: content-box;
+  }
+  .loader:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #bfe0a0;
+    border: 18px solid #6e972c;
+    border-radius: 100%;
+    width: 12px;
+    height: 12px;
+    box-sizing: content-box;
+  }
+  @keyframes yinYang {
+    100%{transform: rotate(360deg)}
+  } */
+  
+/* ---------- FIN LOADER ---------- */  
+
+

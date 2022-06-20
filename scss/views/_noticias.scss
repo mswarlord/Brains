@@ -1,0 +1,33 @@
+/* NOTICIAS --------------------------------------------------*/
+.main--noticias {
+    margin: 2em 2em;
+    padding: 0;
+}
+.grid--noticias {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3em;
+    grid-template-areas: "columna1 columna2 columna3";
+}
+.columna1 {
+    grid-area: columna1;
+}
+.columna2 {
+    grid-area: columna2;
+}
+.columna3 {
+    grid-area: columna3;
+}
+.imagen--noticia {
+    width: 100%;
+    margin-bottom: 1em;
+}
+.noticia {
+    background-color: $color-primario--alfa;
+    margin-bottom: 3em;
+}
+.resumen--noticia {
+    padding: 0.5em;
+}
+/* FIN NOTICIAS -----------------------------------------*/

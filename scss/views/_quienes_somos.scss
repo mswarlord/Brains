@@ -1,0 +1,21 @@
+/* ---------- QUIENES SOMOS ---------- */
+.articulo__quienesSomos {
+    margin-top: 1%;
+    margin-left: 5%;
+    width: 90%;
+    &--integrante {
+    display: flex;
+    }
+}
+.imagen__quienesSomos {
+    width: 100%;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.imagen--integrante {
+    width: 200%;
+    height: 200%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0rem 1rem 0rem 1rem;
+}
+  /* ---------- FIN QUIENES SOMOS ---------- */

@@ -1,6 +1,6 @@
 //BRAINS -- Proyecto
 //CREACION DE LAS FICHAS Y SUS ESTADOS*********************************************************************************************
-
+/* 
 const ficha = [];
 class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y los metodos para cambiar la posicion de las mismas
     constructor(id) {
@@ -57,36 +57,66 @@ while (girar !="N"){
 
 for(const nroFicha of ficha) {//Recorre los elementos del array ficha.
     console.log(nroFicha); //Muestra los atributos y sus valores de los elementos del array.
+} */
+
+//DOM
+let sesion = document.querySelector('#sesion');
+
+//REGISTRO Y LOGEO DE USUARIOS ******************************************************************************************************
+
+const usuarios = []; 
+class Usuario{
+    constructor(nombreUsuario,passUsuario){
+        this.nombreUsuario = nombreUsuario;
+        this.passUsuario = passUsuario;
+        this.online = false;
+    }
+
+    iniciarSesion() {
+        if(this.online===false){ 
+            this.online=true;
+        }
+        alert(`Bienvenido ${this.nombreUsuario}`);
+    }
+    cerrarSesion() {
+        if(this.online===true){ 
+            this.online=false;
+        }
+        alert(`Adios ${this.nombreUsuario}!`);
+    }
+    
 }
 
+//registros desde codigo Hardcode
+usuarios[0]=new Usuario("Mati","mati123"); //creo un elemento en el array usuarios
+usuarios[1]=new Usuario("Rodri","Ro123");
+usuarios[2]=new Usuario("Lucio","Lu123");
+usuarios.push(new Usuario("German","Gerco123")); //creo otro elemento con push
 
+//console.log(usuarios);//muestro el array usuarios.
 
-//codigo agregado para la presentacion de la PREENTREGA
+//registro ingresado por usuario
+let newUser = prompt("REGISTRO: Ingrese su nombre de usuario"); //tomo el nombre de usuario que registra el usuario y lo guardo en la variable
 
-/* 
-ELEMENTOS A CONSIDERAR PARA LA PRIMER PRE ENTREGA
-ARRAY DE OBJETOS - HECHO
-FUNCION CONSTRUCTORA DE OBJETOS - HECHO
-AL MENOS 2 METODOS DE ARRAYS (FIND FILTER SORT SOME SPLICE REDUCE ETC) - HECHO
+let newPass = prompt("REGISTRO: Ingrese su contraseña"); //tomo la pass que registra el usuario y la guardo en la variable
 
-TODAS LAS INTERACCIONES CON EL USUARIO SERAN POR PROMPT, CONSOLE.LOG o ALERT! 
-NADA DE DOM NI EVENTOS - HECHO
+const user = new Usuario(newUser,newPass); //creo un objeto usuario y le meto como parametros las variables newUser y newPass    
 
-HTML SOLO EL INDEX - HECHO
-*/
+usuarios.push(user); //meto el objeto usuario en el array usuarios.
 
-let fichaFilter = ficha.filter((elemento) => elemento.id > 3)
+//console.log(usuarios);//muestro el array usuarios.
 
-console.log("Las fichas con ID mayor a 3 son las siguientes")
-console.log(fichaFilter)
+//Inicio de sesion
+let ingresoUser = prompt("Ingreso: Ingrese su nombre de usuario"); //se ingresa el nombreUser
+let ingresoPass = prompt("Ingreso: Ingrese su contraseña")
 
-console.log(`El total de elementos dentro del array ficha es: ${ficha.length}`);//devuelve la cantidad de elementos dentro del arrays = 7
+let index = -1; //establezco let en -1
 
-let fichaSlice = ficha.slice(1,3);//muestro los elementos que estan entre los indices del conjunto: [1;3).
-console.log("Las fichas del array ficha, con los indeices entre el conjunto '[1;3)' son las siguientes")
-console.log(fichaSlice);
+usuarios.forEach((el, i) => {                                                //recorro cada elemento del array usuarios, y en cada uno,
+    if (el.nombreUsuario === ingresoUser && el.passUsuario === ingresoPass){ //comparo los valores nombreUsuario y passUsuario con los datos ingresados
+        index = i                                                            //si ambos coinciden, le doy al index el valor del indice de ese objeto
+        usuarios[i].iniciarSesion();
+        sesion.innerText = el.nombreUsuario;//modifico el link de iniciar sesion con el nombre del usuario que ya ingresó
+    }
+});
 
-let fichaSplice = ficha.splice(2,3)//tomo desde el indice 2 un total de 3 elementos y los guardo en fichaSplice
-console.log("Las 3 fichas del array ficha desde el indice 2, son las siguientes")
-console.log(fichaSplice);
-//fin codigo para desafio complementario

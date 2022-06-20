@@ -1,0 +1,59 @@
+  /* PRUEBA LISTA ICONOS REDES */
+
+.redes {
+    margin-top: 1em;
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    right: 1em;
+    transition: 1s;
+    display: flex;
+    justify-content: end;
+    &--facebook {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: 1s; }
+    &--github {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: 1s; }
+    &--instagram {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: 1s;}
+    &--pinterest {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: 1s;}  
+    & div {
+        & .redes--icono2{
+            display: none; }
+        &:hover .redes--img{
+            display: none;}
+        &:hover .redes--icono2{
+            display: block;}}
+    &:hover .redes{
+        &--facebook{
+            opacity: 1; 
+            transform: translate(10.5em)} 
+        &--github{
+            opacity: 1; 
+                transform: translate(7em);}
+        &--instagram {
+            opacity: 1; 
+            transform: translate(3.5em);}
+        &--pinterest {
+            opacity: 1; 
+            transform: translate(0em);}}
+    &:hover{
+        width:17em;}
+}   
+    /* FIN PRUEBA LISTA ICONOS REDES */

@@ -1,0 +1,10 @@
+@mixin logo--circulo{
+    position: absolute;
+    border-radius: 100%;
+    transition: ease-in-out 1s;
+}
+
+@mixin seccion{
+    width: 100%;
+    height: 100vh;
+}

@@ -1,0 +1,39 @@
+  /* HEADER */
+.header {
+    grid-area: header;
+    height: 100%;
+    background-color: $color-primario;
+    text-align: center;
+    &--principal {
+        display: flex;
+        height: 90%;
+        width: 100%;
+        background-color: $color-primario;}
+    &__columna1 {
+        width: 12rem;
+        height: 80%;}
+    &__columna2 {
+        width: 17rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: $fuente-secundaria;}
+    &__columna3 {
+        display: flex;
+        justify-content: flex-end;
+        width: auto;
+        height: 100%;
+        padding-right: 30px;
+        flex-grow: 2;}
+    &__search {
+        width: 7rem;
+        right: 3rem;
+        border-radius: 1px;
+        top: 11em;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out to left;
+        position: absolute;
+    &:hover{
+        width: 25em;}}  
+}
