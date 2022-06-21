@@ -13,7 +13,7 @@ html {
 body {
     font-family: "Roboto Mono", monospace;
     background-color: #c4d3af;
-    background-image: url("/assets/img/background/depositphotos_301437806-stock-illustration-japanese-blossom-sakura-background-mountains.jpg");
+    background-image: url("assets/img/background/depositphotos_301437806-stock-illustration-japanese-blossom-sakura-background-mountains.jpg");
     background-attachment: fixed;
     background-size: cover;
     height: 100%;
