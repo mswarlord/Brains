@@ -71,10 +71,10 @@ body {
     min-height: 100%
 }
 .main{
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #juego{
@@ -93,6 +93,20 @@ body {
     padding: 2em;
     border-radius: 1em;
     color: $color-texto;
+    font-size: 2em;
+    font-family: 'Caveat', cursive;
+    /* 
+    font-family: 'Orbitron', sans-serif;
+    font-family: 'Shadows Into Light', cursive;
+    font-family: 'Special Elite', cursive;
+    font-family: 'Stick No Bills', sans-serif;
+    font-family: 'Press Start 2P', cursive;
+    */
+}
+.subtitulo{
+    text-align: center;
+    text-shadow: #400242 0px 0px 8px;
+    font-size: larger;
 }
 #fichas{
     display: flex;

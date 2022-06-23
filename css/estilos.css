@@ -88,7 +88,21 @@ body {
   margin: 5em;
   padding: 2em;
   border-radius: 1em;
-  color: #fde7f8; }
+  color: #fde7f8;
+  font-size: 2em;
+  font-family: 'Caveat', cursive;
+  /* 
+    font-family: 'Orbitron', sans-serif;
+    font-family: 'Shadows Into Light', cursive;
+    font-family: 'Special Elite', cursive;
+    font-family: 'Stick No Bills', sans-serif;
+    font-family: 'Press Start 2P', cursive;
+    */ }
+
+.subtitulo {
+  text-align: center;
+  text-shadow: #400242 0px 0px 8px;
+  font-size: larger; }
 
 #fichas {
   display: flex;
