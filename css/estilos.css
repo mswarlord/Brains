@@ -1,3 +1,28 @@
+/*--------------- VARIABLES ---------------*/
+/* Colores */
+/* Fuentes */
+/*------------FIN VARIABLES-------------*/
+/*
+@import 'base/reset';
+@import 'utilities/mixins';
+/*----------SECCION LAYOUT ----------*/
+/* @import 'layout/grid';
+@import 'layout/header';
+@import 'layout/main';
+@import 'layout/footer'; */
+/*----------SECCION ELEMENTOS ----------*/
+/* @import 'components/logo';
+@import 'components/nav';
+@import 'components/redes';
+@import 'components/whatsapp'; */
+/*----------SECCION HTMLs ----------*/
+/* @import 'views/unete_al_equipo';
+@import 'views/noticias';
+@import 'views/productos';
+@import 'views/quienes_somos';
+@import 'views/ver_carrito'; */
+/*---------- SECCION MEDIA QUERIES ----------*/
+/* @import ''; */
 /* 
     font-family: 'Acme', sans-serif;
     font-family: 'Bangers', cursive;
@@ -25,71 +50,86 @@
     font-family: 'Stick No Bills', sans-serif;
     font-family: 'Yellowtail', cursive;
 */
-
 * {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box; 
-}
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box; }
 
 html {
-    height: auto;
-}
+  height: auto; }
 
 body {
-    font-family: "Roboto Mono", monospace;
-    background-color: #c4d3af;
-    background-image: url("../assets/img/background/background4.jpg");
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100%;
-    min-height: 100%
-}
-.main{
+  font-family: "Roboto Mono", monospace;
+  background-image: url("../assets/img/background/background4.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100%;
+  min-height: 100%; }
+
+.main {
   min-height: 80vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
+  align-items: center; }
 
-.titulo{
-  color: rgb(253, 231, 248);
+#juego {
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em; }
+
+#mapaAnterior, #mapaSiguiente {
+  background-color: #d14ea5cc;
+  margin: 0 1em 0 1em; }
+
+.instrucciones {
+  background-color: #d14ea5cc;
+  margin: 5em;
+  padding: 2em;
+  border-radius: 1em;
+  color: #fde7f8; }
+
+#fichas {
+  display: flex;
+  margin-bottom: 2em; }
+
+#fichas div {
+  border: 0.2em solid black;
+  margin: 0.5em;
+  transform: scale(0.8); }
+
+.titulo {
+  color: #fde7f8;
   font-weight: bold;
-  text-shadow: #ec0785 0px 0px 0.2em;
-}
-nav ul{
-    display: flex;
-    justify-content: space-around;
-    background-color: #d14ea5aa;
-    height: 2em;
-    align-items: center;
-    font-family: 'Kdam Thmor Pro', sans-serif;
-    font-weight: bolder;
-}
+  text-shadow: #ec0785 0px 0px 0.2em; }
 
-nav ul a:visited{
-  color: rgb(252, 214, 244);
-}
-nav ul a:active{
-  color: #fd6565
-}
-      
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  background-color: #d14ea5cc;
+  height: 2em;
+  align-items: center;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  font-weight: bolder; }
 
-#sesion{
-    background-color: #0000;
-    border: 0;
-}
+nav ul a:visited {
+  color: #fde7f8; }
 
-.sessionContainer{
+nav ul a:active {
+  color: #f54242d0; }
+
+#sesion {
+  background-color: #0000;
+  border: 0; }
+
+.sessionContainer {
   display: flex;
   width: 100%;
   justify-self: center;
-  justify-content: space-evenly;
-}
+  justify-content: space-evenly; }
 
-.btnSession{
+.btnSession {
   max-width: 300px;
   min-width: 200px;
   width: 100%;
@@ -99,36 +139,34 @@ nav ul a:active{
   font-size: 1em;
   padding: 1em 2em;
   transition-duration: 0.4s;
-  background-color: rgb(254, 213, 255);
-  color: rgba(245, 66, 66, 0.815);
+  background-color: #fed5ff;
+  color: #f54242d0;
   border: 2px solid #f396e3;
   text-transform: uppercase;
-  font-weight: bold;
-  }
-  .btnSession:hover{
-    background-color: #d46cb2;
-    color: rgb(250, 215, 234); }
+  font-weight: bold; }
 
-  #instrucciones{
-    margin: 1em 3em 1em 3em;
-    font-family: 'Kdam Thmor Pro', sans-serif;
-    color: rgb(240, 199, 240);
-    background-color: #d14ea5cc;
-    border-radius: 1em;
-    padding: 1em 1em 0.5em 1em;
-  }
+.btnSession:hover {
+  background-color: #d14ea5cc;
+  color: #fde7f8; }
 
-  .footer{
-    color: rgb(240, 199, 240);
-    background-color: #d14ea5cc;
-    padding: 1em;
-  }
-  .footer h6{
-    font-size: small;
-    line-height: 1em;
-  }
+#instrucciones {
+  margin: 1em 3em 1em 3em;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  color: #fde7f8;
+  background-color: #d14ea5cc;
+  border-radius: 1em;
+  padding: 1em 1em 0.5em 1em; }
+
+.footer {
+  color: #fde7f8;
+  background-color: #d14ea5cc;
+  padding: 1em; }
+
+.footer h6 {
+  font-size: small;
+  line-height: 1em; }
+
 /* ---------- LOADER ---------- */
-
 /* .loader {
     width: 96px;
     box-sizing: content-box;
@@ -168,4 +206,4 @@ nav ul a:active{
   @keyframes yinYang {
     100%{transform: rotate(360deg)}
   } */
-/* ---------- FIN LOADER ---------- */  
+/* ---------- FIN LOADER ---------- */
