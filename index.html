@@ -11,73 +11,69 @@
     <!-- TITULO -->
     <title>Brains - Jardín Japonés</title>
     <!-- FONTAWESOME -->
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="libraries/bootstrap/css/bootstrap-grid.min.css">
     <!-- FAVICON -->
     <link rel="shortcut icon" href="assets/img/ico/brain-logo.png" type="image/x-icon">
     <!-- TIPOGRAFIAS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Indie+Flower&family=Kdam+Thmor+Pro&family=Montserrat:wght@100&family=Noto+Serif+JP:wght@500&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Bangers&family=Bebas+Neue&family=Caveat:wght@500;700&family=Fascinate&family=Indie+Flower&family=Kdam+Thmor+Pro&family=Mali:ital,wght@0,200;0,600;1,400&family=Merriweather:ital,wght@0,300;1,300&family=Montserrat:wght@100&family=Noto+Serif+JP:wght@500&family=Oleo+Script:wght@400;700&family=Orbitron:wght@400;500;700&family=PT+Mono&family=Permanent+Marker&family=Potta+One&family=Press+Start+2P&family=Rubik+Moonrocks&family=Russo+One&family=Sacramento&family=Shadows+Into+Light&family=Source+Code+Pro:ital,wght@0,500;0,800;1,500&family=Special+Elite&family=Stick+No+Bills:wght@200;800&family=Yellowtail&display=swap" rel="stylesheet"> 
     <!-- ESTILOS -->
     <link REL=StyleSheet HREF="css/estilos.css" TYPE="text/css" MEDIA=screen>
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
 </head>
-    <body class="container-fluid">
+<!-- BODY -->
+    <body class="container-fluid p-0 m-0">
         <!-- HEADER -->
         <header class="">
         </header>
-        <nav class="">
-            <!-- NAVEGADOR -->
-            <ul class="navegador__menu">
-                <li><a href="#">Inicio</a></li>
+        <!-- FIN HEADER -->
+        <!-- NAVEGADOR -->
+        <nav class="p-0 m-0">
+            <ul id="desafios" class="navegador__menu">
+                <li><a href="#">INICIO</a></li>
                 <li class="">
-                    <a href="#"> <span class="centrado">Puzzles</span> </a>
+                    <a href="#"> <span class="centrado">PUZZLES</span> </a>
                 </li>
-                <li><a href="#">comprarlo</a></li>
-                <li><a href="#"><span id="sesion">Iniciar sesión</span></a></li>
+                <li><a href="#">COMPRAR</a></li>
+                <li><a href="#"><span id="sesion">INICIAR SESIÓN</span></a></li>
             </ul>
         </nav>
+        <!-- FIN NAVEGADOR -->
         <!-- MAIN -->
         <main class="main">
+            <h2 class="titulo text-center mt-5 mb-2">BRAINS</h2>
+            <h3 class="titulo text-center">Jardín Japonés</h3>
             <br>
-            <br>
-            <h2 class="titulo">BRAINS</h2>
-            <h3>Jardín Japonés</h3>
-            <br>
+            <div class="sessionContainer">
+                <button id="btnLogIn" class="btnSession">Iniciar Sesion</button>
+                <button id="btnSignIn" class="btnSession">Registrarse</button>
+            </div>
             <div class="main__seccion">
             </div>
-            <br>
-
-            <div class="loader"></div>
-
-            <h3 class="subtitulo">SUBTITLE</h3>
-            <br>
-            <div class="main__seccion">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti illum perferendis neque nesciunt autem commodi impedit! Consequuntur possimus suscipit magnam, vero quae at velit? At praesentium, veniam saepe assumenda deleniti asperiores
-                    omnis earum animi impedit quod necessitatibus est
-                    <br>
-                    <br> dicta harum aperiam debitis. Numquam nostrum commodi accusantium expedita? Placeat officiis soluta autem. Blanditiis facere quo, reiciendis ipsa laboriosam nesciunt esse eveniet nulla natus. Ratione, quisquam voluptas consectetur
-                    error facere, quidem quas perferendis excepturi, possimus, id eos numquam! Maiores, amet labore ab odio expedita sequi, iusto earum reprehenderit,
-                    <br>
-                    <br> sit magni ipsum! Laboriosam ea deleniti nisi eum amet.</p>
-                <br>
-                <img src="" alt="" class="img__portada main__img--right">
+            <div id="instrucciones">
+                <p>No es tan fácil como puede parecer a primera vista componer un perfecto jardin japones 
+                    <br> y se hace mas complicado si ademas tienes que seguir instrucciones precisas. 
+                    <br> ¿Te las podrás arreglar para encontrar la ficha de jardín perfecta 
+                    <br> y cumplir todas las tareas que te exige el puzzle? </p>
             </div>
-            <br>
+
         </main>
+        <!-- FIN BODY -->
+        <!-- FOOTER -->
         <footer class="footer">
-            <!-- FOOTER -->
             <section class="footer--principal">
-            </section>
-            <section class="footer--inferior">
                 <h6 class="creditos">Autor: REINER KNIZIA</h6>
                 <h6 class="creditos">Ilustracion y Diseño Grafico: Andres Resch</h6>
                 <h6 class="creditos">Diseño de la caja: Hans-Georg Schneider</h6>
                 <h6 class="creditos">Realizacion Thigra Spiele</h6>
                 <h6 class="creditos">Pegasus Spiele GmbH, www.pegasus.de</h6> 
             </section>
+            <section class="footer--inferior">
+            </section>
         </footer>
-        <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
+        <!-- FIN FOOTER -->
         <script src="js/script.js"></script>
+        <script src="libs/bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
