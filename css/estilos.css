@@ -41,7 +41,7 @@ html {
 body {
     font-family: "Roboto Mono", monospace;
     background-color: #c4d3af;
-    background-image: url("/assets/img/background/background4.jpg");
+    background-image: url("../assets/img/background/background4.jpg");
     background-attachment: fixed;
     background-size: cover;
     height: 100%;
