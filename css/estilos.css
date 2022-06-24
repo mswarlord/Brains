@@ -23,7 +23,14 @@
 @import 'views/ver_carrito'; */
 /*---------- SECCION MEDIA QUERIES ----------*/
 /* @import ''; */
-/* 
+/* FUENTES PRINCIPALES 
+    font-family: 'Orbitron', sans-serif;
+    font-family: 'Shadows Into Light', cursive;
+    font-family: 'Special Elite', cursive;
+    font-family: 'Stick No Bills', sans-serif;
+    font-family: 'Press Start 2P', cursive;
+    */
+/* SECUNDARIAS
     font-family: 'Acme', sans-serif;
     font-family: 'Bangers', cursive;
     font-family: 'Bebas Neue', cursive;
@@ -90,14 +97,7 @@ body {
   border-radius: 1em;
   color: #fde7f8;
   font-size: 2em;
-  font-family: 'Caveat', cursive;
-  /* 
-    font-family: 'Orbitron', sans-serif;
-    font-family: 'Shadows Into Light', cursive;
-    font-family: 'Special Elite', cursive;
-    font-family: 'Stick No Bills', sans-serif;
-    font-family: 'Press Start 2P', cursive;
-    */ }
+  font-family: 'Caveat', cursive; }
 
 .subtitulo {
   text-align: center;
@@ -109,14 +109,31 @@ body {
   margin-bottom: 2em; }
 
 #fichas div {
-  border: 0.2em solid black;
-  margin: 0.5em;
-  transform: scale(0.8); }
+  transform: scale(0.8);
+  margin: 0 -1em 0 -1em;
+  border: 0.3em solid #400242; }
 
 .titulo {
   color: #fde7f8;
   font-weight: bold;
   text-shadow: #ec0785 0px 0px 0.2em; }
+
+.btnJuego {
+  text-align: center;
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  transition-duration: 0.4s;
+  background-color: #fed5ff;
+  color: #f54242d0;
+  border: 0.2em solid #f396e3;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 100%;
+  height: 100%; }
+  .btnJuego:hover {
+    background-color: #d14ea5cc;
+    color: #fde7f8; }
 
 nav ul {
   display: flex;
@@ -179,6 +196,11 @@ nav ul a:active {
 .footer h6 {
   font-size: small;
   line-height: 1em; }
+
+#sesionForm {
+  background-color: #d14ea5cc;
+  text-align: center;
+  border-radius: 2em; }
 
 /* ---------- LOADER ---------- */
 /* .loader {

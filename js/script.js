@@ -56,7 +56,7 @@ while (girar !="N"){
 
 for(const nroFicha of fichas) {//Recorre los elementos del array ficha.
     console.log(nroFicha); //Muestra los atributos y sus valores de los elementos del array.
-}  */
+}   */
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
@@ -101,6 +101,32 @@ for(i=0;i<50;i++){
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
+
+//*********************************************************************************************************************************
+//**************************************************** CAMBIAR MAPA ***************************************************************
+//*********************************************************************************************************************************
+let mapaSeleccionado = document.getElementById("mapaSeleccionado");
+let btnSiguiente = document.getElementById("btnSiguiente");
+let mapaActual = 1;
+mapas[0].seleccionado = true;
+//MAPA SIGUIENTE
+let mapaSiguiente = () => {
+    mapaActual++;
+    mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
+    mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado = true.
+    mapas[mapaActual-2].seleccionado = false; //indica al mapa actual como seleccionado = false.
+}
+btnSiguiente.addEventListener('click',mapaSiguiente);
+
+//MAPA ANTERIOR
+let btnAnterior = document.getElementById("btnAnterior");
+let mapaAnterior = () => {
+    mapaActual--;
+    mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
+    mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado = true.
+    mapas[mapaActual].seleccionado = false; //indica al mapa actual como seleccionado = false.
+}
+btnAnterior.addEventListener('click',mapaAnterior);
 
 
 //*********************************************************************************************************************************

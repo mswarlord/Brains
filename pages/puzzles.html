@@ -10,7 +10,6 @@
     <meta name="keywords" content="juego de mesa, juego, brains, jardin japones, reiner knizzia, pegasus.de, laberinto, logica, hobbie, boardgame, boardgames">
     <!-- TITULO -->
     <title>Puzzles</title>
-    <!-- FONTAWESOME -->
     <!-- FAVICON -->
     <link rel="shortcut icon" href="assets/img/ico/brain-logo.png" type="image/x-icon">
     <!-- TIPOGRAFIAS -->
@@ -25,37 +24,36 @@
 <!-- BODY -->
     <body class="container-fluid p-0 m-0">
         <!-- HEADER -->
-        <header class="">
+        <header>
         </header>
         <!-- FIN HEADER -->
         <!-- NAVEGADOR -->
         <nav class="p-0 m-0">
             <ul id="desafios" class="navegador__menu">
                 <li><a href="../index.html">INICIO</a></li>
-                <li class=""><a href="#">PUZZLES</a></li>
-                <li class=""><a href="instrucciones.html">INSTRUCCIONES</a></li>
-                <li><a href="#">COMPRAR</a></li>
-                <li><a href="#"><span id="sesion">INICIAR SESIÓN</span></a></li>
+                <li><a href="#">PUZZLES</a></li>
+                <li><a href="instrucciones.html">INSTRUCCIONES</a></li>
+                <li><a href="https://www.amazon.es/SD-Games-Brains-japon%C3%A9s-SDGBRAINS01/dp/B01M0M0AC2/ref=sr_1_2?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=QMHNKI0G5UQE&keywords=brains+reiner+knizzia&qid=1656024750&sprefix=brains+reiner+knizz%2Caps%2C374&sr=8-2" target="_blank">COMPRAR</a></li>
+                <li><a href="sesion.html"><span id="sesion">INICIAR SESIÓN</span></a></li>
             </ul>
         </nav>
         <!-- FIN NAVEGADOR -->
         <!-- MAIN -->
         <main class="main">
-            <h2 class="titulo text-center mt-5 mb-2">DESAFÍO 1</h2>
-            <h3 class="titulo text-center">Dificultad: Calentamiento</h3>
+            <h2 id="nroDesafio" class="titulo text-center mt-5 mb-2">DESAFÍO 1</h2>
+            <h3 id="dificultad" class="titulo text-center">Dificultad: Calentamiento</h3>
             <br>
             <div id="juego">
                 <div id="mapaAnterior">
-                    anterior
+                    <button id="btnAnterior" class="btnJuego">Anterior</button>
                 </div>
-                <div id="mapaActual">
-                    <img src="../assets/img/niveles/nivel1.png" alt="">
+                <div>
+                    <img src="../assets/img/niveles/nivel1.png" alt="" id="mapaSeleccionado">
                 </div>
                 <div id="mapaSiguiente">
-                    siguiente
+                    <button id="btnSiguiente" class="btnJuego">Siguiente</button>
                 </div>
             </div>
-
             <div id="fichas">
                 <div class="ficha1"><img src="../assets/img/fichas/ficha1.png" alt=""></div>
                 <div class="ficha2"><img src="../assets/img/fichas/ficha2.png" alt=""></div>
@@ -80,7 +78,7 @@
             </section>
         </footer>
         <!-- FIN FOOTER -->
-        <script src="js/script.js"></script>
-        <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../js/script.js"></script>
+        <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>
