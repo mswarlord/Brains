@@ -1,0 +1,29 @@
+#slot1{
+    background-color: red;
+    position: absolute;
+    height: 155px;
+    width: 155px;
+    left: 221px;
+    top: 172px;
+    &:hover{
+        background-color: rgba(250, 16, 16, 0.067);
+    }
+    &:active{
+        background-image: url("../assets/img/fichas/ficha1.png");
+        background-size: cover;
+    }
+}
+
+#slot2{
+    background-color: green;
+    position: absolute;
+    height: 155px;
+    width: 155px;
+    &:hover{
+        background-color: rgba(250, 16, 16, 0.067);
+    }
+    &:active{
+        background-image: url("../assets/img/fichas/ficha1.png");
+        background-size: cover;
+    }
+}

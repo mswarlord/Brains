@@ -41,27 +41,26 @@
         <!-- MAIN -->
         <main class="main">
             <h2 id="nroDesafio" class="titulo text-center mt-5 mb-2">DESAFÍO 1</h2>
-            <h3 id="dificultad" class="titulo text-center">Dificultad: Calentamiento</h3>
+            <h3 id="dificultad" class="titulo text-center">Dificultad: <span id="dificultadMapaActual">Calentamiento</span></h3>
             <br>
             <div id="juego">
                 <div id="mapaAnterior">
                     <button id="btnAnterior" class="btnJuego">Anterior</button>
                 </div>
-                <div>
+                <div id="zonaDeJuego">
                     <img src="../assets/img/niveles/nivel1.png" alt="" id="mapaSeleccionado">
                 </div>
                 <div id="mapaSiguiente">
                     <button id="btnSiguiente" class="btnJuego">Siguiente</button>
                 </div>
             </div>
-            <div id="fichas">
-                <div class="ficha1"><img src="../assets/img/fichas/ficha1.png" alt=""></div>
-                <div class="ficha2"><img src="../assets/img/fichas/ficha2.png" alt=""></div>
-                <div class="ficha3"><img src="../assets/img/fichas/ficha3.png" alt=""></div>
-                <div class="ficha4"><img src="../assets/img/fichas/ficha4.png" alt=""></div>
-                <div class="ficha5"><img src="../assets/img/fichas/ficha5.png" alt=""></div>
-                <div class="ficha6"><img src="../assets/img/fichas/ficha6.png" alt=""></div>
-                <div class="ficha7"><img src="../assets/img/fichas/ficha7.png" alt=""></div>
+
+
+
+            <div id="fichas"></div> <!-- CONTENEDOR PARA LA CREACION DE LAS FICHAS --> 
+            <div id="botonesDeGiro">
+                <button id="girarIzquierda" class="btnGirar">&#8634;</button> <!-- botones temporales -->
+                <button id="girarDerecha" class="btnGirar">&#8635;</button>
             </div>
         </main>
         <!-- FIN BODY -->

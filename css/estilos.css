@@ -2,6 +2,30 @@
 /* Colores */
 /* Fuentes */
 /*------------FIN VARIABLES-------------*/
+#slot1 {
+  background-color: red;
+  position: absolute;
+  height: 155px;
+  width: 155px;
+  left: 221px;
+  top: 172px; }
+  #slot1:hover {
+    background-color: rgba(250, 16, 16, 0.067); }
+  #slot1:active {
+    background-image: url("../assets/img/fichas/ficha1.png");
+    background-size: cover; }
+
+#slot2 {
+  background-color: green;
+  position: absolute;
+  height: 155px;
+  width: 155px; }
+  #slot2:hover {
+    background-color: rgba(250, 16, 16, 0.067); }
+  #slot2:active {
+    background-image: url("../assets/img/fichas/ficha1.png");
+    background-size: cover; }
+
 /*
 @import 'base/reset';
 @import 'utilities/mixins';
@@ -17,7 +41,7 @@
 @import 'components/whatsapp'; */
 /*----------SECCION HTMLs ----------*/
 /* @import 'views/unete_al_equipo';
-@import 'views/noticias';
+
 @import 'views/productos';
 @import 'views/quienes_somos';
 @import 'views/ver_carrito'; */
@@ -113,6 +137,12 @@ body {
   margin: 0 -1em 0 -1em;
   border: 0.3em solid #400242; }
 
+#botonesDeGiro {
+  display: flex; }
+
+#botonesDeGiro button {
+  margin: 0 3em 2em 3em; }
+
 .titulo {
   color: #fde7f8;
   font-weight: bold;
@@ -134,6 +164,17 @@ body {
   .btnJuego:hover {
     background-color: #d14ea5cc;
     color: #fde7f8; }
+
+.btnGirar {
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  color: #f8d3e7;
+  text-shadow: #400240 0px 0px 0.2em;
+  font-size: 1.8em;
+  font-family: 'Special Elite', cursive;
+  background-color: #ee09b5cc;
+  border-color: #f396e3; }
 
 nav ul {
   display: flex;
