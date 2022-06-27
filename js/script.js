@@ -1,19 +1,31 @@
+let ficha = []; //array con los nodos ficha
+let mapaActual = 1; //Indica cual es el mapa seleccionado
+const fichas = []; //genera el array de objetos ficha
+const mapas = []; //genera array mapas
+
+window.onload = function() {
 //*********************************************************************************************************************************
 //************************************************* CREACION DE LAS FICHAS Y SUS ESTADOS ******************************************
 //*********************************************************************************************************************************
-const fichas = []; //genera el array ficha
 class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y los metodos para cambiar la posicion de las mismas
     constructor(id) {
         this.id = id;
         this.posicion = 1;//inicia las fichas en una posicion determinada
-        this.seleccionada = false;
+        this.seleccionada = false; //indica si la ficha esta seleccionada
     }
 
-    seleccionarFicha() {//metodo para indicar que la ficha esta seleccionada
+    fichaSeleccionada() {//metodo para cambiar el estado de seleccion de la ficha y deselecciona el resto de las fichas seleccionadas
         if(this.seleccionada === false){ 
             this.seleccionada = true;
+            console.log(`selecionaste la ficha ${this.id}`)
+            for(let e of fichas){ //Esta iteración deselecciona cualquier ficha que este seleccionada 
+                if(e !== this){   //restringiendo al usuario que pueda seleccionar mas de una ficha
+                    e.seleccionada = false;
+                }
+            }
         }else{
             this.seleccionada = false;
+            console.log(`Deselecionaste la ficha ${this.id}`)
         }
     }
 
@@ -41,6 +53,125 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
 }
 
 //*********************************************************************************************************************************
+//************************************************* CREACION DE MAPAS Y SUS ESTADOS ***********************************************
+//*********************************************************************************************************************************
+
+class mapa { //genera la clase constructora de objetos mapa
+    constructor(nivel, dificultad, img){
+        this.nivel = nivel + 1;
+        this.dificultad = dificultad;
+        this.img = img;
+        this.slotsDelMapa = 0;
+        this.completo = false;     //estado que indica si el mapa esta completo
+        this.habilitado = false;   //estado que indica si el mapa esta habilitado para jugar
+        this.seleccionado = false; //estado que indica si es el mapa que se esta jugando
+    }
+
+    completarMapa() { //metodo para indicar que el desafío ya fue completado
+        this.completo = true;
+    }
+
+    habilitarMapa() { //método que indica si el desafío esta habilitado para jugarse
+        this.habilitado = true;
+    }
+
+    seleccionarMapa() {//metodo que indica si es el mapa que se esta jugando
+        if(this.seleccionado === false){
+            this.seleccionado = true;
+        }else{
+        this.seleccionado = false;
+        }
+    }
+}
+
+for(i=0;i<50;i++){
+    mapas[i]=new mapa(i,i,`assets/img/nivel${i+1}.jpg`);
+    if(mapas[i].nivel < 3) {
+        mapas[i].slotsDelMapa = 1;
+    }else if(mapas[i].nivel < 11) {
+        mapas[i].slotsDelMapa = 2;
+    }else if(mapas[i].nivel < 21){
+        mapas[i].slotsDelMapa = 3;
+    }else if(mapas[i].nivel < 31){
+        mapas[i].slotsDelMapa = 4;
+    }else if(mapas[i].nivel < 41){
+        mapas[i].slotsDelMapa = 5;
+    }else{
+        mapas[i].slotsDelMapa = 6;
+    }
+}
+//console.log(mapas);
+
+//*********************************************************************************************************************************
+//*********************************************************************************************************************************
+//*********************************************************************************************************************************
+
+
+//*********************************************************************************************************************************
+//**************************************************** CAMBIAR MAPA ***************************************************************
+//*********************************************************************************************************************************
+let mapaSeleccionado = document.getElementById("mapaSeleccionado");
+let btnSiguiente = document.getElementById('btnSiguiente');
+mapas[0].seleccionado = true;
+//MAPA SIGUIENTE
+let mapaSiguiente = () => {
+    mapaActual++;
+    mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
+    mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
+    mapas[mapaActual-2].seleccionado = false; //indica al mapa anterior como no seleccionado.
+}
+
+btnSiguiente.addEventListener('click',mapaSiguiente);
+
+//MAPA ANTERIOR
+let btnAnterior = document.getElementById("btnAnterior");
+let mapaAnterior = () => {
+    mapaActual--;
+    mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
+    mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
+    mapas[mapaActual].seleccionado = false; //indica al mapa anterior como no seleccionado.
+}
+btnAnterior.addEventListener('click',mapaAnterior);
+
+
+//*********************************************************************************************************************************
+//*********************** CREACION DE LOS CONTENEDORES CON LAS FICHAS CON DOM E ITERACION DE ARRAY ********************************
+//*********************************************************************************************************************************
+
+let divFicha = document.getElementById("divFichas");//Obtiene el nodo donde se van a agregar los nuevos elementos - en este caso en un <DIV>
+
+for (const divFichaN of fichas) {//Itera el array fichas, con for...of.
+    let div = document.createElement("div");//Crea un nodo <div> en cada iteración. 
+    div.id = `ficha${divFichaN.id + 1}`;//le asigno al nuevo div el ID ficha"N", donde "N" es el numero de ficha.
+    div.className = `ficha`; //le asigno a cada DIV la clase ficha.
+    div.innerHTML = `<img src="../assets/img/fichas/ficha${divFichaN.id +1}.png" alt="">` //asigna a cada nodo la etiqueta IMG con el valor correspondiente al elemento de la iteración actual del array fichas
+    divFicha.appendChild(div); //Se inserta el nuevo nodo al padre en cada ciclo
+}
+
+//*********************************************************************************************************************************
+//********************************* FIN CREACION DE LOS CONTENEDORES CON LAS FICHAS  **********************************************
+//*********************************************************************************************************************************
+
+
+
+
+
+
+//*********************************************************************************************************************************
+//*********************************************************** DESAFIOS ************************************************************
+//*********************************************************************************************************************************
+//DESAFIO 3
+/*
+let slot1 = document.getElementById("slot1");
+let slot2 = document.getElementById('slot2');
+slot1.style.setProperty("left", "200px");
+slot1.style.setProperty("top", "200px");
+slot1.style.setProperty("color", "#fff");
+slot2.style.setProperty("color","#fff");
+*/
+
+
+//*********************************************************************************************************************************
 //**************************************************** ROTACION DE LAS FICHAS *****************************************************
 //*********************************************************************************************************************************
 
@@ -49,19 +180,75 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
 //que a su vez gire la imagen de la ficha en el sentido correspondiente.
 
 //SELECCION DE LA FICHA A GIRAR
+
+/* let seleccionarFicha = () => {
+    fichas[0].fichaSeleccionada();
+}  */
+
+let seleccionarFicha1 = () => {
+    fichas[0].fichaSeleccionada();
+}
+let seleccionarFicha2 = () => {
+    fichas[1].fichaSeleccionada();
+}
+let seleccionarFicha3 = () => {
+    fichas[2].fichaSeleccionada();
+}
+let seleccionarFicha4 = () => {
+    fichas[3].fichaSeleccionada();
+}
+let seleccionarFicha5 = () => {
+    fichas[4].fichaSeleccionada();
+}
+let seleccionarFicha6 = () => {
+    fichas[5].fichaSeleccionada();
+}
+let seleccionarFicha7 = () => {
+    fichas[6].fichaSeleccionada();
+}
+
+for(i=0;i<7;i++){
+    ficha[i] = document.getElementById(`ficha${[i+1]}`)//guarda nodos con ID ficha en el array "ficha[]"-No confundir con array "fichas[]"
+}
+
+ficha[0].addEventListener('click',seleccionarFicha1); //Agrego a cada elemento del array ficha el evento para seleccionarlas
+ficha[1].addEventListener('click',seleccionarFicha2);
+ficha[2].addEventListener('click',seleccionarFicha3);
+ficha[3].addEventListener('click',seleccionarFicha4);
+ficha[4].addEventListener('click',seleccionarFicha5);
+ficha[5].addEventListener('click',seleccionarFicha6);
+ficha[6].addEventListener('click',seleccionarFicha7);
+
+
 /* 
+let seleccionarFicha = (e) => {
+    console.log(`se selecciono la ficha ${e}`);
+    console.log(e);
+}
+
+for(i=0;i<7;i++){
+    ficha[i].addEventListener('click',`${seleccionarFicha}`);
+    console.log(`Se agrego el evento click a la ficha ${i+1}`)
+} 
+
+//fichas[0].addEventListener('click',seleccionarFicha);
+fichas[1].addEventListener('click',`${fichas[1].fichaSeleccionada()}`);
+fichas[2].addEventListener('click',`${fichas[2].fichaSeleccionada()}`);
+fichas[3].addEventListener('click',`${fichas[3].fichaSeleccionada()}`);
+fichas[4].addEventListener('click',`${fichas[4].fichaSeleccionada()}`);
+fichas[5].addEventListener('click',`${fichas[5].fichaSeleccionada()}`);
+fichas[6].addEventListener('click',`${fichas[6].fichaSeleccionada()}`); */
+/* 
+
+
 let girarFichaNro = 0; //variable que determina la ficha a girar
 let sentidoGiro;//variable que determina el sentido de giro
 
 let fichaAGirar = document.getElementById("ficha1");
 
-let seleccionarFicha = () => {
-fichas[0].seleccionarFicha();
-console.log(`seleccionaste la ficha ${fichas[0].id}`)
-} 
+fichas.addEventListener('click',seleccionarFicha);
 
-fichaAGirar.addEventListener('click',seleccionarFicha);
- */
+*/
 //let girar = (prompt("Ingrese 'N' si desea finalizar")).toUpperCase();//variable que determina si se debe girar o no una ficha
 /* while (girar !="N"){
 
@@ -89,174 +276,4 @@ for(const nroFicha of fichas) {//Recorre los elementos del array ficha.
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
-
-
-//*********************************************************************************************************************************
-//************************************************* CREACION DE MAPAS Y SUS ESTADOS ***********************************************
-//*********************************************************************************************************************************
-const mapas = []; //genera array mapas
-class mapa { //genera la clase constructora de objetos mapa
-    constructor(nivel, dificultad, img){
-        this.nivel = nivel;
-        this.dificultad = dificultad;
-        this.img = img;
-        this.completo = false;    //estado que indica si el mapa esta completo
-        this.habilitado = false;   //estado que indica si el mapa esta habilitado para jugar
-        this.seleccionado = false; //estado que indica si es el mapa que se esta jugando
-    }
-
-    completarMapa() { //metodo para indicar que el desafío ya fue completado
-        this.completo = true;
-    }
-
-    habilitarMapa() { //método que indica si el desafío esta habilitado para jugarse
-        this.habilitado = true;
-    }
-
-    seleccionarMapa() {//metodo que indica si es el mapa que se esta jugando
-        if(this.seleccionado === false){
-            this.seleccionado = true;
-        }else{
-        this.seleccionado = false;
-        }
-    }
 }
-
-for(i=0;i<50;i++){
-    mapas[i]=new mapa(i,i,`assets/img/nivel${i+1}.jpg`);
-}
-//console.log(mapas);
-
-//*********************************************************************************************************************************
-//*********************************************************************************************************************************
-//*********************************************************************************************************************************
-
-
-//*********************************************************************************************************************************
-//************************************************* REGISTRO Y LOGEO DE USUARIOS **************************************************
-//*********************************************************************************************************************************
-/* const linkSesion = document.getElementById("sesion");
-
-const usuarios = []; //genera el array usuarios
-class Usuario{ //genera la clase constructora de objetos usuario
-    constructor(nombreUsuario,passUsuario){
-        this.nombreUsuario = nombreUsuario;
-        this.passUsuario = passUsuario;
-    }
-} */
-
-//REGISTRARSE ----------------------------------------------------------------------------------
-/* let btnSignIn = document.getElementById("btnSignIn");
-let newUser = "";
-let newPass = "";
-
-let registrarse = () => {
-    newUser = prompt("REGISTRARSE: Ingrese un nuevo nombre de usuario"); 
-    newPass = prompt("REGISTRARSE: Ingrese una nueva contraseña");
-    const user = new Usuario(newUser,newPass); //creo un objeto usuario y le meto como parametros las variables newUser y newPass    
-    usuarios.push(user); //meto el objeto usuario en el array usuarios.
-}
-
-btnSignIn.addEventListener('click',registrarse);
- */
-//INICIAR SESION -------------------------------------------------------------------------------
-/* let btnLogIn = document.getElementById("btnLogIn");
-let ingresoUser = "";
-let ingresoPass = "";
-
-let iniciarSesion = () => {
-    ingresoUser = prompt("INICIAR SESION: Ingrese su nombre de usuario"); //se ingresa el nombreUser
-    ingresoPass = prompt("INICIAR SESION: Ingrese su contraseña");
-    let index = -1; //establezco let en -1
-    
-    usuarios.forEach((el, i) => {                                                //recorro cada elemento del array usuarios, y en cada uno,
-        if (el.nombreUsuario === ingresoUser && el.passUsuario === ingresoPass){ //comparo los valores nombreUsuario y passUsuario con los datos ingresados
-            index = i                                                            //si ambos coinciden, le doy al index el valor del indice de ese objeto
-            alert(`Bienvenido ${el.nombreUsuario}`)
-            sesion.innerHTML = `${(usuarios[i].nombreUsuario).toUpperCase()}`;
-        }
-    }); 
-    
-}
-btnLogIn.addEventListener('click',iniciarSesion); */
-
-//*********************************************************************************************************************************
-//*********************************************************************************************************************************
-//*********************************************************************************************************************************
-
-//*********************************************************************************************************************************
-//**************************************************** CAMBIAR MAPA ***************************************************************
-//*********************************************************************************************************************************
-let mapaSeleccionado = document.getElementById("mapaSeleccionado");
-let btnSiguiente = document.getElementById('btnSiguiente');
-let mapaActual = 1;
-mapas[0].seleccionado = true;
-//MAPA SIGUIENTE
-let mapaSiguiente = () => {
-    mapaActual++;
-    mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
-    mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
-    mapas[mapaActual-2].seleccionado = false; //indica al mapa anterior como no seleccionado.
-
-}
-btnSiguiente.addEventListener('click',mapaSiguiente);
-
-//MAPA ANTERIOR
-let btnAnterior = document.getElementById("btnAnterior");
-let mapaAnterior = () => {
-    mapaActual--;
-    mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
-    mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
-    mapas[mapaActual].seleccionado = false; //indica al mapa anterior como no seleccionado.
-}
-btnAnterior.addEventListener('click',mapaAnterior);
-
-
-
-//*********************************************************************************************************************************
-//******************************** CREACION DE LA BARRA DE NAVEGACION POR DOM E ITERACION DE ARRAY ********************************
-//*********************************************************************************************************************************
-//*************************************************** CODIGO CREADO DESDE HTML ****************************************************
-//*********************************************************************************************************************************
-/* 
-let desafio = document.getElementById("desafios");//Obtiene el nodo donde se van a agregar los nuevos elementos - en este caso en un <ul>
-let desafios = ["Inicio","Instrucciones","Mis Puzzles","Comprar","Iniciar Sesión"];//Array con la información a agregar
-
-for (const desafioN of desafios) {//Itera el array con for...of
-    let li = document.createElement("li");//Crea un nodo <li> en cada iteración 
-    li.innerHTML = `<a href="#">${desafioN}</a>` //asigna a cada nodo el valor correspondiente al elemento de la iteración actual del array desafios
-    desafio.appendChild(li); //Se inserta el nuevo nodo al padre en cada ciclo
-} 
- */
-
-
-//*********************************************************************************************************************************
-//*********************** CREACION DE LOS CONTENEDORES CON LAS FICHAS POR DOM E ITERACION DE ARRAY ********************************
-//*********************************************************************************************************************************
-let divFicha = document.getElementById("fichas");//Obtiene el nodo donde se van a agregar los nuevos elementos - en este caso en un <DIV>
-for (const divFichaN of fichas) {//Itera el array fichas, con for...of.
-    let div = document.createElement("div");//Crea un nodo <div> en cada iteración. 
-    div.id = `ficha${divFichaN.id + 1}`;//le asigno al nuevo div el ID ficha"N", donde "N" es el numero de ficha.
-    div.className = `ficha`; //le asigno a cada DIV la clase ficha.
-    div.innerHTML = `<img src="../assets/img/fichas/ficha${divFichaN.id +1}.png" alt="">` //asigna a cada nodo la etiqueta IMG con el valor correspondiente al elemento de la iteración actual del array fichas
-    divFicha.appendChild(div); //Se inserta el nuevo nodo al padre en cada ciclo
-} 
-
-//*********************************************************************************************************************************
-//************************************************************* FIN ***************************************************************
-//*********************************************************************************************************************************
-
-//*********************************************************************************************************************************
-//*********************************************************** DESAFIOS ************************************************************
-//*********************************************************************************************************************************
-//DESAFIO 3
-
-let slot = document.getElementById("slot1");
-let slot2 = document.getElementById('slot2');
-slot1.style.setProperty("left", "200px");
-slot1.style.setProperty("top", "200px");
-slot1.style.setProperty("color", "#fff");
-/* console.log(slot1.getAttribute("style"));
-slot1.innerHTML="HOLA";
-slot1.appendChild(div) 
-console.log(slotA); */

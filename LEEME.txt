@@ -1,0 +1,6 @@
+WEBAPP desarrollada integramente durante el transcurso del curso de JavaScript de la carrera, FULLSTACK de Coderhouse por Facundo Cantero Rodriguez.
+
+Inconvenientes y dudas que surgieron durante el desarrollo de la misma:
+
+1.- inconvenientes al trabajar con DOM: al ejecutar el sitio no se reconocian variables definidas por eventos que deben ejecutarse antes que el DOM cargue.
+	SOLUCION: meter todo el contenido del JS dentro de la funcion window.onload = function() {}; 

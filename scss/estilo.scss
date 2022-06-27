@@ -1,184 +1,29 @@
 @import 'utilities/variables';
-@import 'views/slots';
-/*
 @import 'base/reset';
 @import 'utilities/mixins';
 /*----------SECCION LAYOUT ----------*/
-/* @import 'layout/grid';
-@import 'layout/header';
+// @import 'layout/grid';
+// @import 'layout/header';
 @import 'layout/main';
-@import 'layout/footer'; */
+@import 'layout/footer'; 
 /*----------SECCION ELEMENTOS ----------*/
-/* @import 'components/logo';
+// @import 'components/logo';
 @import 'components/nav';
-@import 'components/redes';
-@import 'components/whatsapp'; */
+// @import 'components/redes';
+// @import 'components/whatsapp';
 /*----------SECCION HTMLs ----------*/
-/* @import 'views/unete_al_equipo';
-
-@import 'views/productos';
-@import 'views/quienes_somos';
-@import 'views/ver_carrito'; */
+@import 'views/slots';
+@import 'views/instrucciones';
+@import 'views/puzzles';
+// @import 'views/unete_al_equipo';
+// @import 'views/productos';
+// @import 'views/quienes_somos';
+// @import 'views/ver_carrito';
 /*---------- SECCION MEDIA QUERIES ----------*/
 /* @import ''; */ 
 
-//FUENTES para la WEBAPP
-    /* FUENTES PRINCIPALES 
-    font-family: 'Orbitron', sans-serif;
-    font-family: 'Shadows Into Light', cursive;
-    font-family: 'Special Elite', cursive;
-    font-family: 'Stick No Bills', sans-serif;
-    font-family: 'Press Start 2P', cursive;
-    */
-/* SECUNDARIAS
-    font-family: 'Acme', sans-serif;
-    font-family: 'Bangers', cursive;
-    font-family: 'Bebas Neue', cursive;
-    font-family: 'Caveat', cursive;
-    font-family: 'Fascinate', cursive;
-    font-family: 'Indie Flower', cursive;
-    font-family: 'Kdam Thmor Pro', sans-serif;
-    font-family: 'Mali', cursive;
-    font-family: 'Merriweather', serif;
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Noto Serif JP', serif;
-    font-family: 'Oleo Script', cursive;
-    font-family: 'Orbitron', sans-serif;
-    font-family: 'Permanent Marker', cursive;
-    font-family: 'Potta One', cursive;
-    font-family: 'Press Start 2P', cursive;
-    font-family: 'PT Mono', monospace;
-    font-family: 'Rubik Moonrocks', cursive;
-    font-family: 'Russo One', sans-serif;
-    font-family: 'Sacramento', cursive;
-    font-family: 'Shadows Into Light', cursive;
-    font-family: 'Source Code Pro', monospace;
-    font-family: 'Special Elite', cursive;
-    font-family: 'Stick No Bills', sans-serif;
-    font-family: 'Yellowtail', cursive;
-*/
 
-* {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box; 
-}
-
-html {
-    height: auto;
-}
-
-body {
-    font-family: "Roboto Mono", monospace;
-    background-image: url("../assets/img/background/background4.jpg");
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100%;
-    min-height: 100%
-}
-.main{
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#juego{
-    display: flex;
-    margin-top: 2em;
-    margin-bottom: 2em;
-}
-#mapaAnterior, #mapaSiguiente{
-    background-color: $color-container-background;
-    margin: 0 1em 0 1em;
-}
-
-.instrucciones{
-    background-color: $color-container-background;
-    margin: 5em;
-    padding: 2em;
-    border-radius: 1em;
-    color: $color-texto;
-    font-size: 2em;
-    font-family: 'Caveat', cursive;
-
-}
-.subtitulo{
-    text-align: center;
-    text-shadow: #400242 0px 0px 8px;
-    font-size: larger;
-}
-#fichas{
-    display: flex;
-    margin-bottom: 2em;
-}
-#fichas div{
-    transform: scale(0.8);
-    margin: 0 -1em 0 -1em;
-    border: 0.3em solid #400242;
-}
-
-#botonesDeGiro{
-    display: flex;
-}
-
-#botonesDeGiro button{
-    margin: 0 3em 2em 3em;
-}
-
-
-.titulo{
-    color: $color-texto;
-    font-weight: bold;
-    text-shadow: #ec0785 0px 0px 0.2em;
-}
-.btnJuego{
-text-align: center;
-display: inline-block;
-font-size: 1em;
-padding: 1em 2em;
-transition-duration: 0.4s;
-background-color: #fed5ff;
-color: $color-texto-secundario;
-border: 0.2em solid #f396e3;
-text-transform: uppercase;
-font-weight: bold;
-width: 100%;
-height: 100%;
-    &:hover {
-        background-color: $color-container-background;
-        color: $color-texto;}
-}
-.btnGirar{
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;
-    color: #f8d3e7;
-    text-shadow: #400240 0px 0px 0.2em;
-    font-size: 1.8em;
-    font-family: 'Special Elite', cursive;
-    background-color: #ee09b5cc;
-    border-color: #f396e3;
-}
-nav ul{
-    display: flex;
-    justify-content: space-around;
-    background-color: $color-container-background;
-    height: 2em;
-    align-items: center;
-    font-family: 'Kdam Thmor Pro', sans-serif;
-    font-weight: bolder;
-}
-
-nav ul a:visited{
-    color: $color-texto;
-}
-nav ul a:active{
-    color: $color-texto-secundario;
-}
-
+//SESION**************************
 #sesion{
     background-color: #0000;
     border: 0;
@@ -207,6 +52,7 @@ nav ul a:active{
     text-transform: uppercase;
     font-weight: bold;
 }
+
 .btnSession:hover{
     background-color: $color-container-background;
     color: $color-texto; }
@@ -219,22 +65,18 @@ nav ul a:active{
     border-radius: 1em;
     padding: 1em 1em 0.5em 1em;
 }
-
-.footer{
-    color: $color-texto;
-    background-color: $color-container-background;
-    padding: 1em;
+.formulario{
+    display: flex;
+    flex-direction: column;
 }
-.footer h6{
-    font-size: small;
-    line-height: 1em;
-}
-
-#sesionForm{
+.sesionForm{
     background-color: $color-container-background;
     text-align: center;
-    border-radius: 2em;
+    border-radius: 1em;
+    padding: 1em 3em 1em 3em;
+    margin: 2em 0 3em 0;
 }
+// FIN SESION**************************
 /* ---------- LOADER ---------- */
 
 /* .loader {
@@ -277,3 +119,42 @@ nav ul a:active{
     100%{transform: rotate(360deg)}
   } */
 /* ---------- FIN LOADER ---------- */  
+
+
+
+
+//FUENTES para la WEBAPP
+    /* FUENTES PRINCIPALES 
+    font-family: 'Orbitron', sans-serif;
+    font-family: 'Shadows Into Light', cursive;
+    font-family: 'Special Elite', cursive;
+    font-family: 'Stick No Bills', sans-serif;
+    font-family: 'Press Start 2P', cursive;
+    */
+/* SECUNDARIAS
+    font-family: 'Acme', sans-serif;
+    font-family: 'Bangers', cursive;
+    font-family: 'Bebas Neue', cursive;
+    font-family: 'Caveat', cursive;
+    font-family: 'Fascinate', cursive;
+    font-family: 'Indie Flower', cursive;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-family: 'Mali', cursive;
+    font-family: 'Merriweather', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Noto Serif JP', serif;
+    font-family: 'Oleo Script', cursive;
+    font-family: 'Orbitron', sans-serif;
+    font-family: 'Permanent Marker', cursive;
+    font-family: 'Potta One', cursive;
+    font-family: 'Press Start 2P', cursive;
+    font-family: 'PT Mono', monospace;
+    font-family: 'Rubik Moonrocks', cursive;
+    font-family: 'Russo One', sans-serif;
+    font-family: 'Sacramento', cursive;
+    font-family: 'Shadows Into Light', cursive;
+    font-family: 'Source Code Pro', monospace;
+    font-family: 'Special Elite', cursive;
+    font-family: 'Stick No Bills', sans-serif;
+    font-family: 'Yellowtail', cursive;
+*/

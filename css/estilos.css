@@ -2,6 +2,199 @@
 /* Colores */
 /* Fuentes */
 /*------------FIN VARIABLES-------------*/
+/*RESET y ESTILOS GENERALES*/
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box; }
+
+html {
+  height: auto;
+  width: 100%; }
+
+body {
+  font-family: "Roboto Mono", monospace;
+  background-image: url("../assets/img/background/background4.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100%;
+  min-height: 100%; }
+
+.titulo {
+  color: #fde7f8;
+  font-weight: bold;
+  text-shadow: #ec0785 0px 0px 0.2em; }
+
+/*FIN ESTILOS GENERALES*/
+/*----------SECCION LAYOUT ----------*/
+/* MAIN */
+.main {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+/* 
+.main {
+    grid-area: main;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    &__seccion{
+        display: flex;}
+    &__img--left {
+        width: 20rem;
+        height: 20rem;
+        border-radius: 1rem;
+        margin-right: 4rem;}
+    &__seccion img {
+        border: 10px;
+        padding: 0;}
+    &__img--right {
+        margin-left: 4rem;
+        right: 0;
+        width: 20rem;
+        height: 20rem;
+        border-radius: 1rem;}  
+    & p{
+        text-align: justify;
+        text-overflow: inherit;}  
+} */
+/*   FOOTER                                                    */
+.footer {
+  color: #fde7f8;
+  background-color: #d14ea5cc;
+  padding: 1em; }
+
+.footer h6 {
+  font-size: small;
+  line-height: 1em; }
+
+/* .footer {
+    grid-area: footer;
+    background-image: url(/assets/img/background.jpg);
+    background-color: black;
+    background-position: 0rem;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-small;
+    color: $color-primario;
+    height: auto;
+    &--principal {
+        display: flex;
+        color: $color-primario;
+        width: 100%;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 0.6rem;}
+    &--inferior {
+        grid-area: footer--inferior;
+        display: flex;
+        color: #d2e0bd;
+        background-color: $color-primario--alfa;
+        width: 100%;
+        height: 2rem;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+        justify-content: center;
+        align-items: center;}
+        a{
+            &:visited {
+            color: $color-primario;
+            text-decoration: none;}
+            &:hover {
+            color: red;
+            text-decoration: none;}  
+            &:active {
+            color: #dfc;
+            text-decoration: none;}
+            &:link {
+            color: $color-primario;
+            text-decoration: none;}}
+    &__columna--izquierda {
+        text-align: justify;
+        padding: 0.5rem;
+        width: 40%;
+        background-color: #a8ca7411;}
+    &__columna--centro {
+        padding: 0.5rem;
+        background-color: #a8ca7411;
+        flex-grow: 2;
+        div{ 
+            display: flex;
+            a {
+            display: flex;
+            align-items: center;
+            padding: 0.1;}
+            p {
+            display: inline-block;}
+        &:hover>* {
+            scale: 1.2;}}}
+    &__columna--derecha {
+        padding: 0.5rem;
+        width: auto;
+        background-color: #a8ca7411;}
+} */
+/*----------SECCION ELEMENTOS ----------*/
+/*-------------------------------- NAVEGADOR ----------------------------------- */
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  background-color: #d14ea5cc;
+  height: 2em;
+  align-items: center;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  font-weight: bolder; }
+
+nav ul a:visited {
+  color: #fde7f8; }
+
+nav ul a:active {
+  color: #f54242d0; }
+
+/* 
+ .navegador {
+    grid-area: navegador;
+    border: $color-primario;
+    background-color: gray;
+    position: sticky;
+    top: 0vh;
+    z-index: 99;
+    a{
+        text-decoration: none;
+    &:visited {
+        color: rgb(217, 226, 202);}
+    &:hover {
+        color: green;}
+    &:active {
+        color: black;}
+    &:link {
+        color: rgb(217, 226, 202);}}
+    &__menu {
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        li {
+            transition: 0.4s;
+            &:hover {
+                transform: scale(1.2);
+                background: rgb(218, 243, 118);}}
+            &--responsive {
+                display: none;
+                li{
+            &:hover {
+                background-color: $color-secundario--alfa;}}}}
+} 
+*/
+/* NAVEGADOR RESPONSIVE*/
+/* .fa-bars {
+    display: none;
+} */
+/*----------SECCION HTMLs ----------*/
 #slot1 {
   background-color: red;
   position: absolute;
@@ -16,7 +209,7 @@
     background-size: cover; }
 
 #slot2 {
-  background-color: green;
+  background-color: #d44e10;
   position: absolute;
   height: 155px;
   width: 155px; }
@@ -25,94 +218,6 @@
   #slot2:active {
     background-image: url("../assets/img/fichas/ficha1.png");
     background-size: cover; }
-
-/*
-@import 'base/reset';
-@import 'utilities/mixins';
-/*----------SECCION LAYOUT ----------*/
-/* @import 'layout/grid';
-@import 'layout/header';
-@import 'layout/main';
-@import 'layout/footer'; */
-/*----------SECCION ELEMENTOS ----------*/
-/* @import 'components/logo';
-@import 'components/nav';
-@import 'components/redes';
-@import 'components/whatsapp'; */
-/*----------SECCION HTMLs ----------*/
-/* @import 'views/unete_al_equipo';
-
-@import 'views/productos';
-@import 'views/quienes_somos';
-@import 'views/ver_carrito'; */
-/*---------- SECCION MEDIA QUERIES ----------*/
-/* @import ''; */
-/* FUENTES PRINCIPALES 
-    font-family: 'Orbitron', sans-serif;
-    font-family: 'Shadows Into Light', cursive;
-    font-family: 'Special Elite', cursive;
-    font-family: 'Stick No Bills', sans-serif;
-    font-family: 'Press Start 2P', cursive;
-    */
-/* SECUNDARIAS
-    font-family: 'Acme', sans-serif;
-    font-family: 'Bangers', cursive;
-    font-family: 'Bebas Neue', cursive;
-    font-family: 'Caveat', cursive;
-    font-family: 'Fascinate', cursive;
-    font-family: 'Indie Flower', cursive;
-    font-family: 'Kdam Thmor Pro', sans-serif;
-    font-family: 'Mali', cursive;
-    font-family: 'Merriweather', serif;
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Noto Serif JP', serif;
-    font-family: 'Oleo Script', cursive;
-    font-family: 'Orbitron', sans-serif;
-    font-family: 'Permanent Marker', cursive;
-    font-family: 'Potta One', cursive;
-    font-family: 'Press Start 2P', cursive;
-    font-family: 'PT Mono', monospace;
-    font-family: 'Rubik Moonrocks', cursive;
-    font-family: 'Russo One', sans-serif;
-    font-family: 'Sacramento', cursive;
-    font-family: 'Shadows Into Light', cursive;
-    font-family: 'Source Code Pro', monospace;
-    font-family: 'Special Elite', cursive;
-    font-family: 'Stick No Bills', sans-serif;
-    font-family: 'Yellowtail', cursive;
-*/
-* {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  list-style: none;
-  box-sizing: border-box; }
-
-html {
-  height: auto; }
-
-body {
-  font-family: "Roboto Mono", monospace;
-  background-image: url("../assets/img/background/background4.jpg");
-  background-attachment: fixed;
-  background-size: cover;
-  height: 100%;
-  min-height: 100%; }
-
-.main {
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-
-#juego {
-  display: flex;
-  margin-top: 2em;
-  margin-bottom: 2em; }
-
-#mapaAnterior, #mapaSiguiente {
-  background-color: #d14ea5cc;
-  margin: 0 1em 0 1em; }
 
 .instrucciones {
   background-color: #d14ea5cc;
@@ -123,30 +228,41 @@ body {
   font-size: 2em;
   font-family: 'Caveat', cursive; }
 
+#juego {
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em; }
+
+#mapaAnterior, #mapaSiguiente {
+  background-color: #d14ea5cc;
+  margin: 0 1em 0 1em; }
+
 .subtitulo {
   text-align: center;
   text-shadow: #400242 0px 0px 8px;
   font-size: larger; }
 
-#fichas {
+#divFichas {
   display: flex;
   margin-bottom: 2em; }
 
-#fichas div {
+.ficha {
+  background-color: #111;
+  z-index: 999; }
+  .ficha img:hover {
+    z-index: 1;
+    visibility: 90%;
+    opacity: 90%; }
+
+#divFichas div {
   transform: scale(0.8);
   margin: 0 -1em 0 -1em;
   border: 0.3em solid #400242; }
 
 #botonesDeGiro {
   display: flex; }
-
-#botonesDeGiro button {
-  margin: 0 3em 2em 3em; }
-
-.titulo {
-  color: #fde7f8;
-  font-weight: bold;
-  text-shadow: #ec0785 0px 0px 0.2em; }
+  #botonesDeGiro button {
+    margin: 0 3em 2em 3em; }
 
 .btnJuego {
   text-align: center;
@@ -176,21 +292,8 @@ body {
   background-color: #ee09b5cc;
   border-color: #f396e3; }
 
-nav ul {
-  display: flex;
-  justify-content: space-around;
-  background-color: #d14ea5cc;
-  height: 2em;
-  align-items: center;
-  font-family: 'Kdam Thmor Pro', sans-serif;
-  font-weight: bolder; }
-
-nav ul a:visited {
-  color: #fde7f8; }
-
-nav ul a:active {
-  color: #f54242d0; }
-
+/*---------- SECCION MEDIA QUERIES ----------*/
+/* @import ''; */
 #sesion {
   background-color: #0000;
   border: 0; }
@@ -229,19 +332,16 @@ nav ul a:active {
   border-radius: 1em;
   padding: 1em 1em 0.5em 1em; }
 
-.footer {
-  color: #fde7f8;
-  background-color: #d14ea5cc;
-  padding: 1em; }
+.formulario {
+  display: flex;
+  flex-direction: column; }
 
-.footer h6 {
-  font-size: small;
-  line-height: 1em; }
-
-#sesionForm {
+.sesionForm {
   background-color: #d14ea5cc;
   text-align: center;
-  border-radius: 2em; }
+  border-radius: 1em;
+  padding: 1em 3em 1em 3em;
+  margin: 2em 0 3em 0; }
 
 /* ---------- LOADER ---------- */
 /* .loader {
@@ -284,3 +384,37 @@ nav ul a:active {
     100%{transform: rotate(360deg)}
   } */
 /* ---------- FIN LOADER ---------- */
+/* FUENTES PRINCIPALES 
+    font-family: 'Orbitron', sans-serif;
+    font-family: 'Shadows Into Light', cursive;
+    font-family: 'Special Elite', cursive;
+    font-family: 'Stick No Bills', sans-serif;
+    font-family: 'Press Start 2P', cursive;
+    */
+/* SECUNDARIAS
+    font-family: 'Acme', sans-serif;
+    font-family: 'Bangers', cursive;
+    font-family: 'Bebas Neue', cursive;
+    font-family: 'Caveat', cursive;
+    font-family: 'Fascinate', cursive;
+    font-family: 'Indie Flower', cursive;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-family: 'Mali', cursive;
+    font-family: 'Merriweather', serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Noto Serif JP', serif;
+    font-family: 'Oleo Script', cursive;
+    font-family: 'Orbitron', sans-serif;
+    font-family: 'Permanent Marker', cursive;
+    font-family: 'Potta One', cursive;
+    font-family: 'Press Start 2P', cursive;
+    font-family: 'PT Mono', monospace;
+    font-family: 'Rubik Moonrocks', cursive;
+    font-family: 'Russo One', sans-serif;
+    font-family: 'Sacramento', cursive;
+    font-family: 'Shadows Into Light', cursive;
+    font-family: 'Source Code Pro', monospace;
+    font-family: 'Special Elite', cursive;
+    font-family: 'Stick No Bills', sans-serif;
+    font-family: 'Yellowtail', cursive;
+*/

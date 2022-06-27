@@ -1,6 +1,18 @@
 
 /*   FOOTER                                                    */
-.footer {
+
+.footer{
+    color: $color-texto;
+    background-color: $color-container-background;
+    padding: 1em;
+}
+.footer h6{
+    font-size: small;
+    line-height: 1em;
+}
+
+
+/* .footer {
     grid-area: footer;
     background-image: url(/assets/img/background.jpg);
     background-color: black;
@@ -64,4 +76,4 @@
         padding: 0.5rem;
         width: auto;
         background-color: #a8ca7411;}
-}
+} */

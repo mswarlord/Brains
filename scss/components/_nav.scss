@@ -1,5 +1,24 @@
  /*-------------------------------- NAVEGADOR ----------------------------------- */
-.navegador {
+nav ul{
+    display: flex;
+    justify-content: space-around;
+    background-color: $color-container-background;
+    height: 2em;
+    align-items: center;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-weight: bolder;
+}
+
+nav ul a:visited{
+    color: $color-texto;
+}
+
+nav ul a:active{
+    color: $color-texto-secundario;
+}
+
+/* 
+ .navegador {
     grid-area: navegador;
     border: $color-primario;
     background-color: gray;
@@ -31,8 +50,11 @@
                 li{
             &:hover {
                 background-color: $color-secundario--alfa;}}}}
-}
+} 
+*/
+
 /* NAVEGADOR RESPONSIVE*/
-.fa-bars {
+
+/* .fa-bars {
     display: none;
-}
+} */
