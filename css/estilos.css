@@ -16,7 +16,7 @@ html {
 
 body {
   font-family: "Roboto Mono", monospace;
-  background-image: url("../assets/img/background/background4.jpg");
+  background-image: url("../assets/img/background/nivel19.jpg");
   background-attachment: fixed;
   background-size: cover;
   height: 100%;
@@ -25,7 +25,8 @@ body {
 .titulo {
   color: #fde7f8;
   font-weight: bold;
-  text-shadow: #ec0785 0px 0px 0.2em; }
+  text-shadow: #ec0785 0px 0px 0.2em;
+  text-align: center; }
 
 /*FIN ESTILOS GENERALES*/
 /*----------SECCION LAYOUT ----------*/
@@ -292,8 +293,6 @@ nav ul a:active {
   background-color: #ee09b5cc;
   border-color: #f396e3; }
 
-/*---------- SECCION MEDIA QUERIES ----------*/
-/* @import ''; */
 #sesion {
   background-color: #0000;
   border: 0; }
@@ -324,14 +323,6 @@ nav ul a:active {
   background-color: #d14ea5cc;
   color: #fde7f8; }
 
-#instrucciones {
-  margin: 1em 3em 1em 3em;
-  font-family: 'Kdam Thmor Pro', sans-serif;
-  color: #fde7f8;
-  background-color: #d14ea5cc;
-  border-radius: 1em;
-  padding: 1em 1em 0.5em 1em; }
-
 .formulario {
   display: flex;
   flex-direction: column; }
@@ -342,6 +333,36 @@ nav ul a:active {
   border-radius: 1em;
   padding: 1em 3em 1em 3em;
   margin: 2em 0 3em 0; }
+
+#contenedorCuenta {
+  background-color: #d14ea5cc;
+  border-radius: 1em;
+  margin: 1em 0 1em 0;
+  padding: 1em;
+  width: 90%;
+  min-width: 500px; }
+
+#informacionPersonal {
+  display: flex; }
+
+#avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  overflow: hidden;
+  margin: 1em 3em 1em 1em; }
+  #avatar img {
+    height: 100%; }
+
+/*---------- SECCION MEDIA QUERIES ----------*/
+/* @import ''; */
+#instrucciones {
+  margin: 1em 3em 1em 3em;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  color: #fde7f8;
+  background-color: #d14ea5cc;
+  border-radius: 1em;
+  padding: 1em 1em 0.5em 1em; }
 
 /* ---------- LOADER ---------- */
 /* .loader {
@@ -390,7 +411,7 @@ nav ul a:active {
     font-family: 'Special Elite', cursive;
     font-family: 'Stick No Bills', sans-serif;
     font-family: 'Press Start 2P', cursive;
-    */
+*/
 /* SECUNDARIAS
     font-family: 'Acme', sans-serif;
     font-family: 'Bangers', cursive;

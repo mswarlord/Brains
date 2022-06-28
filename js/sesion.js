@@ -1,7 +1,7 @@
 //*********************************************************************************************************************************
 //************************************************* REGISTRO Y LOGEO DE USUARIOS **************************************************
 //*********************************************************************************************************************************
-const linkSesion = document.getElementById("sesion");
+const cuenta = document.getElementById("cuenta");
 
 const usuarios = []; //genera el array usuarios
 class Usuario{ //genera la clase constructora de objetos usuario
@@ -40,9 +40,9 @@ const cuentaPassword = document.getElementById("passInicioSesion");
 const inputInicioSesion = document.getElementById("inputInicioSesion");
 
 let btnLogIn = document.getElementById("inputInicioSesion");
-let ingresoUser = "";
-let ingresoPass = "";
-
+//
+let ingresoUser = localStorage.getItem("ingresoUser");
+//
 let inicioSesion = () => {//FUNCION PARA INICIAR SESION
     ingresoUser = cuentaUsuario.value; //se ingresa el nombreUser
     ingresoPass = cuentaPassword.value;
@@ -51,17 +51,32 @@ let inicioSesion = () => {//FUNCION PARA INICIAR SESION
     usuarios.forEach((el, i) => {                                                //recorro cada elemento del array usuarios, y en cada uno,
         if (el.nombreUsuario === ingresoUser && el.passUsuario === ingresoPass){ //comparo los valores nombreUsuario y passUsuario con los datos ingresados
             index = i                                                            //si ambos coinciden, le doy al index el valor del indice de ese objeto
-            alert(`Bienvenido ${el.nombreUsuario}`)
-            sesion.innerHTML = `${(usuarios[i].nombreUsuario).toUpperCase()}`;
+            cuenta.innerHTML = `${(usuarios[i].nombreUsuario).toUpperCase()}`;
+            ocultarFormularios();
         }
-    });     
+    });
 }
 
 formInicioSesion.addEventListener('submit', (e) => {
     e.preventDefault();
     localStorage.setItem('nombreUsuario', cuentaUsuario.value);
+    inicioSesion();
 })
 
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
+
+//VAMOS A INTENTAR QUE UNA VEZ QUE EL USUARIO SE LOGUEE SE ELIMINE EL FORMULARIO DE INICIO DE SESION Y A SU VEZ 
+//APAREZCA UN MENU CON OPCIONES DE LA CUENTA DEL USUARIO LOGUEADO, COMO PERFIL, INFORMACION, CAMBIAR CONTRASEÑA ETC
+const iniciarSesion = document.getElementById("iniciarSesion");
+const contenedorCuenta = document.getElementById("contenedorCuenta");
+contenedorCuenta.style.display = "none";
+const ocultarFormularios = () => {
+    iniciarSesion.style.display = "none";
+    contenedorCuenta.style.display = "contents";
+    contenedorCuenta.style = "contents";
+    contenedorCuenta.style = "true"
+    
+    
+}
