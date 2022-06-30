@@ -96,3 +96,27 @@ const ocultarFormularios = () => { //funcion que oculta los formularios de inici
 if(!!ingresoUser && !!ingresoPass) {
     ocultarFormularios();
 }
+
+//CERRAR SESION
+let btnCerrarSesion = document.getElementById('cerrarSesion');
+
+btnCerrarSesion.addEventListener('click', () => {
+    localStorage.clear();
+    window.location.reload()
+})
+
+//ALMACENAR OBJETOS CON JSON
+
+const persona = { //crea el objeto persona
+    nombre: 'Facu',
+    apellido: 'Cantero',
+    edad: 33,
+    usuario: "MsWarLord",
+    pass: "N0t4L4m3r"
+};
+
+const _persona = JSON.stringify(persona)
+localStorage.setItem('objeto persona', _persona);
+
+const _personaParsed = JSON.parse(localStorage.getItem('objeto persona'));
+console.log(_personaParsed);

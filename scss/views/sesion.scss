@@ -43,8 +43,13 @@
     padding: 1em 3em 1em 3em;
     margin: 2em 0 3em 0;
 }
+#cerrarSesion{
+    margin: auto;
+}
 
 #contenedorCuenta{
+    display: flex;
+    flex-direction: column;
     background-color: $color-container-background;
     border-radius: 1em;
     margin: 1em 0 1em 0;
