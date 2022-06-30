@@ -342,15 +342,21 @@ nav ul a:active {
   width: 90%;
   min-width: 500px; }
 
+#nombreCuenta {
+  text-align: center; }
+
 #informacionPersonal {
   display: flex; }
+
+#divAvatar {
+  text-align: center; }
 
 #avatar {
   width: 150px;
   height: 150px;
   border-radius: 100%;
   overflow: hidden;
-  margin: 1em 3em 1em 1em; }
+  margin: 1em 2em 1em 2em; }
   #avatar img {
     height: 100%; }
 
