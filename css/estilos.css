@@ -197,28 +197,20 @@ nav ul a:active {
 } */
 /*----------SECCION HTMLs ----------*/
 #slot1 {
-  background-color: red;
-  position: absolute;
-  height: 155px;
-  width: 155px;
-  left: 221px;
-  top: 172px; }
-  #slot1:hover {
-    background-color: rgba(250, 16, 16, 0.067); }
-  #slot1:active {
-    background-image: url("../assets/img/fichas/ficha1.png");
-    background-size: cover; }
+  left: 586px;
+  top: 355px; }
 
 #slot2 {
-  background-color: #d44e10;
+  left: 586px;
+  top: 505px; }
+
+.slots {
+  background-color: #fff3;
   position: absolute;
-  height: 155px;
-  width: 155px; }
-  #slot2:hover {
+  height: 157px;
+  width: 157px; }
+  .slots:hover {
     background-color: rgba(250, 16, 16, 0.067); }
-  #slot2:active {
-    background-image: url("../assets/img/fichas/ficha1.png");
-    background-size: cover; }
 
 .instrucciones {
   background-color: #d14ea5cc;

@@ -1,7 +1,7 @@
 //*********************************************************************************************************************************
 //************************************************* REGISTRO Y LOGEO DE USUARIOS **************************************************
 //*********************************************************************************************************************************
-const cuenta = document.getElementById("cuenta");
+const cuenta = document.getElementById("cuenta"); //toma la etiqueta con ID cuenta y lo guarda en la variable cuenta. 
 
 const usuarios = []; //genera el array usuarios
 class Usuario{ //genera la clase constructora de objetos usuario
@@ -11,12 +11,12 @@ class Usuario{ //genera la clase constructora de objetos usuario
     }
 }
 
-//REGISTRARSE ----------------------------------------------------------------------------------
+//REGISTRARSE ----------------------------------------------------------------------------------------------------------------------
 //VARIABLE DOM
-const formRegistro = document.getElementById("formRegistro");
-const nombreRegistro = document.getElementById("nombreRegistro");
-const passRegistro = document.getElementById("passRegistro");
-const inputRegistro = document.getElementById("inputRegistro");
+const formRegistro = document.getElementById("formRegistro"); //guarda la etiqueta del formulario de registro
+const nombreRegistro = document.getElementById("nombreRegistro"); //guarda la etiqueta para el nombre de usuario al registrarse
+const passRegistro = document.getElementById("passRegistro"); //guarda la etiqueta para la contraseña que se registra
+const inputRegistro = document.getElementById("inputRegistro"); //guarda la etiqueta del boton con el evento para registrarse
 
 let newUser = ""; //variable que va a tomar el nombre ingresado por el usuario al registrarse
 let newPass = ""; //variable que va a tomar la contraseña ingresada por el usuario al registrarse
@@ -35,21 +35,21 @@ formRegistro.addEventListener('submit', (e) => { //Evento para ejecutar la funci
     registrarse(); //lama a la funcion registrarse
 })
 
-//INICIAR SESION -------------------------------------------------------------------------------
+//INICIAR SESION -------------------------------------------------------------------------------------------------------------------
 //VARIABLES DOM
 const formInicioSesion = document.getElementById('formInicioSesion'); //guarda en la variable la etiqueta con ID formInicioSesion
 const nombreInicioSesion = document.getElementById('nombreInicioSesion'); //guarda en la variable la etiqueta con ID nombreInicioSesion
 const cuentaPassword = document.getElementById('passInicioSesion'); //guarda en la variable la etiqueta con ID passInicioSesion
 const inputInicioSesion = document.getElementById('inputInicioSesion'); //guarda en la variable la etiqueta con ID inputInicioSesion
 const btnLogIn = document.getElementById('inputInicioSesion'); //guarda en la variable la etiqueta con ID inputInicioSesion
-let ingresoUser = localStorage.getItem('nombreUsuario'); //guarda en la variable el valor guardado en storage de la key ingresoUser.
+let ingresoUser = localStorage.getItem('nombreUsuario'); //guarda en la variable el valor guardado en localStorage de la key ingresoUser.
 let ingresoPass = localStorage.getItem('passUsuario'); //guarda en la variable el valor guardado en localStorage de key ingresoPass.
 
 //FUNCIONES
 let inicioSesion = () => {//FUNCION PARA INICIAR SESION
 
-    ingresoUser = nombreInicioSesion.value; //guarda en la variable, el valor de la etiqueta que se guardo previamente en cuentaUsuario. 
-    ingresoPass = cuentaPassword.value; //guarda en la variable, el valor de la etiqueta que se guardo previamente en cuentaUsuario. 
+    ingresoUser = nombreInicioSesion.value; //guarda en la variable, el valor de la etiqueta nombreInicioSesion. 
+    ingresoPass = cuentaPassword.value; //guarda en la variable, el valor de la etiqueta cuentaPassword. 
 
     usuarios.forEach((el, i) => {                                                //recorre cada elemento del array usuarios, y en cada uno,
         let index = -1; //establece index en -1                                   
@@ -57,6 +57,13 @@ let inicioSesion = () => {//FUNCION PARA INICIAR SESION
             index = i                                                            //si ambos coinciden, le da al index el valor del indice de ese objeto
             cuenta.innerHTML = `${(usuarios[i].nombreUsuario).toUpperCase()}`;
             ocultarFormularios();
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Datos de usuario incorrectos',
+                text: 'Corrobore que los datos ingresados corresponden a un usuario registrado',
+                footer: '<a href="faq.html">¿Por qué tengo este problema?</a>'
+            })
         }
     });
 }
@@ -73,8 +80,8 @@ formInicioSesion.addEventListener('submit', (e) => { //Evento que llama a la fun
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
 
-//INTENTARE QUE UNA VEZ QUE EL USUARIO SE LOGUEE SE ELIMINE EL FORMULARIO DE INICIO DE SESION Y A SU VEZ 
-//APAREZCA UN MENU CON OPCIONES DE LA CUENTA DEL USUARIO LOGUEADO, COMO PERFIL, INFORMACION, CAMBIAR CONTRASEÑA ETC ---LOGRADO
+//UNA VEZ QUE EL USUARIO SE LOGUEA SE ELIMINA EL FORMULARIO DE INICIO DE SESION Y A SU VEZ 
+//APARECE UN MENU CON OPCIONES E INFORMACION DE LA CUENTA DEL USUARIO.-
 
 //VARIABLE DOM
 const iniciarSesion = document.getElementById("iniciarSesion"); //guarda la etiqueta con id iniciarSesion
@@ -90,12 +97,12 @@ const ocultarFormularios = () => { //funcion que oculta los formularios de inici
     contenedorCuenta.style.display = "contents"; //muestra la etiqueta con id contenedorCuenta
     contenedorCuenta.style = "true"; //muestra los estilos de la stylesheet de la etiqueta en contenedorCuenta
     nombreCuenta.innerText = localStorage.getItem("nombreUsuario").toUpperCase();
-    
 }
 
-if(!!ingresoUser && !!ingresoPass) {
+/* if(!!ingresoUser && !!ingresoPass) {
     ocultarFormularios();
-}
+} */
+!!ingresoUser && !!ingresoPass && ocultarFormularios();//realiza la misma operacion que lo comentado ut supra, pero usando el operador &&.
 
 //CERRAR SESION
 let btnCerrarSesion = document.getElementById('cerrarSesion');

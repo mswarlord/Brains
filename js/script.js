@@ -1,9 +1,10 @@
-let ficha = []; //array con los nodos ficha
+let ficha = []; //array que guarda los nodos ficha
 let mapaActual = 1; //Indica cual es el mapa seleccionado
-const fichas = []; //genera el array de objetos ficha
-const mapas = []; //genera array mapas
+const fichas = []; //guadrda el array de objetos ficha
+const mapas = []; //genera el array mapas
 
 window.onload = function() {
+
 //*********************************************************************************************************************************
 //************************************************* CREACION DE LAS FICHAS Y SUS ESTADOS ******************************************
 //*********************************************************************************************************************************
@@ -62,17 +63,17 @@ class mapa { //genera la clase constructora de objetos mapa
         this.dificultad = dificultad;
         this.img = img;
         this.slotsDelMapa = 0;
-        this.completo = false;     //estado que indica si el mapa esta completo
-        this.habilitado = false;   //estado que indica si el mapa esta habilitado para jugar
+        this.mapaCompleto = false;     //estado que indica si el mapa esta completo
+        this.mapaHabilitado = false;   //estado que indica si el mapa esta habilitado para jugar
         this.seleccionado = false; //estado que indica si es el mapa que se esta jugando
     }
 
     completarMapa() { //metodo para indicar que el desafío ya fue completado
-        this.completo = true;
+        this.mapaCompleto = true;
     }
 
     habilitarMapa() { //método que indica si el desafío esta habilitado para jugarse
-        this.habilitado = true;
+        this.mapaHabilitado = true;
     }
 
     seleccionarMapa() {//metodo que indica si es el mapa que se esta jugando
@@ -83,6 +84,8 @@ class mapa { //genera la clase constructora de objetos mapa
         }
     }
 }
+
+const {mapaHabilitado, mapaCompleto, slotsDelMapa} = mapas;
 
 for(i=0;i<50;i++){
     mapas[i]=new mapa(i,i,`assets/img/nivel${i+1}.jpg`);
@@ -106,6 +109,35 @@ for(i=0;i<50;i++){
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
 
+//*********************************************************************************************************************************
+//**************************************** CREACION DE SLOTS PARA LOS MAPAS *******************************************************
+//*********************************************************************************************************************************
+
+/* 
+En esta seccion se buscará crear el algoritmo que genere los slots al elegir un mapa. asi mismo debe eliminar los slots generados para
+mapas previos.
+La cantidad de slots dependerá del atributo slotsDelMapa del objeto mapas. la posicion
+*/
+
+/*
+let divSlot = document.getElementById("slots");//Obtiene el nodo donde se van a agregar los nuevos elementos - en este caso en un <DIV>
+
+let generarSlots = () => { //funcion que genera
+    for( i=0; i < mapas[mapaActual].slotsDelMapa;i++) {
+        let div = document.createElement("div");//Crea un nodo <div> en cada iteración. 
+        div.id = `slot${i+1}`;
+        div.className = `slots`;
+        div.innerHTML = ``;
+        divSlot.appendChild(div);
+    }
+}    
+
+let resetearSlots = () => { //funcion que genera
+divSlot.remove();
+} */
+//*********************************************************************************************************************************
+//*********************************************************************************************************************************
+//*********************************************************************************************************************************
 
 //*********************************************************************************************************************************
 //**************************************************** CAMBIAR MAPA ***************************************************************
@@ -119,6 +151,8 @@ let mapaSiguiente = () => {
     mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
     mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
     mapas[mapaActual-2].seleccionado = false; //indica al mapa anterior como no seleccionado.
+    //resetearSlots();
+    //generarSlots(); //VER SECCION GENERAR SLOTS
 }
 
 btnSiguiente.addEventListener('click',mapaSiguiente);
@@ -273,7 +307,8 @@ for(const nroFicha of fichas) {//Recorre los elementos del array ficha.
     console.log(nroFicha); //Muestra los atributos y sus valores de los elementos del array.
 } */
 
-//*********************************************************************************************************************************
-//*********************************************************************************************************************************
-//*********************************************************************************************************************************
+
+
+
+
 }
