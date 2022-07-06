@@ -1,19 +1,22 @@
 //SLOTS**************************************************
 
 #slot1{
-    left: 586px;
-    top: 355px;
-    //&:active{
-    //    background-image: url("../assets/img/fichas/ficha1.png");
-    //    background-size: cover;
-    //    border: solid 2px #151;
-    //}
+    left: 219px;
+    top: 138px;
+    display: flex;
+    justify-content: center;
+    & img{
+        align-self: center;
+        width: 152px;
+        height: 152px;
+    }
 }
 
 #slot2{
     left: 586px;
     top: 505px;
 }
+
 .slots{
     background-color: #fff3;
     position: absolute;

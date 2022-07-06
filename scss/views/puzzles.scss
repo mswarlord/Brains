@@ -4,6 +4,9 @@
     margin-top: 2em;
     margin-bottom: 2em;
 }
+#zonaDeJuego{
+    position: relative;
+}
 
 #mapaAnterior, #mapaSiguiente{
     background-color: $color-container-background;
@@ -36,12 +39,7 @@
     border: 0.3em solid #400242;
 }
 
-#botonesDeGiro{
-    display: flex;
-    & button{
-        margin: 0 3em 2em 3em;
-    }
-}
+
 
 .btnJuego{
 text-align: center;
@@ -61,15 +59,26 @@ height: 100%;
         color: $color-texto;}
 }
 
+#botonesDeGiro{
+    position: absolute;
+
+    display: flex;
+    display: none;  
+    justify-content: space-between;
+    width: 156px;
+    left: 220px;
+    top: 140px;
+}
 .btnGirar{
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 156px;
     color: #f8d3e7;
     text-shadow: #400240 0px 0px 0.2em;
     font-size: 1.8em;
     font-family: 'Special Elite', cursive;
-    background-color: #ee09b5cc;
+    background-color: #ee09b577;
     border-color: #f396e3;
 }
-//FIN PUZZLES **********************
+
+
+//FIN PUZZLES *******************************************

@@ -2,7 +2,7 @@ let ficha = []; //array que guarda los nodos ficha
 let mapaActual = 1; //Indica cual es el mapa seleccionado
 const fichas = []; //guadrda el array de objetos ficha
 const mapas = []; //genera el array mapas
-
+let fichaSeleccionada;
 window.onload = function() {
 
 //*********************************************************************************************************************************
@@ -10,7 +10,7 @@ window.onload = function() {
 //*********************************************************************************************************************************
 class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y los metodos para cambiar la posicion de las mismas
     constructor(id) {
-        this.id = id;
+        this.id = id    ;
         this.posicion = 1;//inicia las fichas en una posicion determinada
         this.seleccionada = false; //indica si la ficha esta seleccionada
     }
@@ -18,7 +18,8 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
     fichaSeleccionada() {//metodo para cambiar el estado de seleccion de la ficha y deselecciona el resto de las fichas seleccionadas
         if(this.seleccionada === false){ 
             this.seleccionada = true;
-            console.log(`selecionaste la ficha ${this.id}`)
+            console.log(`seleccionaste la ficha ${this.id}`);
+            fichaSeleccionada = this.id;
             for(let e of fichas){ //Esta iteración deselecciona cualquier ficha que este seleccionada 
                 if(e !== this){   //restringiendo al usuario que pueda seleccionar mas de una ficha
                     e.seleccionada = false;
@@ -26,7 +27,8 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
             }
         }else{
             this.seleccionada = false;
-            console.log(`Deselecionaste la ficha ${this.id}`)
+            console.log(`Deseleccionaste la ficha ${this.id}`)
+            fichaSeleccionada = -1
         }
     }
 
@@ -114,16 +116,80 @@ for(i=0;i<50;i++){
 //*********************************************************************************************************************************
 
 /* 
-En esta seccion se buscará crear el algoritmo que genere los slots al elegir un mapa. asi mismo debe eliminar los slots generados para
-mapas previos.
-La cantidad de slots dependerá del atributo slotsDelMapa del objeto mapas. la posicion
+    En esta seccion se buscará crear el algoritmo que genere los slots al elegir un mapa. asi mismo debe eliminar 
+    los slots generados para mapas previos.
+    La cantidad de slots dependerá del atributo slotsDelMapa del objeto mapas. Aun resta resolver la posicion de 
+    cada slot segun el mapa. Hay un maximo de seis slots ya que los ultimos mapas trabajan con 6 slots. 
+    Pero a su vez en cada mapa la posicion de los slots es distinta, por lo que en cada mapa hay que mostrar la 
+    cantidad de slots correspondientes y ubicarlos en su lugar.
+
+    Luego hay que determinar que ficha va en cada slot y en que posición para que el mapa esté completo...
+
+    Opcion B: colocar los seis slots en el html con sus respectivos id y clases y modificar los estilos de cada uno segun el mapa
+    escondiendo los que no van y posicionando en el lugar indicado cada uno.
 */
 
-/*
+let slot1 = document.getElementById("slot1");
+
+/* 
+    EN ESTE PUNTO TENGO QUE TOMAR EL VALOR DE LA POSICION QUE TOMA LA FICHA AL MOMENTO QUE ES GIRADA
+    Y LUEGO ROTAR LA IMAGEN 90° 180° O 270°. PARA ELLO TENGO QUE LLAMAR AL METODO GIRARFICHA
+    Y LUEGO TOMAR EL VALOR DE DICHA POSICION.
+*/
+let rotarFicha = () => {
+    let imgFicha = document.getElementById("imgFicha");
+    imgFicha.style.rotate = "-90deg";
+}
+
+
+let colocarFicha = () => {
+    if(fichaSeleccionada >= 0 && fichaSeleccionada < 7){
+        switch(true){
+            case fichaSeleccionada === 0:
+                slot1.innerHTML = `<img src="../assets/img/fichas/ficha1.png" id="imgFicha">`;
+                fichaSeleccionada = -1;
+                break;
+            case fichaSeleccionada === 1:
+                slot1.innerHTML = `<img src="../assets/img/fichas/ficha2.png" id="imgFicha">`;
+                fichaSeleccionada = -1;
+                break;
+            case fichaSeleccionada === 2:
+                slot1.innerHTML = `<img src="../assets/img/fichas/ficha3.png" id="imgFicha">`;
+                fichaSeleccionada = -1;
+                break;
+            case fichaSeleccionada === 3:
+                slot1.innerHTML = `<img src="../assets/img/fichas/ficha4.png" id="imgFicha">`;
+                fichaSeleccionada = -1;
+                break;
+            case fichaSeleccionada === 4:
+                slot1.innerHTML = `<img src="../assets/img/fichas/ficha5.png" id="imgFicha">`;
+                fichaSeleccionada = -1;
+                break;
+            case fichaSeleccionada === 5:
+                slot1.innerHTML = `<img src="../assets/img/fichas/ficha6.png" id="imgFicha">`;
+                fichaSeleccionada = -1;
+                break;
+            case fichaSeleccionada === 6:
+                slot1.innerHTML = `<img src="../assets/img/fichas/ficha7.png" id="imgFicha">`;
+                fichaSeleccionada = -1;
+                break;
+            default:
+                break;
+        }
+        
+    }else{
+        rotarFicha();
+    }
+}
+
+slot1.addEventListener('click',colocarFicha);
+
+//CODIGO PARA LA CREACION DE SLOTS MODIFICANDO EL DOM POR JS
+/* 
 let divSlot = document.getElementById("slots");//Obtiene el nodo donde se van a agregar los nuevos elementos - en este caso en un <DIV>
 
-let generarSlots = () => { //funcion que genera
-    for( i=0; i < mapas[mapaActual].slotsDelMapa;i++) {
+let generarSlots = () => { //funcion que genera los slots de cada mapa
+    for( i=0; i < mapas[mapaActual].slotsDelMapa;i++) { //itera tantas veces como el valor slotsDelMapa tenga mapaActual
         let div = document.createElement("div");//Crea un nodo <div> en cada iteración. 
         div.id = `slot${i+1}`;
         div.className = `slots`;
@@ -132,9 +198,11 @@ let generarSlots = () => { //funcion que genera
     }
 }    
 
-let resetearSlots = () => { //funcion que genera
+let resetearSlots = () => { //funcion que elimina los Slots creados en el mapa anterior
 divSlot.remove();
-} */
+divSlot = document.getElementById("slots");
+}  */
+
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
@@ -145,14 +213,15 @@ divSlot.remove();
 let mapaSeleccionado = document.getElementById("mapaSeleccionado");
 let btnSiguiente = document.getElementById('btnSiguiente');
 mapas[0].seleccionado = true;
+
 //MAPA SIGUIENTE
 let mapaSiguiente = () => {
     mapaActual++;
     mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
     mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
     mapas[mapaActual-2].seleccionado = false; //indica al mapa anterior como no seleccionado.
-    //resetearSlots();
-    //generarSlots(); //VER SECCION GENERAR SLOTS
+    resetearSlots();
+    generarSlots(); //VER SECCION GENERAR SLOTS
 }
 
 btnSiguiente.addEventListener('click',mapaSiguiente);
@@ -167,9 +236,8 @@ let mapaAnterior = () => {
 }
 btnAnterior.addEventListener('click',mapaAnterior);
 
-
 //*********************************************************************************************************************************
-//*********************** CREACION DE LOS CONTENEDORES CON LAS FICHAS CON DOM E ITERACION DE ARRAY ********************************
+//*********************** CREACION DE LOS CONTENEDORES CON LAS FICHAS E ITERACION DE ARRAY ****************************************
 //*********************************************************************************************************************************
 
 let divFicha = document.getElementById("divFichas");//Obtiene el nodo donde se van a agregar los nuevos elementos - en este caso en un <DIV>
@@ -185,24 +253,6 @@ for (const divFichaN of fichas) {//Itera el array fichas, con for...of.
 //*********************************************************************************************************************************
 //********************************* FIN CREACION DE LOS CONTENEDORES CON LAS FICHAS  **********************************************
 //*********************************************************************************************************************************
-
-
-
-
-
-
-//*********************************************************************************************************************************
-//*********************************************************** DESAFIOS ************************************************************
-//*********************************************************************************************************************************
-//DESAFIO 3
-/*
-let slot1 = document.getElementById("slot1");
-let slot2 = document.getElementById('slot2');
-slot1.style.setProperty("left", "200px");
-slot1.style.setProperty("top", "200px");
-slot1.style.setProperty("color", "#fff");
-slot2.style.setProperty("color","#fff");
-*/
 
 
 //*********************************************************************************************************************************
@@ -271,7 +321,9 @@ fichas[2].addEventListener('click',`${fichas[2].fichaSeleccionada()}`);
 fichas[3].addEventListener('click',`${fichas[3].fichaSeleccionada()}`);
 fichas[4].addEventListener('click',`${fichas[4].fichaSeleccionada()}`);
 fichas[5].addEventListener('click',`${fichas[5].fichaSeleccionada()}`);
-fichas[6].addEventListener('click',`${fichas[6].fichaSeleccionada()}`); */
+fichas[6].addEventListener('click',`${fichas[6].fichaSeleccionada()}`); 
+*/
+
 /* 
 
 
@@ -307,6 +359,16 @@ for(const nroFicha of fichas) {//Recorre los elementos del array ficha.
     console.log(nroFicha); //Muestra los atributos y sus valores de los elementos del array.
 } */
 
+
+//*********************************************************************************************************************************
+//******************************************************* POSICIONAR LAS FICHAS ***************************************************
+//*********************************************************************************************************************************
+
+
+
+//*********************************************************************************************************************************
+//*********************************************************************************************************************************
+//*********************************************************************************************************************************
 
 
 
