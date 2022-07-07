@@ -130,15 +130,29 @@ for(i=0;i<50;i++){
 */
 
 let slot1 = document.getElementById("slot1");
-
+let fichaColocada;
 /* 
     EN ESTE PUNTO TENGO QUE TOMAR EL VALOR DE LA POSICION QUE TOMA LA FICHA AL MOMENTO QUE ES GIRADA
     Y LUEGO ROTAR LA IMAGEN 90° 180° O 270°. PARA ELLO TENGO QUE LLAMAR AL METODO GIRARFICHA
     Y LUEGO TOMAR EL VALOR DE DICHA POSICION.
 */
-let rotarFicha = () => {
+ let rotarFicha = () => {
     let imgFicha = document.getElementById("imgFicha");
-    imgFicha.style.rotate = "-90deg";
+    if(fichas[fichaColocada].posicion === 1){
+        imgFicha.style.rotate = "90deg";
+        fichas[fichaColocada].posicion = 2;
+    }else if(fichas[fichaColocada].posicion === 2) {
+        imgFicha.style.rotate = "180deg";
+        fichas[fichaColocada].posicion = 3;
+    }else if(fichas[fichaColocada].posicion === 3) {
+        imgFicha.style.rotate = "270deg";
+        fichas[fichaColocada].posicion = 4;
+    }else if(fichas[fichaColocada].posicion === 4) {
+        imgFicha.style.rotate = "0deg";
+        fichas[fichaColocada].posicion = 1;
+    }else{
+        console.log("ERROR")
+    }
 }
 
 
@@ -148,35 +162,41 @@ let colocarFicha = () => {
             case fichaSeleccionada === 0:
                 slot1.innerHTML = `<img src="../assets/img/fichas/ficha1.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
+                fichaColocada = 0;
                 break;
             case fichaSeleccionada === 1:
                 slot1.innerHTML = `<img src="../assets/img/fichas/ficha2.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
+                fichaColocada = 1;
                 break;
             case fichaSeleccionada === 2:
                 slot1.innerHTML = `<img src="../assets/img/fichas/ficha3.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
+                fichaColocada = 2;
                 break;
             case fichaSeleccionada === 3:
                 slot1.innerHTML = `<img src="../assets/img/fichas/ficha4.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
+                fichaColocada = 3;
                 break;
             case fichaSeleccionada === 4:
                 slot1.innerHTML = `<img src="../assets/img/fichas/ficha5.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
+                fichaColocada = 4;
                 break;
             case fichaSeleccionada === 5:
                 slot1.innerHTML = `<img src="../assets/img/fichas/ficha6.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
+                fichaColocada = 5;
                 break;
             case fichaSeleccionada === 6:
                 slot1.innerHTML = `<img src="../assets/img/fichas/ficha7.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
+                fichaColocada = 6;
                 break;
             default:
                 break;
         }
-        
     }else{
         rotarFicha();
     }
