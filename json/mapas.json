@@ -1,0 +1,7 @@
+[
+    {"nivel": "1", "slots": 1, "dificultad": "Calentamiento", "completado": "false", "habilitado": "true", "seleccionado":"false"},
+    {"nivel": "2", "slots": 1, "dificultad": "Calentamiento", "completado": "false", "habilitado": "false", "seleccionado":"false"},
+    {"nivel": "3", "slots": 2, "dificultad": "Calentamiento", "completado": "false", "habilitado": "false", "seleccionado":"false"},
+    {"nivel": "4", "slots": 2, "dificultad": "Calentamiento", "completado": "false", "habilitado": "false", "seleccionado":"false"},
+    {"nivel": "5", "slots": 2, "dificultad": "Calentamiento", "completado": "false", "habilitado": "false", "seleccionado":"false"}
+    ]

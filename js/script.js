@@ -87,7 +87,7 @@ class mapa { //genera la clase constructora de objetos mapa
     }
 }
 
-const {mapaHabilitado, mapaCompleto, slotsDelMapa} = mapas;
+const {mapaHabilitado, mapaCompleto, slotsDelMapa} = mapas; //desestructuración de los atributos mas usado en mapas
 
 for(i=0;i<50;i++){
     mapas[i]=new mapa(i,i,`assets/img/nivel${i+1}.jpg`);
@@ -105,7 +105,7 @@ for(i=0;i<50;i++){
         mapas[i].slotsDelMapa = 6;
     }
 }
-//console.log(mapas);
+
 
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
@@ -130,13 +130,30 @@ for(i=0;i<50;i++){
 */
 
 let slot1 = document.getElementById("slot1");
+let slot2 = document.getElementById("slot2");
+let slot3 = document.getElementById("slot3");
+let slot4 = document.getElementById("slot4");
+let slot5 = document.getElementById("slot5");
+let slot6 = document.getElementById("slot6");
+let slot7 = document.getElementById("slot7");
+let slot8 = document.getElementById("slot8");
+let slot9 = document.getElementById("slot9");
+slot2.style.display = "none";
+slot3.style.display = "none";
+slot4.style.display = "none";
+slot5.style.display = "none";
+slot6.style.display = "none";
+slot7.style.display = "none";
+slot8.style.display = "none";
+slot9.style.display = "none";
+
 let fichaColocada;
 /* 
     EN ESTE PUNTO TENGO QUE TOMAR EL VALOR DE LA POSICION QUE TOMA LA FICHA AL MOMENTO QUE ES GIRADA
     Y LUEGO ROTAR LA IMAGEN 90° 180° O 270°. PARA ELLO TENGO QUE LLAMAR AL METODO GIRARFICHA
     Y LUEGO TOMAR EL VALOR DE DICHA POSICION.
 */
- let rotarFicha = () => {
+let rotarFicha = e => {
     let imgFicha = document.getElementById("imgFicha");
     if(fichas[fichaColocada].posicion === 1){
         imgFicha.style.rotate = "90deg";
@@ -151,46 +168,46 @@ let fichaColocada;
         imgFicha.style.rotate = "0deg";
         fichas[fichaColocada].posicion = 1;
     }else{
-        console.log("ERROR")
+        console.log("ERROR") //QUITAR ANTES DE LA ENTREGA FINAL
     }
 }
 
 
-let colocarFicha = () => {
+let colocarFicha = e => {
     if(fichaSeleccionada >= 0 && fichaSeleccionada < 7){
         switch(true){
             case fichaSeleccionada === 0:
-                slot1.innerHTML = `<img src="../assets/img/fichas/ficha1.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha1.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 0;
                 break;
             case fichaSeleccionada === 1:
-                slot1.innerHTML = `<img src="../assets/img/fichas/ficha2.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha2.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 1;
                 break;
             case fichaSeleccionada === 2:
-                slot1.innerHTML = `<img src="../assets/img/fichas/ficha3.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha3.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 2;
                 break;
             case fichaSeleccionada === 3:
-                slot1.innerHTML = `<img src="../assets/img/fichas/ficha4.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha4.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 3;
                 break;
             case fichaSeleccionada === 4:
-                slot1.innerHTML = `<img src="../assets/img/fichas/ficha5.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha5.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 4;
                 break;
             case fichaSeleccionada === 5:
-                slot1.innerHTML = `<img src="../assets/img/fichas/ficha6.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha6.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 5;
                 break;
             case fichaSeleccionada === 6:
-                slot1.innerHTML = `<img src="../assets/img/fichas/ficha7.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha7.png" id="imgFicha">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 6;
                 break;
@@ -198,11 +215,19 @@ let colocarFicha = () => {
                 break;
         }
     }else{
-        rotarFicha();
+        rotarFicha(e);
     }
 }
 
-slot1.addEventListener('click',colocarFicha);
+slot1.addEventListener('click',function() {colocarFicha(slot1)});
+slot2.addEventListener('click',function() {colocarFicha(slot2)});
+slot3.addEventListener('click',function() {colocarFicha(slot3)});
+slot4.addEventListener('click',function() {colocarFicha(slot4)});
+slot5.addEventListener('click',function() {colocarFicha(slot5)});
+slot6.addEventListener('click',function() {colocarFicha(slot6)});
+slot7.addEventListener('click',function() {colocarFicha(slot7)});
+slot8.addEventListener('click',function() {colocarFicha(slot8)});
+slot9.addEventListener('click',function() {colocarFicha(slot9)});
 
 //CODIGO PARA LA CREACION DE SLOTS MODIFICANDO EL DOM POR JS
 /* 
@@ -361,17 +386,17 @@ fichas.addEventListener('click',seleccionarFicha);
     do{
         girarFichaNro = Number(prompt("Elija el numero de la ficha que desea mover del 0 al 6"));//Se determina la ficha a girar
     }while(girarFichaNro < 0 || girarFichaNro > 6 )//Se valida que sea una ficha existente (cambiar esta parte del código para que se determine el numero acorde el minimo y maximo indice del array ficha)
-    
+
     do{
         sentidoGiro = (prompt(`inserte "D" para girar para la derecha o "I" para girar a la izquierda`)).toUpperCase();//Consulta sentido de giro de la ficha
     }while(sentidoGiro != "D" && sentidoGiro != "I");//se valida la entrada del usuario - esto es innecesario ya que se hará por medio de un botón    
-    
+
     if(sentidoGiro == "D"){
         fichas[girarFichaNro].girarDerecha();//llamo al metodo que gira la ficha en sentido horario
         }else{
         fichas[girarFichaNro].girarIzquierda()//llamo al metodo que gira la ficha en sentido antihorario
     }
-    
+
     girar = (prompt("Ingrese 'N' si desea finalizar")).toUpperCase();//consulto si se quiere mover otra ficha
 }
 

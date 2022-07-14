@@ -1,21 +1,84 @@
 //SLOTS**************************************************
+/* 
+1-2: slots 1,
+3-10: slots 2 y 3,
+11,13 y 20: slots 4-6,
+12,14,16-17,19: slots 1, 8-9,
+15: slots 4-5 y 7,
+18: slots 4 ,6-7,
 
-#slot1{
-    left: 219px;
-    top: 138px;
-    display: flex;
-    justify-content: center;
-    & img{
-        align-self: center;
-        width: 152px;
-        height: 152px;
-    }
+*/
+
+#slot{
+    &1{
+        display: flex;
+        justify-content: center;
+        left: 219px;
+        top: 138px;
+        & img{
+            align-self: center;
+            width: 152px;
+            height: 152px;}}
+    &2{
+        left: 219px;
+        top: 214px;
+        & img{
+            align-self: center;
+            width: 152px;
+            height: 152px;}}
+    &3{
+        left: 219px;
+        top: 62px;
+        & img{
+            align-self: center;
+            width: 152px;
+            height: 152px;}}
+    &4{
+        left: 143px;
+        top: 214px;
+        & img{
+            align-self: center;
+            width: 152px;
+            height: 152px;}}
+    &5{
+        left: 295px;
+        top: 214px;
+        & img{
+            align-self: center;
+            width: 152px;
+            height: 152px;}}
+    &6{
+        left: 295px;
+        top: 62px;
+        & img{
+            align-self: center;
+            width: 152px;
+            height: 152px;}}
+    &7{
+        left: 143px;
+        top: 62px;
+        & img{
+            align-self: center;
+            width: 152px;
+            height: 152px;}}
+    &8{
+        left: 67px;
+        top: 138px;
+        & img{
+            align-self: center;
+            width: 152px;
+            height: 152px;}}
+    &9{
+        display: flex;
+        justify-content: center;
+        left: 371px;
+        top: 138px;
+        & img{
+            align-self: center;
+            width: 152px;
+            height: 152px;}}
 }
 
-#slot2{
-    left: 586px;
-    top: 505px;
-}
 
 .slots{
     background-color: #fff3;

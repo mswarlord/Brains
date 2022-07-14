@@ -1,0 +1,5 @@
+[
+    {"nombre": "Facundo", "apellido": "Cantero", "edad": 33, "usuario": "MsWarLord", "pass": "N0t4L4m3r"},
+    {"nombre": "Agustin", "apellido": "Cantero", "edad": 36, "usuario": "Agustin07", "pass": "S3m1S3n10r"},
+    {"nombre": "invitado", "apellido": "", "edad": 0, "usuario": "user", "pass": "1234"}
+]
