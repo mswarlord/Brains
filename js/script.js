@@ -2,10 +2,45 @@ let ficha = []; //array que guarda los nodos ficha
 let mapaActual = 1; //Indica cual es el mapa seleccionado
 const fichas = []; //guadrda el array de objetos ficha
 const mapas = []; //genera el array mapas
-let fichaSeleccionada;
-window.onload = function() {
+let fichaSeleccionada; // indica la ficha seleccionada
+let fichaColocada; //indica la ficha colocada actualmente
 
-//*********************************************************************************************************************************
+/* const slots = [ //pasar este array luego a JSON
+    document.getElementById("slot1"),
+    document.getElementById("slot2"),
+    document.getElementById("slot3"),
+    document.getElementById("slot4"),
+    document.getElementById("slot5"),
+    document.getElementById("slot6"),
+    document.getElementById("slot7"),
+    document.getElementById("slot8"),
+    document.getElementById("slot9")
+]
+ */
+let slots = [];
+class Slot{//Se crea la clase Slot que establece el elemento del DOM y su estado.
+    constructor(elementoDOM) {
+        this.elementoDOM = elementoDOM;
+        this.ocupado = false;//inicia el slot como desocupado.
+    }
+
+    ocuparSlot() {
+        this.ocupado = true;
+    }
+
+    desocuparSlot() {
+        this.ocupado = false;
+    }
+}
+
+
+
+window.onload = function() {
+    //*********************************************************************************************************************************
+    for(i=0;i<9;i++){ //iteración para la creación de las fichas
+    
+        slots[i]=new Slot(document.getElementById(`slot${+i+1}`));
+    }
 //************************************************* CREACION DE LAS FICHAS Y SUS ESTADOS ******************************************
 //*********************************************************************************************************************************
 class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y los metodos para cambiar la posicion de las mismas
@@ -51,7 +86,7 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
     }
 }
 
-  for(i=0;i<7;i++){ //iteración para la creación de las fichas
+for(i=0;i<7;i++){ //iteración para la creación de las fichas
     fichas[i]=new Ficha(i);
 }
 
@@ -65,9 +100,9 @@ class mapa { //genera la clase constructora de objetos mapa
         this.dificultad = dificultad;
         this.img = img;
         this.slotsDelMapa = 0;
-        this.mapaCompleto = false;     //estado que indica si el mapa esta completo
-        this.mapaHabilitado = false;   //estado que indica si el mapa esta habilitado para jugar
-        this.seleccionado = false; //estado que indica si es el mapa que se esta jugando
+        this.mapaCompleto = false;   //estado que indica si el mapa esta completo
+        this.mapaHabilitado = false; //estado que indica si el mapa esta habilitado para jugar
+        this.seleccionado = false;   //estado que indica si es el mapa que se esta jugando
     }
 
     completarMapa() { //metodo para indicar que el desafío ya fue completado
@@ -87,7 +122,7 @@ class mapa { //genera la clase constructora de objetos mapa
     }
 }
 
-const {mapaHabilitado, mapaCompleto, slotsDelMapa} = mapas; //desestructuración de los atributos mas usado en mapas
+const {mapaHabilitado, mapaCompleto, slotsDelMapa} = mapas; //desestructura los atributos mas usado en mapas
 
 for(i=0;i<50;i++){
     mapas[i]=new mapa(i,i,`assets/img/nivel${i+1}.jpg`);
@@ -106,7 +141,6 @@ for(i=0;i<50;i++){
     }
 }
 
-
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
 //*********************************************************************************************************************************
@@ -116,98 +150,93 @@ for(i=0;i<50;i++){
 //*********************************************************************************************************************************
 
 /* 
-    En esta seccion se buscará crear el algoritmo que genere los slots al elegir un mapa. asi mismo debe eliminar 
-    los slots generados para mapas previos.
-    La cantidad de slots dependerá del atributo slotsDelMapa del objeto mapas. Aun resta resolver la posicion de 
-    cada slot segun el mapa. Hay un maximo de seis slots ya que los ultimos mapas trabajan con 6 slots. 
-    Pero a su vez en cada mapa la posicion de los slots es distinta, por lo que en cada mapa hay que mostrar la 
-    cantidad de slots correspondientes y ubicarlos en su lugar.
-
+    En esta seccion se buscará crear el algoritmo que genere los slots al elegir un mapa.
+    La cantidad de slots dependerá del atributo slotsDelMapa del objeto mapas. 
     Luego hay que determinar que ficha va en cada slot y en que posición para que el mapa esté completo...
-
-    Opcion B: colocar los seis slots en el html con sus respectivos id y clases y modificar los estilos de cada uno segun el mapa
-    escondiendo los que no van y posicionando en el lugar indicado cada uno.
 */
 
-let slot1 = document.getElementById("slot1");
-let slot2 = document.getElementById("slot2");
-let slot3 = document.getElementById("slot3");
-let slot4 = document.getElementById("slot4");
-let slot5 = document.getElementById("slot5");
-let slot6 = document.getElementById("slot6");
-let slot7 = document.getElementById("slot7");
-let slot8 = document.getElementById("slot8");
-let slot9 = document.getElementById("slot9");
-slot2.style.display = "none";
-slot3.style.display = "none";
-slot4.style.display = "none";
-slot5.style.display = "none";
-slot6.style.display = "none";
-slot7.style.display = "none";
-slot8.style.display = "none";
-slot9.style.display = "none";
+for(e in slots){ //quita del DOM todos los slots
+    slots[e].elementoDOM.style.display = "none";
+} 
 
-let fichaColocada;
+slots[0].elementoDOM.style.display = ""; //muestra en el DOM el Slot con indice 0 del array
+
 /* 
     EN ESTE PUNTO TENGO QUE TOMAR EL VALOR DE LA POSICION QUE TOMA LA FICHA AL MOMENTO QUE ES GIRADA
     Y LUEGO ROTAR LA IMAGEN 90° 180° O 270°. PARA ELLO TENGO QUE LLAMAR AL METODO GIRARFICHA
     Y LUEGO TOMAR EL VALOR DE DICHA POSICION.
 */
-let rotarFicha = e => {
-    let imgFicha = document.getElementById("imgFicha");
-    if(fichas[fichaColocada].posicion === 1){
-        imgFicha.style.rotate = "90deg";
-        fichas[fichaColocada].posicion = 2;
-    }else if(fichas[fichaColocada].posicion === 2) {
-        imgFicha.style.rotate = "180deg";
-        fichas[fichaColocada].posicion = 3;
-    }else if(fichas[fichaColocada].posicion === 3) {
-        imgFicha.style.rotate = "270deg";
-        fichas[fichaColocada].posicion = 4;
-    }else if(fichas[fichaColocada].posicion === 4) {
-        imgFicha.style.rotate = "0deg";
-        fichas[fichaColocada].posicion = 1;
-    }else{
-        console.log("ERROR") //QUITAR ANTES DE LA ENTREGA FINAL
+
+const clickSlots = () => {
+    if(!!fichaColocada){
+
     }
 }
 
 
-let colocarFicha = e => {
+let imgFicha;
+//corregir que ficha gira
+let rotarFicha = (e,n) => {
+
+    if(!!fichas[fichaColocada]){
+        //imgFicha = document.getElementById(`imgFicha${+n}`);
+        if(fichas[fichaColocada].posicion === 1){
+            imgFicha.style.rotate = "90deg";
+            fichas[fichaColocada].posicion = 2;
+        }else if(fichas[fichaColocada].posicion === 2) {
+            imgFicha.style.rotate = "180deg";
+            fichas[fichaColocada].posicion = 3;
+        }else if(fichas[fichaColocada].posicion === 3) {
+            imgFicha.style.rotate = "270deg";
+            fichas[fichaColocada].posicion = 4;
+        }else if(fichas[fichaColocada].posicion === 4) {
+            imgFicha.style.rotate = "0deg";
+            fichas[fichaColocada].posicion = 1;
+        }}
+}
+
+let colocarFicha = (e,n) => {
     if(fichaSeleccionada >= 0 && fichaSeleccionada < 7){
         switch(true){
             case fichaSeleccionada === 0:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha1.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha1.png" id="imgFicha1">`;
+                imgFicha = document.getElementById("imgFicha1");
                 fichaSeleccionada = -1;
                 fichaColocada = 0;
                 break;
             case fichaSeleccionada === 1:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha2.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha2.png" id="imgFicha2">`;
+                imgFicha = document.getElementById("imgFicha2");
                 fichaSeleccionada = -1;
                 fichaColocada = 1;
                 break;
             case fichaSeleccionada === 2:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha3.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha3.png" id="imgFicha3">`;
+                imgFicha = document.getElementById("imgFicha3");
                 fichaSeleccionada = -1;
                 fichaColocada = 2;
                 break;
             case fichaSeleccionada === 3:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha4.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha4.png" id="imgFicha4">`;
+                imgFicha = document.getElementById("imgFicha4");
                 fichaSeleccionada = -1;
                 fichaColocada = 3;
                 break;
             case fichaSeleccionada === 4:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha5.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha5.png" id="imgFicha5">`;
+                imgFicha = document.getElementById("imgFicha5");
                 fichaSeleccionada = -1;
                 fichaColocada = 4;
                 break;
             case fichaSeleccionada === 5:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha6.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha6.png" id="imgFicha6">`;
+                imgFicha = document.getElementById("imgFicha6");
                 fichaSeleccionada = -1;
                 fichaColocada = 5;
                 break;
             case fichaSeleccionada === 6:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha7.png" id="imgFicha">`;
+                e.innerHTML = `<img src="../assets/img/fichas/ficha7.png" id="imgFicha7">`;
+                imgFicha = document.getElementById("imgFicha7");
                 fichaSeleccionada = -1;
                 fichaColocada = 6;
                 break;
@@ -215,19 +244,25 @@ let colocarFicha = e => {
                 break;
         }
     }else{
-        rotarFicha(e);
+        rotarFicha(e,n);
     }
 }
 
-slot1.addEventListener('click',function() {colocarFicha(slot1)});
-slot2.addEventListener('click',function() {colocarFicha(slot2)});
-slot3.addEventListener('click',function() {colocarFicha(slot3)});
-slot4.addEventListener('click',function() {colocarFicha(slot4)});
-slot5.addEventListener('click',function() {colocarFicha(slot5)});
-slot6.addEventListener('click',function() {colocarFicha(slot6)});
-slot7.addEventListener('click',function() {colocarFicha(slot7)});
-slot8.addEventListener('click',function() {colocarFicha(slot8)});
-slot9.addEventListener('click',function() {colocarFicha(slot9)});
+
+/*
+for(let e of slot){
+    slot1.addEventListener('click',function() {colocarFicha(slot1)});
+}; */
+
+slot1.addEventListener('click',function() {colocarFicha(slot1,0)});
+slot2.addEventListener('click',function() {colocarFicha(slot2,1)});
+slot3.addEventListener('click',function() {colocarFicha(slot3,2)});
+slot4.addEventListener('click',function() {colocarFicha(slot4,3)});
+slot5.addEventListener('click',function() {colocarFicha(slot5,4)});
+slot6.addEventListener('click',function() {colocarFicha(slot6,5)});
+slot7.addEventListener('click',function() {colocarFicha(slot7,6)});
+slot8.addEventListener('click',function() {colocarFicha(slot8,7)});
+slot9.addEventListener('click',function() {colocarFicha(slot9,8)});
 
 //CODIGO PARA LA CREACION DE SLOTS MODIFICANDO EL DOM POR JS
 /* 
@@ -308,77 +343,34 @@ for (const divFichaN of fichas) {//Itera el array fichas, con for...of.
 //luego con un boton tomar esa variable y con un evento click al mismo llame al metodo girarDerecha o girarIzquierda
 //que a su vez gire la imagen de la ficha en el sentido correspondiente.
 
+//DOM
+const MOSTRARFICHAS = async () => {
+    try{
+        for(i=0;i<7;i++){
+            ficha[i] = document.getElementById(`ficha${[i+1]}`)//guarda nodos con ID ficha en el array "ficha[]"-No confundir con array "fichas[]"
+        }        
+    }
+    catch{}
+}
+MOSTRARFICHAS();
 //SELECCION DE LA FICHA A GIRAR
 
-/* let seleccionarFicha = () => {
-    fichas[0].fichaSeleccionada();
-}  */
-
-let seleccionarFicha1 = () => {
-    fichas[0].fichaSeleccionada();
-}
-let seleccionarFicha2 = () => {
-    fichas[1].fichaSeleccionada();
-}
-let seleccionarFicha3 = () => {
-    fichas[2].fichaSeleccionada();
-}
-let seleccionarFicha4 = () => {
-    fichas[3].fichaSeleccionada();
-}
-let seleccionarFicha5 = () => {
-    fichas[4].fichaSeleccionada();
-}
-let seleccionarFicha6 = () => {
-    fichas[5].fichaSeleccionada();
-}
-let seleccionarFicha7 = () => {
-    fichas[6].fichaSeleccionada();
-}
-
-for(i=0;i<7;i++){
-    ficha[i] = document.getElementById(`ficha${[i+1]}`)//guarda nodos con ID ficha en el array "ficha[]"-No confundir con array "fichas[]"
-}
-
-ficha[0].addEventListener('click',seleccionarFicha1); //Agrego a cada elemento del array ficha el evento para seleccionarlas
-ficha[1].addEventListener('click',seleccionarFicha2);
-ficha[2].addEventListener('click',seleccionarFicha3);
-ficha[3].addEventListener('click',seleccionarFicha4);
-ficha[4].addEventListener('click',seleccionarFicha5);
-ficha[5].addEventListener('click',seleccionarFicha6);
-ficha[6].addEventListener('click',seleccionarFicha7);
-
-
-/* 
-let seleccionarFicha = (e) => {
-    console.log(`se selecciono la ficha ${e}`);
-    console.log(e);
-}
-
-for(i=0;i<7;i++){
-    ficha[i].addEventListener('click',`${seleccionarFicha}`);
-    console.log(`Se agrego el evento click a la ficha ${i+1}`)
+let seleccionarFicha = e => {
+    fichas[e].fichaSeleccionada();
 } 
 
-//fichas[0].addEventListener('click',seleccionarFicha);
-fichas[1].addEventListener('click',`${fichas[1].fichaSeleccionada()}`);
-fichas[2].addEventListener('click',`${fichas[2].fichaSeleccionada()}`);
-fichas[3].addEventListener('click',`${fichas[3].fichaSeleccionada()}`);
-fichas[4].addEventListener('click',`${fichas[4].fichaSeleccionada()}`);
-fichas[5].addEventListener('click',`${fichas[5].fichaSeleccionada()}`);
-fichas[6].addEventListener('click',`${fichas[6].fichaSeleccionada()}`); 
-*/
 
-/* 
+for(let e in ficha){
+ficha[e].addEventListener('click',function() {seleccionarFicha(e)});
+} 
 
-
+/*
 let girarFichaNro = 0; //variable que determina la ficha a girar
 let sentidoGiro;//variable que determina el sentido de giro
 
 let fichaAGirar = document.getElementById("ficha1");
 
 fichas.addEventListener('click',seleccionarFicha);
-
 */
 //let girar = (prompt("Ingrese 'N' si desea finalizar")).toUpperCase();//variable que determina si se debe girar o no una ficha
 /* while (girar !="N"){
