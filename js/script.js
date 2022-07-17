@@ -20,6 +20,7 @@ class Slot{//Se crea la clase Slot que establece el elemento del DOM y su estado
         this.elementoDOM = elementoDOM;
         this.ocupado = false;//inicia el slot como desocupado.
         this.oculto = false;
+        this.fichaColocada;
     }
     
     ocultarSlot() {
@@ -29,9 +30,10 @@ class Slot{//Se crea la clase Slot que establece el elemento del DOM y su estado
     mostrarSlot() {
             this.elementoDOM.style.display = "";
     }
-    
-    ocuparSlot() {
+
+    ocuparSlot(e) {
         this.ocupado = true;
+        this.fichaColocada = e;
     }
 
     desocuparSlot() {
@@ -50,7 +52,7 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
     fichaSeleccionada() {//metodo para cambiar el estado de seleccion de la ficha y deselecciona el resto de las fichas seleccionadas
         if(this.seleccionada === false){ 
             this.seleccionada = true;
-            console.log(`seleccionaste la ficha ${this.id}`);
+            console.log(`seleccionaste la ficha ${this.id + 1}`);
             fichaSeleccionada = this.id;
 
             for(let e of fichas){ //Esta iteración deselecciona cualquier ficha que este seleccionada 
@@ -61,7 +63,7 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
 
         }else{
             this.seleccionada = false;
-            console.log(`Deseleccionaste la ficha ${this.id}`)
+            console.log(`Deseleccionaste la ficha ${this.id + 1}`)
             fichaSeleccionada = -1
         }
     }
@@ -185,93 +187,83 @@ for(e in slots){ //quita del DOM todos los slots
     Y LUEGO ROTAR LA IMAGEN 90° 180° O 270°. PARA ELLO TENGO QUE LLAMAR AL METODO GIRARFICHA
     Y LUEGO TOMAR EL VALOR DE DICHA POSICION.
 */
+let imgFicha;
 
-const clickSlots = () => {
-    if(!!fichaSeleccionada){
-        colocarFicha();
-    }else if(!!slots[e].ocupado){ 
-        rotarFicha();
+const clickSlots = (a,b) => { //toma como parametros el nodo del slot clickeado y el indice de ese slot
+    if(fichaSeleccionada >=0 && fichaSeleccionada <7){ //si hay una ficha seleccionada
+        colocarFicha(a); //llama a la funcion que coloca la ficha llevandole el nodo del slot
+        slots[b].ocuparSlot(fichas[fichaColocada]); //llama al metodo ocuparSlot del slot clickeado y le guarda la ficha colocada
+        slots[b].fichaColocada.posicion = 1; //inicia la posicion de la nueva ficha en 1
+    } else if(slots[b].ocupado===true){ 
+        rotarFicha(b); //llama la funcion que rota la imagen de la ficha y cambia su posicion
     }
 }
 
-
-let imgFicha;
-//corregir que ficha gira
-let rotarFicha = (e,n) => {
-
-    if(!!fichas[fichaColocada]){
-        //imgFicha = document.getElementById(`imgFicha${+n}`);
-        if(fichas[fichaColocada].posicion === 1){
-            imgFicha.style.rotate = "90deg";
-            fichas[fichaColocada].posicion = 2;
-        }else if(fichas[fichaColocada].posicion === 2) {
-            imgFicha.style.rotate = "180deg";
-            fichas[fichaColocada].posicion = 3;
-        }else if(fichas[fichaColocada].posicion === 3) {
-            imgFicha.style.rotate = "270deg";
-            fichas[fichaColocada].posicion = 4;
-        }else if(fichas[fichaColocada].posicion === 4) {
-            imgFicha.style.rotate = "0deg";
-            fichas[fichaColocada].posicion = 1;
-        }}
-}
-
-let colocarFicha = (e,n) => {
+let colocarFicha = (a) => {
     if(fichaSeleccionada >= 0 && fichaSeleccionada < 7){
         switch(true){
             case fichaSeleccionada === 0:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha1.png" id="imgFicha1">`;
-                imgFicha = document.getElementById("imgFicha1");
+                a.innerHTML = `<img id="imgFicha1" src="../assets/img/fichas/ficha1.png">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 0;
                 break;
             case fichaSeleccionada === 1:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha2.png" id="imgFicha2">`;
-                imgFicha = document.getElementById("imgFicha2");
+                a.innerHTML = `<img id="imgFicha2" src="../assets/img/fichas/ficha2.png">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 1;
                 break;
             case fichaSeleccionada === 2:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha3.png" id="imgFicha3">`;
-                imgFicha = document.getElementById("imgFicha3");
+                a.innerHTML = `<img id="imgFicha3" src="../assets/img/fichas/ficha3.png">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 2;
                 break;
             case fichaSeleccionada === 3:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha4.png" id="imgFicha4">`;
-                imgFicha = document.getElementById("imgFicha4");
+                a.innerHTML = `<img id="imgFicha4" src="../assets/img/fichas/ficha4.png">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 3;
                 break;
             case fichaSeleccionada === 4:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha5.png" id="imgFicha5">`;
-                imgFicha = document.getElementById("imgFicha5");
+                a.innerHTML = `<img id="imgFicha5" src="../assets/img/fichas/ficha5.png">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 4;
                 break;
             case fichaSeleccionada === 5:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha6.png" id="imgFicha6">`;
-                imgFicha = document.getElementById("imgFicha6");
+                a.innerHTML = `<img id="imgFicha6" src="../assets/img/fichas/ficha6.png">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 5;
                 break;
             case fichaSeleccionada === 6:
-                e.innerHTML = `<img src="../assets/img/fichas/ficha7.png" id="imgFicha7">`;
-                imgFicha = document.getElementById("imgFicha7");
+                a.innerHTML = `<img id="imgFicha7" src="../assets/img/fichas/ficha7.png">`;
                 fichaSeleccionada = -1;
                 fichaColocada = 6;
                 break;
             default:
                 break;
         }
-    }else{
-        rotarFicha(e,n);
     }
 }
 
-for(e in slots){              //itero los elementos del array slots
-    let i = e;                //crea una variable para meter en slots[i] -- creo la variable i para solucionar un error
-    slots[e].elementoDOM.addEventListener('click',function() {colocarFicha(slots[i].elementoDOM,e)}); //genera en cada
+let rotarFicha = (b) => { //toma como parametro el indice del slot que llama a la funcion
+    console.log("FUNCION ROTAR FICHA");
+    imgFicha = document.getElementById(`${slots[b].elementoDOM.innerHTML.slice(9,18)}`);
+    if(slots[b].fichaColocada.posicion === 1){
+        imgFicha.style.rotate = "90deg";
+        slots[b].fichaColocada.posicion = 2;
+    }else if(slots[b].fichaColocada.posicion === 2) {
+        imgFicha.style.rotate = "180deg";
+        slots[b].fichaColocada.posicion = 3;
+    }else if(slots[b].fichaColocada.posicion === 3) {
+        imgFicha.style.rotate = "270deg";
+        slots[b].fichaColocada.posicion = 4;
+    }else if(slots[b].fichaColocada.posicion === 4) {
+        imgFicha.style.rotate = "0deg";
+        slots[b].fichaColocada.posicion = 1;
+    }
+}
+
+for(e in slots){  //itera los elementos del array slots
+    let i = e;    //crea una variable para meter en slots[i] -- averiguar ¿por que con e no lo toma? ¿mala sintaxis? ¿redundancia?
+    slots[i].elementoDOM.addEventListener('click',function() {clickSlots(slots[i].elementoDOM, i)}); //genera en cada
     //iteración un evento click en cada slot, con la función colocar ficha y el slot que se está clickeando como parámetro.
     //ademas meto otro parámetro que por ahora no estoy usando. borrar antes de la entrega
 } 
@@ -321,6 +313,7 @@ btnAnterior.addEventListener('click',mapaAnterior); //boton que pasa al mapa ant
 let divFicha = document.getElementById("divFichas");//Obtiene el nodo <DIV> donde se van a agregar los nuevos elementos - 
 //
 for (let divFichaN of fichas) {//Itera el array fichas, con for...of.
+    //console.log(divFichaN.id+1);
     let div = document.createElement("div");//Crea un nodo <div> en cada iteración. 
     div.id = `ficha${divFichaN.id + 1}`;//le asigno al nuevo div el ID ficha"N", donde "N" es el numero de ficha.
     div.className = `ficha`; //le asigno a cada DIV la clase ficha.
@@ -345,6 +338,7 @@ for (let divFichaN of fichas) {//Itera el array fichas, con for...of.
 const MOSTRARFICHAS = async () => {
     try{
         for(i=0;i<7;i++){
+            //console.log(i);
             ficha[i] = document.getElementById(`ficha${[i+1]}`)//guarda nodos con ID ficha en el array "ficha[]"-No confundir con array "fichas[]"
         }        
     }
@@ -354,11 +348,13 @@ MOSTRARFICHAS();
 //SELECCION DE LA FICHA A GIRAR
 
 let seleccionarFicha = e => {
+    //console.log(e);
     fichas[e].fichaSeleccionada();
 } 
 
 for(let e in ficha){
-ficha[e].addEventListener('click',function() {seleccionarFicha(e)});
+    //console.log(e);
+    ficha[e].addEventListener('click',function() {seleccionarFicha(e)});
 } 
 
 /*
