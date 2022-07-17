@@ -45,7 +45,7 @@
             <br>
             <div id="juego">
                 <div id="mapaAnterior">
-                    <button id="btnAnterior" class="btnJuego">Anterior</button>
+                    <button id="btnAnterior" class="btnJuego" disabled="true">Anterior</button>
                 </div>
                 <div id="zonaDeJuego">
                     <img src="../assets/img/niveles/nivel1.png" alt="" id="mapaSeleccionado">
@@ -71,7 +71,7 @@
                     <button id="btnSiguiente" class="btnJuego">Siguiente</button>
                 </div>
             </div>
-
+            <button id="btnCorroborar" class="btnJuego">Corroborar</button>
             <div id="divFichas"></div> <!-- CONTENEDOR PARA LA CREACION DE LAS FICHAS --> 
             
         </main>
@@ -90,6 +90,7 @@
         </footer>
         <!-- FIN FOOTER -->
         <!-- SCRIPT -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
         <script src="../js/script.js"></script>
     </body>

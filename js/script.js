@@ -37,7 +37,9 @@ class Slot{//Se crea la clase Slot que establece el elemento del DOM y su estado
     }
 
     desocuparSlot() {
+        this.elementoDOM.innerHTML="";
         this.ocupado = false;
+        this.fichaColocada = false;
     }
 }
 
@@ -97,6 +99,7 @@ class mapa { //genera la clase constructora de objetos mapa
         this.mapaCompleto = false;   //estado que indica si el mapa esta completo
         this.mapaHabilitado = false; //estado que indica si el mapa esta habilitado para jugar
         this.seleccionado = false;   //estado que indica si es el mapa que se esta jugando
+        this.condicionDeVictoria = false;
     }
 
     completarMapa() { //metodo para indicar que el desafío ya fue completado
@@ -119,13 +122,53 @@ class mapa { //genera la clase constructora de objetos mapa
 //*************************************************************************************************************************
 //********************************************************FUNCIONES********************************************************
 //*************************************************************************************************************************
-
-let mostrarSlots = () => { //funcion que oculta los Slots de la zona de juego
-    for(let e in slots){
-        slots[e].mostrarSlot();
+ 
+let mostrarSlots = (mapaActual) => { //funcion que muestra todos los Slots de la zona de juego
+    switch(true){
+        case mapaActual === 1:
+            slots[0].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 2:
+            slots[0].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 3:
+            slots[1].elementoDOM.style.display = "";
+            slots[2].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 4:
+            slots[1].elementoDOM.style.display = "";
+            slots[2].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 5:
+            slots[1].elementoDOM.style.display = "";
+            slots[2].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 6:
+            slots[1].elementoDOM.style.display = "";
+            slots[2].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 7:
+            slots[1].elementoDOM.style.display = "";
+            slots[2].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 8:
+            slots[1].elementoDOM.style.display = "";
+            slots[2].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 9:
+            slots[1].elementoDOM.style.display = "";
+            slots[2].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 10:
+            slots[1].elementoDOM.style.display = "";
+            slots[2].elementoDOM.style.display = "";
+            break;
+     
     }
+    /* for(let e in slots){
+        slots[e].mostrarSlot();
+    } */
 }
-
 let ocultarSlots = () => { //funcion que oculta los Slots de la zona de juego
     for(let e in slots){
         slots[e].ocultarSlot();
@@ -262,10 +305,9 @@ let rotarFicha = (b) => { //toma como parametro el indice del slot que llama a l
 }
 
 for(e in slots){  //itera los elementos del array slots
-    let i = e;    //crea una variable para meter en slots[i] -- averiguar ¿por que con e no lo toma? ¿mala sintaxis? ¿redundancia?
+    let i = e;    //crea una variable para meter en slots[i] -- averiguar ¿por que con e no lo toma? ¿mala sintaxis?
     slots[i].elementoDOM.addEventListener('click',function() {clickSlots(slots[i].elementoDOM, i)}); //genera en cada
     //iteración un evento click en cada slot, con la función colocar ficha y el slot que se está clickeando como parámetro.
-    //ademas meto otro parámetro que por ahora no estoy usando. borrar antes de la entrega
 } 
 
 //*********************************************************************************************************************************
@@ -279,17 +321,33 @@ let btnAnterior = document.getElementById("btnAnterior");
 mapas[0].seleccionado = true;
 slots[0].elementoDOM.style.display = ""; //muestra en el DOM el Slot con indice 0 del array
 
+
+//hacer una funcion limpiarMapa que limpie los slot sacandole las fichas a cada uno de los slots
+
+const limpiarMapa = () => {
+    for(e in slots){
+        slots[e].desocuparSlot();
+    }
+}
+
 //MAPA SIGUIENTE
 let mapaSiguiente = () => {
-    if(mapas[mapaActual].mapaCompleto){
-    mapaActual++;
-    mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
-    mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
-    mapas[mapaActual-2].seleccionado = false; //indica al mapa anterior como no seleccionado.
-    ocultarSlots(); //oculta todos los slots
-    //mostrarSlots(); //muestra los slots necesarios para el mapa siguiente
+    if(mapas[mapaActual-1].mapaCompleto){
+        
+        mapaActual++;
+        mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
+        mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
+        mapas[mapaActual-2].seleccionado = false; //indica al mapa anterior como no seleccionado.
+        ocultarSlots(); //oculta todos los slots
+        mostrarSlots(mapaActual); //muestra los slots necesarios para el mapa siguiente
+        limpiarMapa();
     }else{
-        alert("Tienes que completar este nivel para pasar al siguiente");
+        Swal.fire({ //alerta con SWEET ALERT
+            icon: 'error',
+            title: 'MAPA INCOMPLETO',
+            text: 'Tienes que completar este nivel para pasar al siguiente',
+            footer: ''
+        })
     }
 }
 
@@ -311,7 +369,7 @@ btnAnterior.addEventListener('click',mapaAnterior); //boton que pasa al mapa ant
 
 //DOM
 let divFicha = document.getElementById("divFichas");//Obtiene el nodo <DIV> donde se van a agregar los nuevos elementos - 
-//
+
 for (let divFichaN of fichas) {//Itera el array fichas, con for...of.
     //console.log(divFichaN.id+1);
     let div = document.createElement("div");//Crea un nodo <div> en cada iteración. 
@@ -321,20 +379,6 @@ for (let divFichaN of fichas) {//Itera el array fichas, con for...of.
     divFicha.appendChild(div); //Se inserta el nuevo nodo DIV al padre en cada ciclo
 }
 
-//*********************************************************************************************************************************
-//********************************* FIN CREACION DE LOS CONTENEDORES CON LAS FICHAS  **********************************************
-//*********************************************************************************************************************************
-
-
-//*********************************************************************************************************************************
-//**************************************************** ROTACION DE LAS FICHAS *****************************************************
-//*********************************************************************************************************************************
-
-//para girar una ficha debo seleccionarla, guardar esa ficha en una variable fichaAGirar
-//luego con un boton tomar esa variable y con un evento click al mismo llame al metodo girarDerecha o girarIzquierda
-//que a su vez gire la imagen de la ficha en el sentido correspondiente.
-
-//DOM
 const MOSTRARFICHAS = async () => {
     try{
         for(i=0;i<7;i++){
@@ -344,8 +388,10 @@ const MOSTRARFICHAS = async () => {
     }
     catch{}
 }
+
 MOSTRARFICHAS();
-//SELECCION DE LA FICHA A GIRAR
+
+//SELECCION DE LA FICHA
 
 let seleccionarFicha = e => {
     //console.log(e);
@@ -390,12 +436,86 @@ for(const nroFicha of fichas) {//Recorre los elementos del array ficha.
 } */
 
 
-//*********************************************************************************************************************************
-//******************************************************* POSICIONAR LAS FICHAS ***************************************************
-//*********************************************************************************************************************************
 
 
 
-//*********************************************************************************************************************************
-//*********************************************************************************************************************************
-//*********************************************************************************************************************************
+//**************************************************************************************************************************
+//****************************************************** CORROBORAR CONDICION DE VITORIA ************************************
+//**************************************************************************************************************************
+
+const CORROBORAR = document.getElementById("btnCorroborar");
+const msjCompletado = () => {
+    Swal.fire({ //alerta con SWEET ALERT
+        icon: 'success',
+        title: '¡DESAFÍO COMPLETADO!',
+        text: 'Felicitaciones!!! puedes pasar al siguiente desafío',
+        footer: ''
+    })
+}
+
+const corroborarVictoria = () => {
+    switch(true){
+        case mapaActual === 1:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
+                mapas[0].completarMapa();
+                msjCompletado();
+            }
+            break;
+        case mapaActual === 2:
+            if (slots[0].fichaColocada.id === 4 && slots[0].fichaColocada.posicion === 2){
+                mapas[1].completarMapa();
+                msjCompletado();
+            }
+            break;
+        case mapaActual === 3:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
+                mapas[2].completarMapa();
+                msjCompletado();
+            }
+            break;
+        case mapaActual === 4:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
+                mapas[3].completarMapa();
+                msjCompletado();
+            }
+            break;
+        case mapaActual === 5:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
+                mapas[0].completarMapa();
+                msjCompletado();
+            }
+            break;
+        case mapaActual === 6:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
+                mapas[0].completarMapa();
+                msjCompletado();
+            }
+            break;
+        case mapaActual === 7:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
+                mapas[0].completarMapa();
+                msjCompletado();
+            }
+            break;
+        case mapaActual === 8:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
+                mapas[0].completarMapa();
+                msjCompletado();
+            }
+            break;
+        case mapaActual === 9:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
+                mapas[0].completarMapa();
+                msjCompletado();
+            }
+            break;
+        case mapaActual === 10:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
+                mapas[0].completarMapa();
+                msjCompletado();
+            }
+            break;
+    }
+}
+
+CORROBORAR.addEventListener('click',corroborarVictoria)
