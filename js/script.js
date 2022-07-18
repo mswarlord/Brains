@@ -8,6 +8,7 @@ const mapas = []; //genera el array mapas.
 let fichaSeleccionada; // indica la ficha seleccionada.
 let fichaColocada; //indica la ficha colocada actualmente.
 let slots = []; //array con los slots del DOM y sus estados.
+let maxDesafioCompleto;
 
 
 //*************************************************************************************************************************
@@ -22,7 +23,7 @@ class Slot{//Se crea la clase Slot que establece el elemento del DOM y su estado
         this.oculto = false;
         this.fichaColocada;
     }
-    
+
     ocultarSlot() {
             this.elementoDOM.style.display = "none";
     }
@@ -104,6 +105,7 @@ class mapa { //genera la clase constructora de objetos mapa
 
     completarMapa() { //metodo para indicar que el desafío ya fue completado
         this.mapaCompleto = true;
+        localStorage.setItem('maxDesafioCompleto', mapaActual);
     }
 
     habilitarMapa() { //método que indica si el desafío esta habilitado para jugarse
@@ -242,41 +244,48 @@ const clickSlots = (a,b) => { //toma como parametros el nodo del slot clickeado 
     }
 }
 
-let colocarFicha = (a) => {
-    if(fichaSeleccionada >= 0 && fichaSeleccionada < 7){
-        switch(true){
+let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
+    if(fichaSeleccionada >= 0 && fichaSeleccionada < 7){ //coloca la ficha si ficha seleccionada esta entre [0;7)
+        switch(true){ //compara todos los casos y acciona el que devuelva TRUE
             case fichaSeleccionada === 0:
-                a.innerHTML = `<img id="imgFicha1" src="../assets/img/fichas/ficha1.png">`;
-                fichaSeleccionada = -1;
-                fichaColocada = 0;
+                a.innerHTML = `<img id="imgFicha1" src="../assets/img/fichas/ficha1.png">`; //coloca la imagen de la ficha en el slot
+                fichas[fichaSeleccionada].fichaSeleccionada();//evita conflictos al seleccionar una ficha en un nuevo mapa
+                fichaSeleccionada = -1; //deselecciona la ficha seleccionada previamente
+                fichaColocada = 0; //indica la ficha que se colocó
                 break;
             case fichaSeleccionada === 1:
                 a.innerHTML = `<img id="imgFicha2" src="../assets/img/fichas/ficha2.png">`;
+                fichas[fichaSeleccionada].fichaSeleccionada();
                 fichaSeleccionada = -1;
                 fichaColocada = 1;
                 break;
             case fichaSeleccionada === 2:
                 a.innerHTML = `<img id="imgFicha3" src="../assets/img/fichas/ficha3.png">`;
+                fichas[fichaSeleccionada].fichaSeleccionada();
                 fichaSeleccionada = -1;
                 fichaColocada = 2;
                 break;
             case fichaSeleccionada === 3:
                 a.innerHTML = `<img id="imgFicha4" src="../assets/img/fichas/ficha4.png">`;
+                fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
                 fichaColocada = 3;
                 break;
             case fichaSeleccionada === 4:
                 a.innerHTML = `<img id="imgFicha5" src="../assets/img/fichas/ficha5.png">`;
+                fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
                 fichaColocada = 4;
                 break;
             case fichaSeleccionada === 5:
                 a.innerHTML = `<img id="imgFicha6" src="../assets/img/fichas/ficha6.png">`;
+                fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
                 fichaColocada = 5;
                 break;
             case fichaSeleccionada === 6:
                 a.innerHTML = `<img id="imgFicha7" src="../assets/img/fichas/ficha7.png">`;
+                fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
                 fichaColocada = 6;
                 break;
@@ -332,15 +341,24 @@ const limpiarMapa = () => {
 
 //MAPA SIGUIENTE
 let mapaSiguiente = () => {
-    if(mapas[mapaActual-1].mapaCompleto){
-        
-        mapaActual++;
-        mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
-        mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
-        mapas[mapaActual-2].seleccionado = false; //indica al mapa anterior como no seleccionado.
-        ocultarSlots(); //oculta todos los slots
-        mostrarSlots(mapaActual); //muestra los slots necesarios para el mapa siguiente
-        limpiarMapa();
+    maxDesafioCompleto = localStorage.getItem('maxDesafioCompleto');
+    if(mapas[mapaActual-1].mapaCompleto || maxDesafioCompleto >= mapaActual){
+        if(mapaActual>9) {
+            Swal.fire({ //alerta con SWEET ALERT
+                icon: 'error',
+                title: 'MAPA NO DISPONIBLE',
+                text: 'Lo sentimos, ésta es una versión de prueba del juego de mesa de REINER KNIZIA. Para seguir disfrutando de este alucinante juego, por favor cómpralo y asi ayudarás al creador!',
+                footer: ''
+            })
+        } else {
+            mapaActual++;
+            mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
+            mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
+            mapas[mapaActual-2].seleccionado = false; //indica al mapa anterior como no seleccionado.
+            ocultarSlots(); //oculta todos los slots
+            mostrarSlots(mapaActual); //muestra los slots necesarios para el mapa siguiente
+            limpiarMapa();
+        }
     }else{
         Swal.fire({ //alerta con SWEET ALERT
             icon: 'error',
@@ -356,10 +374,22 @@ btnSiguiente.addEventListener('click',mapaSiguiente); //boton que pasa al mapa s
 //MAPA ANTERIOR
 
 let mapaAnterior = () => {
-    mapaActual--;
-    mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
-    mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
-    mapas[mapaActual].seleccionado = false; //indica al mapa anterior como no seleccionado.
+    if(mapaActual > 1){
+        mapaActual--;
+        mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
+        mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
+        mapas[mapaActual].seleccionado = false; //indica al mapa anterior como no seleccionado.
+        ocultarSlots(); //oculta todos los slots
+        mostrarSlots(mapaActual); //muestra los slots necesarios para el mapa siguiente
+        limpiarMapa();
+    }else{
+        Swal.fire({ //alerta con SWEET ALERT
+            icon: 'error',
+            title: 'MAPA NO DISPONIBLE',
+            text: 'Tienes que completar el desafío 49 para pasar al 50',
+            footer: ''
+        })
+    }
 }
 btnAnterior.addEventListener('click',mapaAnterior); //boton que pasa al mapa anterior
 
@@ -382,7 +412,6 @@ for (let divFichaN of fichas) {//Itera el array fichas, con for...of.
 const MOSTRARFICHAS = async () => {
     try{
         for(i=0;i<7;i++){
-            //console.log(i);
             ficha[i] = document.getElementById(`ficha${[i+1]}`)//guarda nodos con ID ficha en el array "ficha[]"-No confundir con array "fichas[]"
         }        
     }
@@ -468,50 +497,50 @@ const corroborarVictoria = () => {
             }
             break;
         case mapaActual === 3:
-            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
+            if (slots[1].fichaColocada.id === 4 && slots[1].fichaColocada.posicion === 1 && slots[2].fichaColocada.id === 0 && slots[2].fichaColocada.posicion === 1){
                 mapas[2].completarMapa();
                 msjCompletado();
             }
             break;
         case mapaActual === 4:
-            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
+            if (slots[1].fichaColocada.id === 0 && slots[1].fichaColocada.posicion === 1 && slots[2].fichaColocada.id === 5 && slots[2].fichaColocada.posicion === 4){
                 mapas[3].completarMapa();
                 msjCompletado();
             }
             break;
         case mapaActual === 5:
-            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
-                mapas[0].completarMapa();
+            if (slots[1].fichaColocada.id === 1 && slots[1].fichaColocada.posicion === 2 && slots[2].fichaColocada.id === 2 && slots[2].fichaColocada.posicion === 3){
+                mapas[4].completarMapa();
                 msjCompletado();
             }
             break;
         case mapaActual === 6:
-            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
-                mapas[0].completarMapa();
+            if (slots[1].fichaColocada.id === 5 && slots[1].fichaColocada.posicion === 4 && slots[2].fichaColocada.id === 4 && slots[2].fichaColocada.posicion === 2){
+                mapas[5].completarMapa();
                 msjCompletado();
             }
             break;
         case mapaActual === 7:
-            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
-                mapas[0].completarMapa();
+            if (slots[1].fichaColocada.id === 4 && slots[1].fichaColocada.posicion === 1 && slots[2].fichaColocada.id === 3 && slots[2].fichaColocada.posicion === 2){
+                mapas[6].completarMapa();
                 msjCompletado();
             }
             break;
         case mapaActual === 8:
-            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
-                mapas[0].completarMapa();
+            if (slots[1].fichaColocada.id === 3 && slots[1].fichaColocada.posicion === 3 && slots[2].fichaColocada.id === 5 && slots[2].fichaColocada.posicion === 2){
+                mapas[7].completarMapa();
                 msjCompletado();
             }
             break;
         case mapaActual === 9:
-            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
-                mapas[0].completarMapa();
+            if (slots[1].fichaColocada.id === 5 && slots[1].fichaColocada.posicion === 1 && slots[2].fichaColocada.id === 6 && slots[2].fichaColocada.posicion === 3){
+                mapas[8].completarMapa();
                 msjCompletado();
             }
             break;
         case mapaActual === 10:
-            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2){
-                mapas[0].completarMapa();
+            if (slots[1].fichaColocada.id === 1 && slots[1].fichaColocada.posicion === 2 && slots[2].fichaColocada.id === 6 && slots[2].fichaColocada.posicion === 2){
+                mapas[9].completarMapa();
                 msjCompletado();
             }
             break;
