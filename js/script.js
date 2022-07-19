@@ -14,6 +14,9 @@
     9: hacer las primeras revisiones del codigo y proceder a la limpieza, quitar codigo basura y sin uso, console.logs y
     cambiar alerts clasicos.
     10: colocar animaciones al girar las fichas y colocarlas.
+    11: Intentar que entren las fichas en la pantalla
+    12: ocultar el boton de siguiente mientras el desafio actual no haya sido completado.
+
 */
 
 //*************************************************************************************************************************
@@ -162,7 +165,14 @@ const {mapaHabilitado, mapaCompleto, slotsDelMapa} = mapas; //desestructura los 
 //*************************************************************************************************************************
 //********************************************************FUNCIONES********************************************************
 //*************************************************************************************************************************
- 
+let anguloRotacion = (e) => {
+    imgFicha.style.webkitTransform = 'rotate('+e+'deg)'; 
+    imgFicha.style.mozTransform    = 'rotate('+e+'deg)'; 
+    imgFicha.style.msTransform     = 'rotate('+e+'deg)'; 
+    imgFicha.style.oTransform      = 'rotate('+e+'deg)'; 
+    imgFicha.style.transform       = 'rotate('+e+'deg)'; 
+}
+
 let mostrarSlots = (mapaActual) => { //funcion que muestra todos los Slots de la zona de juego
     switch(true){
         case mapaActual === 1:
@@ -324,19 +334,27 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
     }
 }
 
+
+
 let rotarFicha = (b) => { //toma como parametro el indice del slot que llama a la funcion
+    console.log("hola")
     imgFicha = document.getElementById(`${slots[b].elementoDOM.innerHTML.slice(9,18)}`);
     if(slots[b].fichaColocada.posicion === 1){
-        imgFicha.style.rotate = "90deg";
+        imgFicha.style.display = "block";
+        anguloRotacion(90);
+        //imgFicha.style.rotate = "90deg";
         slots[b].fichaColocada.posicion = 2;
     }else if(slots[b].fichaColocada.posicion === 2) {
-        imgFicha.style.rotate = "180deg";
+        anguloRotacion(180);
+        //imgFicha.style.rotate = "180deg";
         slots[b].fichaColocada.posicion = 3;
     }else if(slots[b].fichaColocada.posicion === 3) {
-        imgFicha.style.rotate = "270deg";
+        anguloRotacion(270);
+        //imgFicha.style.rotate = "270deg";
         slots[b].fichaColocada.posicion = 4;
     }else if(slots[b].fichaColocada.posicion === 4) {
-        imgFicha.style.rotate = "0deg";
+        anguloRotacion(0);
+        //imgFicha.style.rotate = "0deg";
         slots[b].fichaColocada.posicion = 1;
     }
 }
