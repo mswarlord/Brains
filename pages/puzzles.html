@@ -20,6 +20,7 @@
     <link REL=StyleSheet HREF="../css/estilos.css" TYPE="text/css" MEDIA=screen>
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 <!-- BODY -->
     <body class="container-fluid p-0 m-0">
@@ -40,7 +41,7 @@
         <!-- FIN NAVEGADOR -->
         <!-- MAIN -->
         <main class="main">
-            <h2 id="nroDesafio" class="titulo text-center mt-5 mb-2">DESAFÍO 1</h2>
+            <h2 id="" class="titulo text-center mt-5 mb-2">DESAFÍO <span class="nroDesafio">1</span></h2>
             <h3 id="dificultad" class="titulo text-center">Dificultad: <span id="dificultadMapaActual">Calentamiento</span></h3>
             <br>
             <div id="juego">
@@ -71,8 +72,8 @@
                     <button id="btnSiguiente" class="btnJuego">Siguiente</button>
                 </div>
             </div>
-            <button id="btnCorroborar" class="btnJuego">Corroborar</button>
             <div id="divFichas"></div> <!-- CONTENEDOR PARA LA CREACION DE LAS FICHAS --> 
+            <button id="btnCorroborar" class="btnJuego mb-2">Corroborar</button>
             
         </main>
         <!-- FIN BODY -->
@@ -90,6 +91,7 @@
         </footer>
         <!-- FIN FOOTER -->
         <!-- SCRIPT -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
         <script src="../js/script.js"></script>

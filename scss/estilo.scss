@@ -7,7 +7,7 @@
 @import 'layout/main';
 @import 'layout/footer'; 
 /*----------SECCION ELEMENTOS ----------*/
-// @import 'components/logo';
+@import 'components/neon';
 @import 'components/nav';
 // @import 'components/redes';
 // @import 'components/whatsapp';
@@ -35,7 +35,7 @@
 }
 /* ---------- LOADER ---------- */
 
-/* .loader {
+.loader {
     width: 96px;
     box-sizing: content-box;
     height: 48px;
@@ -73,7 +73,7 @@
   }
   @keyframes yinYang {
     100%{transform: rotate(360deg)}
-  } */
+}
 /* ---------- FIN LOADER ---------- */  
 
 //FUENTES para la WEBAPP

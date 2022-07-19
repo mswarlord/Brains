@@ -11,80 +11,47 @@
 
 #slot{
     &1{
-        display: flex;
-        justify-content: center;
         left: 219px;
-        top: 138px;
-        & img{
-            align-self: center;
-            width: 152px;
-            height: 152px;}}
+        top: 138px;}
     &2{
         left: 219px;
-        top: 215px;
-        & img{
-            align-self: center;
-            width: 152px;
-            height: 152px;}}
+        top: 215px;}
     &3{
         left: 219px;
-        top: 60px;
-        & img{
-            align-self: center;
-            width: 152px;
-            height: 152px;}}
+        top: 60px;}
     &4{
-        left: 143px;
-        top: 215px;
-        & img{
-            align-self: center;
-            width: 152px;
-            height: 152px;}}
+        left: 141px;
+        top: 215px;}
     &5{
         left: 295px;
-        top: 215px;
-        & img{
-            align-self: center;
-            width: 152px;
-            height: 152px;}}
+        top: 215px;}
     &6{
         left: 295px;
-        top: 60px;
-        & img{
-            align-self: center;
-            width: 152px;
-            height: 152px;}}
+        top: 60px;}
     &7{
         left: 143px;
-        top: 60px;
-        & img{
-            align-self: center;
-            width: 152px;
-            height: 152px;}}
+        top: 60px;}
     &8{
-        left: 67px;
-        top: 138px;
-        & img{
-            align-self: center;
-            width: 152px;
-            height: 152px;}}
+        left: 65px;
+        top: 138px;}
     &9{
-        display: flex;
-        justify-content: center;
-        left: 371px;
+        left: 373px;
         top: 138px;
-        & img{
-            align-self: center;
-            width: 152px;
-            height: 152px;}}
+        }
 }
 
 
+
 .slots{
+    /* display: flex;
+    justify-content: center; */
     background-color: #fff3;
     position: absolute;
-    height: 157px;
-    width: 157px;
+    height: 152px;
+    width: 152px;
+    & img{
+        width: 152px;
+        height: 152px;}
     &:hover{
         background-color: rgba(250, 16, 16, 0.067);
     }

@@ -1,4 +1,4 @@
- /*-------------------------------- NAVEGADOR ----------------------------------- */
+/*-------------------------------- NAVEGADOR ----------------------------------- */
 nav ul{
     display: flex;
     justify-content: space-around;
@@ -16,45 +16,3 @@ nav ul a:visited{
 nav ul a:active{
     color: $color-texto-secundario;
 }
-
-/* 
- .navegador {
-    grid-area: navegador;
-    border: $color-primario;
-    background-color: gray;
-    position: sticky;
-    top: 0vh;
-    z-index: 99;
-    a{
-        text-decoration: none;
-    &:visited {
-        color: rgb(217, 226, 202);}
-    &:hover {
-        color: green;}
-    &:active {
-        color: black;}
-    &:link {
-        color: rgb(217, 226, 202);}}
-    &__menu {
-        width: 100%;
-        position: relative;
-        display: flex;
-        justify-content: space-around;
-        li {
-            transition: 0.4s;
-            &:hover {
-                transform: scale(1.2);
-                background: rgb(218, 243, 118);}}
-            &--responsive {
-                display: none;
-                li{
-            &:hover {
-                background-color: $color-secundario--alfa;}}}}
-} 
-*/
-
-/* NAVEGADOR RESPONSIVE*/
-
-/* .fa-bars {
-    display: none;
-} */
