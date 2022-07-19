@@ -3,7 +3,7 @@
 //*************************************************************************************************************************
 
 /* 
-    1: que el titulo y la dificultad cambie con cada nivel.
+    1: que el titulo y la dificultad cambie en el DOM en cada nivel.
     2: colocar los botones de siguiente y anterior debajo
     3: probar colocar las fichas a un costado
     4: crear un input que permita seleccionar el mapa de forma numerica o por medio de una barra.
@@ -40,6 +40,8 @@ let mapaSeleccionado = document.getElementById("mapaSeleccionado");
 let btnSiguiente = document.getElementById('btnSiguiente');
 let btnAnterior = document.getElementById("btnAnterior");
 let divFicha = document.getElementById("divFichas"); // Obtiene el nodo <DIV> donde se van a agregar los nuevos elementos -
+let nroDesafio = document.getElementById("nroDesafio");
+let dificultadMapaActual = document.getElementById("dificultadMapaActual");
 
 //*************************************************************************************************************************
 //*************************************************************** CLASES **************************************************
@@ -131,9 +133,9 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
 
 //CLASE MAPA ***************************************************************************
 class mapa { //genera la clase constructora de objetos mapa
-    constructor(nivel, dificultad, img){
+    constructor(nivel, img){
         this.nivel = nivel + 1;
-        this.dificultad = dificultad;
+        this.dificultad = "";
         this.img = img;
         this.slotsDelMapa = 0;
         this.mapaCompleto = false;   //estado que indica si el mapa esta completo.
@@ -141,7 +143,9 @@ class mapa { //genera la clase constructora de objetos mapa
         this.seleccionado = false;   //estado que indica si es el mapa que se esta jugando.
         this.condicionDeVictoria = false;
     }
-
+    establecerDificultad(e) {
+        this.dificultad = `${e}`;
+    }
     completarMapa() { //metodo para indicar que el desafío ya fue completado.
         this.mapaCompleto = true;
         localStorage.setItem('maxDesafioCompleto', mapaActual);
@@ -245,18 +249,24 @@ for(i=0;i<7;i++){ //iteración para la creación de las fichas
 //*********************************************************************************************************************************
 
 for(i=0;i<50;i++){ //itera 50 veces
-    mapas[i]=new mapa(i,i,`assets/img/nivel${i+1}.jpg`); //cada iteración crea un objeto mapa dentro del array mapas
+    mapas[i]=new mapa(i,`assets/img/nivel${i+1}.jpg`); //cada iteración crea un objeto mapa dentro del array mapas
     if(mapas[i].nivel < 3) { 
+        mapas[i].establecerDificultad('Calentamiento');
         mapas[i].slotsDelMapa = 1; //si el nivel del mapa es < a 3 le coloca 1 slot
     }else if(mapas[i].nivel < 11) {
+        mapas[i].establecerDificultad('Calentamiento');
         mapas[i].slotsDelMapa = 2; //si el nivel del mapa es < a 11 le coloca 2 slots
     }else if(mapas[i].nivel < 21){
+        mapas[i].establecerDificultad('Jardineando');
         mapas[i].slotsDelMapa = 3; //si el nivel del mapa es < a 21 le coloca 3 slots
     }else if(mapas[i].nivel < 31){
+        mapas[i].establecerDificultad('Terreno Peligroso');
         mapas[i].slotsDelMapa = 4; //si el nivel del mapa es < a 31 le coloca 4 slots
     }else if(mapas[i].nivel < 41){
+        mapas[i].establecerDificultad('Sólo para expertos');
         mapas[i].slotsDelMapa = 5; //si el nivel del mapa es < a 41 le coloca 5 slots
     }else{
+        mapas[i].establecerDificultad('El desafío definitivo');
         mapas[i].slotsDelMapa = 6; //si el nivel del mapa es >= a 41 le coloca 6 slots
     }
 }
@@ -337,7 +347,6 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
 
 
 let rotarFicha = (b) => { //toma como parametro el indice del slot que llama a la funcion
-    console.log("hola")
     imgFicha = document.getElementById(`${slots[b].elementoDOM.innerHTML.slice(9,18)}`);
     if(slots[b].fichaColocada.posicion === 1){
         imgFicha.style.display = "block";
@@ -377,6 +386,13 @@ const limpiarMapa = () => {
     }
 }
 
+
+const actualizarEncabezado = () => {
+    dificultadMapaActual.innerHTML = `${mapas[mapaActual].dificultad}`;
+    nroDesafio.innerText = `${mapaActual}`;
+}
+
+
 //MAPA SIGUIENTE
 let mapaSiguiente = () => {
     maxDesafioCompleto = localStorage.getItem('maxDesafioCompleto');
@@ -396,6 +412,7 @@ let mapaSiguiente = () => {
             ocultarSlots(); //oculta todos los slots
             mostrarSlots(mapaActual); //muestra los slots necesarios para el mapa siguiente
             limpiarMapa();
+            actualizarEncabezado();
         }
     }else{
         Swal.fire({ //alerta con SWEET ALERT
@@ -420,6 +437,7 @@ let mapaAnterior = () => {
         ocultarSlots(); //oculta todos los slots
         mostrarSlots(mapaActual); //muestra los slots necesarios para el mapa siguiente
         limpiarMapa();
+        actualizarEncabezado();
     }else{
         Swal.fire({ //alerta con SWEET ALERT
             icon: 'error',
