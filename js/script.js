@@ -3,7 +3,9 @@
 //*************************************************************************************************************************
 
 /* 
-    1: que el titulo y la dificultad cambie en el DOM en cada nivel.
+ficha[(slots[0].elementoDOM.innerHTML.slice(17,18)-1)].style.visibility = "hidden" 
+
+    1: que el titulo y la dificultad cambie en el DOM en cada nivel. LISTO
     2: colocar los botones de siguiente y anterior debajo
     3: probar colocar las fichas a un costado
     4: crear un input que permita seleccionar el mapa de forma numerica o por medio de una barra.
@@ -16,7 +18,6 @@
     10: colocar animaciones al girar las fichas y colocarlas.
     11: Intentar que entren las fichas en la pantalla
     12: ocultar el boton de siguiente mientras el desafio actual no haya sido completado.
-
 */
 
 //*************************************************************************************************************************
@@ -170,11 +171,11 @@ const {mapaHabilitado, mapaCompleto, slotsDelMapa} = mapas; //desestructura los 
 //********************************************************FUNCIONES********************************************************
 //*************************************************************************************************************************
 let anguloRotacion = (e) => {
-    imgFicha.style.webkitTransform = 'rotate('+e+'deg)'; 
-    imgFicha.style.mozTransform    = 'rotate('+e+'deg)'; 
-    imgFicha.style.msTransform     = 'rotate('+e+'deg)'; 
-    imgFicha.style.oTransform      = 'rotate('+e+'deg)'; 
-    imgFicha.style.transform       = 'rotate('+e+'deg)'; 
+    imgFicha.style.webkitTransform = `rotate(${e}deg)`; 
+    imgFicha.style.mozTransform = `rotate(${e}deg)`; 
+    imgFicha.style.msTransform = `rotate(${e}deg)`; 
+    imgFicha.style.oTransform = `rotate(${e}deg)`; 
+    imgFicha.style.transform = `rotate(${e}deg)`; 
 }
 
 let mostrarSlots = (mapaActual) => { //funcion que muestra todos los Slots de la zona de juego
@@ -293,47 +294,69 @@ const clickSlots = (a,b) => {   //toma como parametros el nodo del slot clickead
     }
 }
 
+const mostrarFicha = (a) => {
+if(!!a.innerHTML.slice(17,18)){
+    ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "";
+}else{
+
+}
+}
+
 let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
     if(fichaSeleccionada >= 0 && fichaSeleccionada < 7){ //coloca la ficha si ficha seleccionada esta entre [0;7)
         switch(true){ //compara todos los casos y acciona el que devuelva TRUE
             case fichaSeleccionada === 0:
+                mostrarFicha(a);
                 a.innerHTML = `<img id="imgFicha1" src="../assets/img/fichas/ficha1.png">`; //coloca la imagen de la ficha en el slot
+                ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada();//evita conflictos al seleccionar una ficha en un nuevo mapa
                 fichaSeleccionada = -1; //deselecciona la ficha seleccionada previamente
                 fichaColocada = 0; //indica la ficha que se colocó
                 break;
             case fichaSeleccionada === 1:
+                mostrarFicha(a);
                 a.innerHTML = `<img id="imgFicha2" src="../assets/img/fichas/ficha2.png">`;
+                ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada();
                 fichaSeleccionada = -1;
                 fichaColocada = 1;
                 break;
             case fichaSeleccionada === 2:
+                mostrarFicha(a);
                 a.innerHTML = `<img id="imgFicha3" src="../assets/img/fichas/ficha3.png">`;
+                ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada();
                 fichaSeleccionada = -1;
                 fichaColocada = 2;
                 break;
             case fichaSeleccionada === 3:
+                mostrarFicha(a);
                 a.innerHTML = `<img id="imgFicha4" src="../assets/img/fichas/ficha4.png">`;
+                ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
                 fichaColocada = 3;
                 break;
             case fichaSeleccionada === 4:
+                mostrarFicha(a);
                 a.innerHTML = `<img id="imgFicha5" src="../assets/img/fichas/ficha5.png">`;
+                ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
                 fichaColocada = 4;
                 break;
             case fichaSeleccionada === 5:
+                mostrarFicha(a);
                 a.innerHTML = `<img id="imgFicha6" src="../assets/img/fichas/ficha6.png">`;
+                ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
                 fichaColocada = 5;
                 break;
             case fichaSeleccionada === 6:
+                mostrarFicha(a);
                 a.innerHTML = `<img id="imgFicha7" src="../assets/img/fichas/ficha7.png">`;
+                ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
                 fichaColocada = 6;
@@ -344,26 +367,19 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
     }
 }
 
-
-
 let rotarFicha = (b) => { //toma como parametro el indice del slot que llama a la funcion
     imgFicha = document.getElementById(`${slots[b].elementoDOM.innerHTML.slice(9,18)}`);
     if(slots[b].fichaColocada.posicion === 1){
-        imgFicha.style.display = "block";
         anguloRotacion(90);
-        //imgFicha.style.rotate = "90deg";
         slots[b].fichaColocada.posicion = 2;
     }else if(slots[b].fichaColocada.posicion === 2) {
         anguloRotacion(180);
-        //imgFicha.style.rotate = "180deg";
         slots[b].fichaColocada.posicion = 3;
     }else if(slots[b].fichaColocada.posicion === 3) {
         anguloRotacion(270);
-        //imgFicha.style.rotate = "270deg";
         slots[b].fichaColocada.posicion = 4;
     }else if(slots[b].fichaColocada.posicion === 4) {
         anguloRotacion(0);
-        //imgFicha.style.rotate = "0deg";
         slots[b].fichaColocada.posicion = 1;
     }
 }
@@ -383,6 +399,7 @@ slots[0].elementoDOM.style.display = ""; //muestra en el DOM el Slot con indice 
 const limpiarMapa = () => {
     for(e in slots){
         slots[e].desocuparSlot();
+        ficha[e].style.visibility = "";
     }
 }
 
