@@ -3,17 +3,15 @@
 //*************************************************************************************************************************
 
 /* 
-ficha[(slots[0].elementoDOM.innerHTML.slice(17,18)-1)].style.visibility = "hidden" 
-
-    1: que el titulo y la dificultad cambie en el DOM en cada nivel. LISTO
+    1: que el titulo y la dificultad cambie en el DOM en cada nivel. -- LISTO
     2: colocar los botones de siguiente y anterior debajo
     3: probar colocar las fichas a un costado
     4: crear un input que permita seleccionar el mapa de forma numerica o por medio de una barra.
     5: crear una pagina de antesala al puzzle que permita llamar de forma grafica al mapa requerido
     6: guardar los datos de los desafios completados en el usuario logueado.
-    7: colocar un pop up cuando el usuario presiona el boton de corroborar y el mapa no esta correctamente resuelto
+    7: colocar un pop up cuando el usuario presiona el boton de corroborar y el mapa no esta correctamente resuelto. -- LISTO
     8: crear una animacion cuando el usuario complete un desafio correctamente. 
-    9: hacer las primeras revisiones del codigo y proceder a la limpieza, quitar codigo basura y sin uso, console.logs y
+    9: hacer las primeras revisiones del codigo y proceder a la limpieza, quitar codigo basura y sin uso, console logs y
     cambiar alerts clasicos.
     10: colocar animaciones al girar las fichas y colocarlas.
     11: Intentar que entren las fichas en la pantalla
@@ -111,24 +109,6 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
 
             fichaSeleccionada = -1
         }
-    }
-
-    girarIzquierda() {//Método para girar la ficha en sentido antihorario
-        if(this.posicion===1){ 
-            this.posicion=4;
-        }else{
-            this.posicion--
-        }
-        console.log(`Ha girado la ficha ${this.id} en sentido antihorario`);
-    }
-
-    girarDerecha() {//Método para girar la ficha en sentido horario
-        if(this.posicion===4){ 
-            this.posicion=1;
-        }else{
-            this.posicion++
-        }
-        console.log(`Ha girado la ficha ${this.id} en sentido horario`);
     }
 }
 
@@ -399,7 +379,9 @@ slots[0].elementoDOM.style.display = ""; //muestra en el DOM el Slot con indice 
 const limpiarMapa = () => {
     for(e in slots){
         slots[e].desocuparSlot();
-        ficha[e].style.visibility = "";
+        if(!!ficha[e]){        
+            ficha[e].style.visibility = "";
+        }
     }
 }
 
@@ -601,7 +583,7 @@ const corroborarVictoria = () => {
             break;
         case mapaActual === 11:
             if (slots[3].fichaColocada.id === 0 && slots[3].fichaColocada.posicion === 1 && slots[4].fichaColocada.id === 6 && slots[4].fichaColocada.posicion === 2 && slots[5].fichaColocada.id === 4 && slots[5].fichaColocada.posicion === 2){
-                mapas[9].completarMapa();
+                mapas[10].completarMapa();
                 msjCompletado();
             }else{
                 msjIncompleto();
@@ -609,7 +591,7 @@ const corroborarVictoria = () => {
             break;
         case mapaActual === 12:
             if (slots[0].fichaColocada.id === 5 && slots[0].fichaColocada.posicion === 3 && slots[7].fichaColocada.id === 6 && slots[7].fichaColocada.posicion === 3 && slots[8].fichaColocada.id === 2 && slots[8].fichaColocada.posicion === 2){
-                mapas[9].completarMapa();
+                mapas[10].completarMapa();
                 msjCompletado();
             }else{
                 msjIncompleto();
