@@ -41,15 +41,18 @@
         <!-- FIN NAVEGADOR -->
         <!-- MAIN -->
         <main class="main">
-            <h2 id="titulo" class="titulo text-center mt-5 mb-2">DESAFÍO <span id="nroDesafio">1</span></h2>
-            <h3 id="dificultad" class="titulo text-center">Dificultad: <span id="dificultadMapaActual">Calentamiento</span></h3>
+            <h2 id="titulo" class="titulo text-center mt-3 mb-1">DESAFÍO <span id="nroDesafio">1</span></h2>
+            <h3 id="dificultad" class="titulo text-center mb-3">Dificultad: <span id="dificultadMapaActual">Calentamiento</span></h3>
             <br>
             <div id="juego">
-                <div id="mapaAnterior">
-                    <button id="btnAnterior" class="btnJuego">Anterior</button>
+
+                <div id="informacion">
+                    <img src="../assets/img/ico/informacion.png" alt="informacion" id="btnInformacion" class="informacion">
                 </div>
+
                 <div id="zonaDeJuego">
                     <img src="../assets/img/niveles/nivel1.png" alt="" id="mapaSeleccionado">
+
                     <div id="slots">
                         <!-- DIV PARA LA CREACION DE SLOTS -->
                         <div id="slot1" class="slots"></div>
@@ -61,20 +64,18 @@
                         <div id="slot7" class="slots"></div>
                         <div id="slot8" class="slots"></div>
                         <div id="slot9" class="slots"></div>
-                        
                     </div>
-                    <div id="botonesDeGiro">
-                        <button id="girarIzquierda" class="btnGirar">&#8634;</button> <!-- botones temporales -->
-                        <button id="girarDerecha" class="btnGirar">&#8635;</button>
-                    </div>
-                </div>
-                <div id="mapaSiguiente">
+
+                </div> 
+
+                <div id="botonera">
+                    <button id="btnAnterior" class="btnJuego">Anterior</button>
+                    <button id="btnCorroborar" class="btnJuego">Corroborar</button>
                     <button id="btnSiguiente" class="btnJuego">Siguiente</button>
-                </div>
+                </div>               
             </div>
-            <div id="divFichas"></div> <!-- CONTENEDOR PARA LA CREACION DE LAS FICHAS --> 
-            <button id="btnCorroborar" class="btnJuego mb-2">Corroborar</button>
-            
+            <!-- CONTENEDOR PARA LA CREACION DE LAS FICHAS -->
+            <div id="divFichas"></div>
         </main>
         <!-- FIN BODY -->
         <!-- FOOTER -->
@@ -85,8 +86,6 @@
                 <h6 class="creditos">Diseño de la caja: Hans-Georg Schneider</h6>
                 <h6 class="creditos">Realizacion Thigra Spiele</h6>
                 <h6 class="creditos">Pegasus Spiele GmbH, www.pegasus.de</h6> 
-            </section>
-            <section class="footer--inferior">
             </section>
         </footer>
         <!-- FIN FOOTER -->

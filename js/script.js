@@ -4,8 +4,8 @@
 
 /* 
     1: que el titulo y la dificultad cambie en el DOM en cada nivel. -- LISTO
-    2: colocar los botones de siguiente y anterior debajo
-    3: probar colocar las fichas a un costado
+    2: Modificar los botones de siguiente. Listo
+    3: borrado
     4: crear un input que permita seleccionar el mapa de forma numerica o por medio de una barra.
     5: crear una pagina de antesala al puzzle que permita llamar de forma grafica al mapa requerido
     6: guardar los datos de los desafios completados en el usuario logueado.
@@ -16,6 +16,10 @@
     10: colocar animaciones al girar las fichas y colocarlas.
     11: Intentar que entren las fichas en la pantalla
     12: ocultar el boton de siguiente mientras el desafio actual no haya sido completado.
+    13: el BOTON de SIGUIENTE debe aparecer solo cuando el desafío esté completo.
+    14: guardar el registro del usuario en storage
+    15: verificar en la pagina sesion si hay datos de inicio de sesion guardados y que ingrese automaticamente a dicha cuenta
+
 */
 
 //*************************************************************************************************************************
@@ -35,12 +39,13 @@ let imgFicha;           // Variable que indica la imagen que se debe girar
 //************************************************************ DOM ********************************************************
 //*************************************************************************************************************************
 
-let mapaSeleccionado = document.getElementById("mapaSeleccionado");
-let btnSiguiente = document.getElementById('btnSiguiente');
-let btnAnterior = document.getElementById("btnAnterior");
-let divFicha = document.getElementById("divFichas"); // Obtiene el nodo <DIV> donde se van a agregar los nuevos elementos -
-let nroDesafio = document.getElementById("nroDesafio");
-let dificultadMapaActual = document.getElementById("dificultadMapaActual");
+const mapaSeleccionado = document.getElementById("mapaSeleccionado");
+const btnSiguiente = document.getElementById('btnSiguiente');
+const btnAnterior = document.getElementById("btnAnterior");
+const divFicha = document.getElementById("divFichas"); // Obtiene el nodo <DIV> donde se van a agregar los nuevos elementos -
+const nroDesafio = document.getElementById("nroDesafio");
+const dificultadMapaActual = document.getElementById("dificultadMapaActual");
+const btnInformacion = document.getElementById("btnInformacion");
 
 //*************************************************************************************************************************
 //*************************************************************** CLASES **************************************************
@@ -606,3 +611,53 @@ CORROBORAR.addEventListener('click',corroborarVictoria);
 /* let prenderNeon = () => {
     document.getElementById('nroDesafio').className = 'encendido';
 }; */
+
+
+const mostrarInformacion = (texto, gravedad, posicion, delay) => {
+setTimeout( function () {
+    Toastify({
+        className: "info",
+        text: `${texto}`,
+        duration: 4000,
+        gravity: `${gravedad}`, 
+        position: `${posicion}`,
+        style: {background: "linear-gradient(to right, #00b09b, #96c93d)"}
+}).showToast();
+},delay)
+}
+
+
+let llamarInfo = () => {
+    mostrarInformacion(
+        `Selecciona una de las fichas de la parte inferior`,
+        `bottom`,
+        `center`,
+        0
+    )
+    mostrarInformacion(
+        `Luego haz click en el slot donde quieras colocarla`,
+        `top`,
+        `center`,
+        4000
+    )
+    mostrarInformacion(
+        `Haz click sobre la ficha colocada para rotarla`,
+        `top`,
+        `center`,
+        8000
+    )
+    mostrarInformacion(
+        `Cuando creas que esté completo, presiona el boton CORROBORAR a tu derecha`,
+        `top`,
+        `center`,
+        12000
+    )
+    mostrarInformacion(
+        `La perseverancia hace al maestro! EXITOS!`,
+        `left`,
+        `center`,
+        16000
+    )
+}
+
+btnInformacion.addEventListener("click",llamarInfo)

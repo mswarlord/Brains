@@ -2,26 +2,18 @@
 @import 'base/reset';
 @import 'utilities/mixins';
 /*----------SECCION LAYOUT ----------*/
-// @import 'layout/grid';
-// @import 'layout/header';
+
 @import 'layout/main';
 @import 'layout/footer'; 
 /*----------SECCION ELEMENTOS ----------*/
 @import 'components/neon';
 @import 'components/nav';
-// @import 'components/redes';
-// @import 'components/whatsapp';
 /*----------SECCION HTMLs ----------*/
 @import 'views/instrucciones';
 @import 'views/puzzles';
 @import 'views/slots';
 @import 'views/sesion';
-// @import 'views/unete_al_equipo';
-// @import 'views/productos';
-// @import 'views/quienes_somos';
-// @import 'views/ver_carrito';
-/*---------- SECCION MEDIA QUERIES ----------*/
-/* @import ''; */ 
+
 
 
 
