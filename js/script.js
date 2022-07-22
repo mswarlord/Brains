@@ -610,9 +610,10 @@ setTimeout( function () {
     Toastify({
         className: "info",
         text: `${texto}`,
-        duration: 4000,
+        duration: 3000,
         gravity: `${gravedad}`, 
         position: `${posicion}`,
+        stopOnFocus: false,
         style: {background: "linear-gradient(to right, #00b09b, #96c93d)"}
 }).showToast();
 },delay)
@@ -629,25 +630,25 @@ let llamarInfo = () => {
         `Luego haz click en el slot donde quieras colocarla`,
         `top`,
         `center`,
-        4000
+        3000
     )
     mostrarInformacion(
         `Haz click sobre la ficha colocada para rotarla`,
         `top`,
         `center`,
-        8000
+        6000
     )
     mostrarInformacion(
         `Cuando creas que esté completo, presiona el boton CORROBORAR a tu derecha`,
         `top`,
         `center`,
-        12000
+        9000
     )
     mostrarInformacion(
         `La perseverancia hace al maestro! EXITOS!`,
         `left`,
         `center`,
-        16000
+        12000
     )
 }
 

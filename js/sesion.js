@@ -17,10 +17,16 @@ const btnCerrarSesion = document.getElementById('cerrarSesion');
 const inputInicioSesion = document.getElementById('inputInicioSesion');
 
 //VARIABLES
-let inicioExitoso = false;
-let inicioError = 0;
-const usuarios = []; //genera el array usuarios
-let timer = 0;
+let inicioExitoso = false; //indica si el intento de inicio de sesión fue fallido o no.
+let inicioError = 0; //contador de intentos fallidos de sesión.
+const usuarios = []; //genera el array usuarios.
+let timer = 0; //contador que reinicia el intervalo de los intentos de inicio de sesion.
+let newUser = ""; //variable que va a tomar el nombre ingresado por el usuario al registrarse.
+let newPass = ""; //variable que va a tomar la contraseña ingresada por el usuario al registrarse.
+let usuariosRegistrados; //guarda el array con los usuarios guardados en localStore
+let ingresoUser = localStorage.getItem('nombreUsuario'); //guarda en la variable el valor guardado en localStorage de la key ingresoUser.
+let ingresoPass = localStorage.getItem('passUsuario'); //guarda en la variable el valor guardado en localStorage de key ingresoPass.
+
 class Usuario{ //genera la clase constructora de objetos usuario
     constructor(nombreUsuario,passUsuario){
         this.nombreUsuario = nombreUsuario;
@@ -29,10 +35,6 @@ class Usuario{ //genera la clase constructora de objetos usuario
 }
 
 //REGISTRARSE ----------------------------------------------------------------------------------------------------------------------
-
-let newUser = ""; //variable que va a tomar el nombre ingresado por el usuario al registrarse
-let newPass = ""; //variable que va a tomar la contraseña ingresada por el usuario al registrarse
-
 //LO QUE ME COSTÓ PENSAR ESTOOOOOOOOOOOOO!
 if(!!JSON.parse(localStorage.getItem("Usuarios"))){  //itera cada elemento de los usuarios guardados en localStorage
     for(e of JSON.parse(localStorage.getItem("Usuarios"))){ //toma los datos de usuarios ya registrados, y previamente guardados en storage 
@@ -60,11 +62,6 @@ formRegistro.addEventListener('submit', (e) => { //Evento para ejecutar la funci
 }) 
 
 //INICIAR SESION -------------------------------------------------------------------------------------------------------------------
-
-let ingresoUser = localStorage.getItem('nombreUsuario'); //guarda en la variable el valor guardado en localStorage de la key ingresoUser.
-let ingresoPass = localStorage.getItem('passUsuario'); //guarda en la variable el valor guardado en localStorage de key ingresoPass.
-let usuariosRegistrados;
-
 //FUNCIONES
 let inicioSesion = () => {//FUNCION PARA INICIAR SESION
 
@@ -75,8 +72,8 @@ let inicioSesion = () => {//FUNCION PARA INICIAR SESION
         let index = -1; //establece index en -1                                   
         if(el.nombreUsuario === ingresoUser && el.passUsuario === ingresoPass){ //compara los valores nombreUsuario y passUsuario con los datos ingresados
             index = i                                                            //si ambos coinciden, le da al index el valor del indice de ese objeto
-            cuenta.innerHTML = `${(usuarios[i].nombreUsuario).toUpperCase()}`;
-            inicioExitoso = true;
+            cuenta.innerHTML = `${(usuarios[i].nombreUsuario).toUpperCase()}`; //modifica el titulo en el navegador
+            inicioExitoso = true; 
             inicioError = 0;
             ocultarFormularios();
         }
@@ -133,7 +130,7 @@ const ocultarFormularios = () => { //funcion que oculta los formularios de inici
 
 //FUNCION CERRAR SESION
 btnCerrarSesion.addEventListener('click', () => {
-    localStorage.removeItem("nombreUsuario");
-    localStorage.removeItem("passUsuario");
-    window.location.reload()
+    localStorage.removeItem("nombreUsuario"); //elimina el usuario logeado en local store
+    localStorage.removeItem("passUsuario"); //elimina el pass logeado en local store
+    window.location.reload(); //actualiza la pagina para cerrar la sesion
 })
