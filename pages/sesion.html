@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO -->
+    <meta name="description"
+    content="Brains Jardin Japones, juego de mesa de Reiner Knizzia">
+    <meta name="keywords" content="juego de mesa, juego, brains, jardin japones, reiner knizzia, pegasus.de, laberinto, logica, hobbie, boardgame, boardgames">
+    <!-- TITULO -->
+    <title>Sesión</title>
+    <!-- FONTAWESOME -->
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="../assets/img/ico/brain-logo.png" type="image/x-icon">
+    <!-- TIPOGRAFIAS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Bangers&family=Bebas+Neue&family=Caveat:wght@500;700&family=Fascinate&family=Indie+Flower&family=Kdam+Thmor+Pro&family=Mali:ital,wght@0,200;0,600;1,400&family=Merriweather:ital,wght@0,300;1,300&family=Montserrat:wght@100&family=Noto+Serif+JP:wght@500&family=Oleo+Script:wght@400;700&family=Orbitron:wght@400;500;700&family=PT+Mono&family=Permanent+Marker&family=Potta+One&family=Press+Start+2P&family=Rubik+Moonrocks&family=Russo+One&family=Sacramento&family=Shadows+Into+Light&family=Source+Code+Pro:ital,wght@0,500;0,800;1,500&family=Special+Elite&family=Stick+No+Bills:wght@200;800&family=Yellowtail&display=swap" rel="stylesheet"> 
+    <!-- ESTILOS -->
+    <link REL=StyleSheet HREF="../css/estilos.css" TYPE="text/css" MEDIA=screen>
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
+</head>
+<!-- BODY -->
+    <body class="container-fluid p-0 m-0">
+        <!-- HEADER -->
+        <header class="">
+        </header>
+        <!-- FIN HEADER -->
+        <!-- NAVEGADOR -->
+        <nav class="p-0 m-0">
+            <ul id="desafios" class="navegador__menu">
+                <li><a href="../index.html">INICIO</a></li>
+                <li><a href="puzzles.html">PUZZLES</a></li>
+                <li><a href="instrucciones.html">INSTRUCCIONES</a></li>
+                <li><a href="https://www.amazon.es/SD-Games-Brains-japon%C3%A9s-SDGBRAINS01/dp/B01M0M0AC2/ref=sr_1_2?__mk_es_ES=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=QMHNKI0G5UQE&keywords=brains+reiner+knizzia&qid=1656024750&sprefix=brains+reiner+knizz%2Caps%2C374&sr=8-2" target="_blank">COMPRAR</a></li>
+                <li><a href="#"><span id="cuenta">MI CUENTA</span></a></li>
+            </ul>
+        </nav>
+        <!-- FIN NAVEGADOR -->
+        <!-- MAIN -->
+        <main class="main">
+            <!-- FORMULARIO DE REGISTRO -->
+            <div id="iniciarSesion">
+                <h2 class="titulo">REGISTRARSE</h2>
+
+                <div class="sesionForm">
+                    <form id="formRegistro" action="" class="formulario" form="formRegistro">
+                            <input type="text" id="nombreRegistro" name="usuario" class="text-center" placeholder="Nombre de usuario">
+                            <input type="password" id="passRegistro" name="pass" class="text-center" placeholder="Contraseña">
+                            <input type="submit" id="inputRegistro" name="enviar" value="Registrarse" form="formRegistro" class="btnSession">
+                    </form>
+                </div>
+
+                <br>
+                <!-- FORMULARIO DE INICIO DE SESION -->
+                <h2 class="titulo">INICIAR SESIÓN</h2>
+
+                <div class="sesionForm">
+                    <form id="formInicioSesion" action="" class="formulario">
+                            <input type="text" id="nombreInicioSesion" name="usuario" class="text-center" placeholder="Nombre de usuario">
+                            <input type="password" id="passInicioSesion" name="pass" autocomplete="false" class="text-center" placeholder="Contraseña">
+                            <input type="submit" id="inputInicioSesion" name="enviar" value="Iniciar sesión" form="formInicioSesion" class="btnSession">
+                    </form>
+                </div>
+            </div>
+            <div id="contenedorCuenta">
+                <h3 id="nombreCuenta">Cuenta de fulano</h3>
+                <div id="informacionPersonal">
+
+                    <div id="divAvatar">
+                        <img src="../assets/img/avatar.jpg" alt="Imagen de avatar de fulano" id="avatar">
+                        <p>Cambiar Avatar</p>
+                    </div>
+
+                    <div id="datosPersonales" action="" class="">
+                        <p>Nombre: </p>
+                        <p>Apellido: </p>
+                        <p>Fecha de Nacimiento: </p>
+                        <p>Email: </p>
+                        <p>Contraseña: </p>
+                    </div>
+
+                </div>
+                <input type="submit" id="cerrarSesion" value="Cerrar sesión" class="btnSession">
+            </div>
+        </main>
+        <!-- FIN BODY -->
+        <!-- FOOTER -->
+        <footer class="footer">
+            <section class="footer--principal">
+                <h6 class="creditos">Autor: REINER KNIZIA</h6>
+                <h6 class="creditos">Ilustracion y Diseño Grafico: Andres Resch</h6>
+                <h6 class="creditos">Diseño de la caja: Hans-Georg Schneider</h6>
+                <h6 class="creditos">Realizacion Thigra Spiele</h6>
+                <h6 class="creditos">Pegasus Spiele GmbH, www.pegasus.de</h6> 
+            </section>
+            <section class="footer--inferior">
+            </section>
+        </footer>
+        <!-- FIN FOOTER -->
+
+        <!-- SCRIPTS -->
+        <!-- BOOTSTRAP -->
+        <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
+        <!-- APIS -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- SCRIPT -->
+        <script src="../js/sesion.js"></script>
+    </body>
+</html>

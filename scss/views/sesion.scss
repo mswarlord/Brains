@@ -1,0 +1,82 @@
+//SESION**************************
+#sesion{
+    background-color: #0000;
+    border: 0;
+}
+
+.sessionContainer{
+    display: flex;
+    width: 100%;
+    justify-self: center;
+    justify-content: space-evenly;
+}
+
+.btnSession{
+    max-width: 300px;
+    min-width: 200px;
+    width: 100%;
+    margin: 1em 0 1em 0;
+    text-align: center;
+    display: inline-block;
+    font-size: 1em;
+    padding: 1em 2em;
+    transition-duration: 0.4s;
+    background-color: #fed5ff;
+    color: $color-texto-secundario;
+    border: 2px solid #f396e3;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btnSession:hover{
+    background-color: $color-container-background;
+    color: $color-texto; }
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+}
+.sesionForm{
+    background-color: $color-container-background;
+    text-align: center;
+    border-radius: 1em;
+    padding: 1em 3em 1em 3em;
+    margin: 2em 0 3em 0;
+}
+#cerrarSesion{
+    margin: auto;
+}
+
+#contenedorCuenta{
+    display: flex;
+    flex-direction: column;
+    background-color: $color-container-background;
+    border-radius: 1em;
+    margin: 1em 0 1em 0;
+    padding: 1em;
+    width: 90%;
+    min-width: 500px;
+}   
+#nombreCuenta{
+    text-align: center;
+}
+
+#informacionPersonal{
+    display: flex;
+}
+
+#divAvatar{
+    text-align: center;
+}
+#avatar{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin: 1em 2em 1em 2em;
+    & img{
+        height:100%;
+    }
+}
+
+// FIN SESION**************************
