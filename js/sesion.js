@@ -1,22 +1,17 @@
-//API -- para el uso del AVATAR
-const URLAPI = 'https://www.superheroapi.com/api.php/10227644420646725/';
-//let urlAvatar = URLAPI + tokenAvatarUsuario;
-
 //*********************************************************************************************************************************
 //************************************************* REGISTRO Y LOGEO DE USUARIOS **************************************************
 //*********************************************************************************************************************************
+
 //DOM
 const cuenta = document.getElementById("cuenta"); //toma la etiqueta con ID cuenta y lo guarda en la variable cuenta. 
-
 
 //VARIABLES
 const usuarios = []; //genera el array usuarios
 
 class Usuario{ //genera la clase constructora de objetos usuario
-    constructor(nombreUsuario,passUsuario,idAvatar){
+    constructor(nombreUsuario,passUsuario){
         this.nombreUsuario = nombreUsuario;
         this.passUsuario = passUsuario;
-        this.idAvatar = idAvatar;
     }
 }
 
@@ -29,21 +24,29 @@ const inputRegistro = document.getElementById("inputRegistro"); //guarda el boto
 
 let newUser = ""; //variable que va a tomar el nombre ingresado por el usuario al registrarse
 let newPass = ""; //variable que va a tomar la contraseña ingresada por el usuario al registrarse
-let idAvatar = ""; //variable que toma aleatoriamente el valor del id del avatar.
+
+//LO QUE ME COSTÓ PENSAR ESTOOOOOOOOOOOOO!
+if(!!JSON.parse(localStorage.getItem("Usuarios"))){  //itera cada elemento de los usuarios guardados en localStorage
+    for(e of JSON.parse(localStorage.getItem("Usuarios"))){ //toma los datos de usuarios ya registrados, y previamente guardados en storage 
+        usuarios.push(e) //y los pushea en la variable usuarios iniciando la variable cada vez que se actualiza con los usuarios ya registrados!
+    }
+}
 
 //FUNCIONES
 let registrarse = () => { //funcion para registrar un usuario
     newUser = nombreRegistro.value; //toma el valor del input nombreRegistro y lo guarda en la variable
     newPass = passRegistro.value; //toma el valor del input passRegistro y lo guarda en la variable
-    idAvatar = Math.ceil(Math.random() * (733 - 0));
-    const user = new Usuario(newUser,newPass,idAvatar); //crea un objeto usuario y le mete como parametros las variables newUser y newPass    
+    const user = new Usuario(newUser,newPass); //crea un objeto usuario y le mete como parametros las variables newUser y newPass    
     usuarios.push(user); //mete el objeto usuario en el array usuarios.
+    localStorage.setItem("Usuarios",JSON.stringify(usuarios)); //guarda en la variable el valor guardado en localStorage de la key ingresoUser.
 }
 
 //EVENTOS
 formRegistro.addEventListener('submit', (e) => { //Evento para ejecutar la funcion que registra al usuario
     e.preventDefault(); //evento para que no se recargue la pagina
     if (!!nombreRegistro.value && !!passRegistro.value){ //si existe usuario y contraseña...
+        localStorage.setItem('usuarioRegistrado', nombreRegistro.value); //Guarda en storage el valor de la etiqueta que se guardo en nombreInicioSesion
+        localStorage.setItem('passUsuarioRegistrado', passRegistro.value);
         registrarse(); //...llama a la funcion registrarse
     }
 }) 
@@ -57,6 +60,7 @@ const inputInicioSesion = document.getElementById('inputInicioSesion'); //guarda
 const btnLogIn = document.getElementById('inputInicioSesion'); //guarda en la variable la etiqueta con ID inputInicioSesion
 let ingresoUser = localStorage.getItem('nombreUsuario'); //guarda en la variable el valor guardado en localStorage de la key ingresoUser.
 let ingresoPass = localStorage.getItem('passUsuario'); //guarda en la variable el valor guardado en localStorage de key ingresoPass.
+let usuariosRegistrados;
 
 //FUNCIONES
 let inicioSesion = () => {//FUNCION PARA INICIAR SESION
@@ -70,22 +74,17 @@ let inicioSesion = () => {//FUNCION PARA INICIAR SESION
             index = i                                                            //si ambos coinciden, le da al index el valor del indice de ese objeto
             cuenta.innerHTML = `${(usuarios[i].nombreUsuario).toUpperCase()}`;
             ocultarFormularios();
-        }else{
-            Swal.fire({ //alerta con SWEET ALERT
-                icon: 'error',
-                title: 'Datos de usuario incorrectos',
-                text: 'Corrobore que los datos ingresados corresponden a un usuario registrado',
-                footer: '<a href="faq.html">¿Por qué tengo este problema?</a>'
-            })
         }
     });
 }
+
 
 //EVENTOS
 formInicioSesion.addEventListener('submit', (e) => { //Evento que llama a la funcion para iniciar sesion
     e.preventDefault(); //metodo para que no se recargue la pagina
     localStorage.setItem('nombreUsuario', nombreInicioSesion.value); //Guarda en storage el valor de la etiqueta que se guardo en nombreInicioSesion
     localStorage.setItem('passUsuario', cuentaPassword.value);
+    usuariosRegistrados = JSON.parse(localStorage.getItem("Usuarios"));
     inicioSesion(); //Funcion para el inicio de sesion
 })
 
@@ -123,7 +122,8 @@ let btnCerrarSesion = document.getElementById('cerrarSesion');
 
 //FUNCIONES
 btnCerrarSesion.addEventListener('click', () => {
-    localStorage.clear();
+    localStorage.removeItem("nombreUsuario");
+    localStorage.removeItem("passUsuario");
     window.location.reload()
 })
 
@@ -150,7 +150,7 @@ console.log(_personaParsed);
 
 //FETCH PARA EL TP HACIENDO USO DEL TRY CATCH PARA SIMPLIFICAR EL CODIGO
 
-const llamarUsuarios = async () => {
+/* const llamarUsuarios = async () => {
 try{
     fetch('/json/usuarios.json')
         .then(response => response.json())
@@ -171,3 +171,4 @@ finally{
 
 llamarUsuarios();
 console.log(llamarUsuarios);
+ */

@@ -11,8 +11,7 @@
     6: guardar los datos de los desafios completados en el usuario logueado.
     7: colocar un pop up cuando el usuario presiona el boton de corroborar y el mapa no esta correctamente resuelto. -- LISTO
     8: crear una animacion cuando el usuario complete un desafio correctamente. 
-    9: hacer las primeras revisiones del codigo y proceder a la limpieza, quitar codigo basura y sin uso, console logs y
-    cambiar alerts clasicos.
+    9: hacer las primeras revisiones del codigo y proceder a la limpieza, quitar codigo basura y sin uso.
     10: colocar animaciones al girar las fichas y colocarlas.
     11: Intentar que entren las fichas en la pantalla
     12: ocultar el boton de siguiente mientras el desafio actual no haya sido completado.
@@ -402,7 +401,7 @@ let mapaSiguiente = () => {
     maxDesafioCompleto = localStorage.getItem('maxDesafioCompleto');
     if(mapas[mapaActual-1].mapaCompleto || maxDesafioCompleto >= mapaActual){
         if(mapaActual>11) {
-            Swal.fire({ //alerta con SWEET ALERT
+            Swal.fire({
                 icon: 'error',
                 title: 'MAPA NO DISPONIBLE',
                 text: 'Lo sentimos, ésta es una versión de prueba del juego de mesa de REINER KNIZIA. Para seguir disfrutando de este alucinante juego, por favor cómpralo y asi ayudarás al creador!',
@@ -419,7 +418,7 @@ let mapaSiguiente = () => {
             actualizarEncabezado();
         }
     }else{
-        Swal.fire({ //alerta con SWEET ALERT
+        Swal.fire({
             icon: 'error',
             title: 'MAPA INCOMPLETO',
             text: 'Tienes que completar este nivel para pasar al siguiente',
@@ -443,7 +442,7 @@ let mapaAnterior = () => {
         limpiarMapa();
         actualizarEncabezado();
     }else{
-        Swal.fire({ //alerta con SWEET ALERT
+        Swal.fire({
             icon: 'error',
             title: 'MAPA NO DISPONIBLE',
             text: 'Tienes que completar el desafío 49 para pasar al 50',
@@ -491,7 +490,7 @@ for(let e in ficha){
 
 const CORROBORAR = document.getElementById("btnCorroborar");
 const msjCompletado = () => {
-    Swal.fire({ //alerta con SWEET ALERT
+    Swal.fire({
         icon: 'success',
         title: '¡DESAFÍO COMPLETADO!',
         text: 'Felicitaciones!!! puedes pasar al siguiente desafío',
@@ -607,12 +606,6 @@ const corroborarVictoria = () => {
 
 CORROBORAR.addEventListener('click',corroborarVictoria);
 
-//luces de neon
-/* let prenderNeon = () => {
-    document.getElementById('nroDesafio').className = 'encendido';
-}; */
-
-
 const mostrarInformacion = (texto, gravedad, posicion, delay) => {
 setTimeout( function () {
     Toastify({
@@ -625,7 +618,6 @@ setTimeout( function () {
 }).showToast();
 },delay)
 }
-
 
 let llamarInfo = () => {
     mostrarInformacion(
