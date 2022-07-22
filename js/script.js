@@ -11,13 +11,12 @@
     6: guardar los datos de los desafios completados en el usuario logueado.
     7: colocar un pop up cuando el usuario presiona el boton de corroborar y el mapa no esta correctamente resuelto. -- LISTO
     8: crear una animacion cuando el usuario complete un desafio correctamente. 
-    9: hacer las primeras revisiones del codigo y proceder a la limpieza, quitar codigo basura y sin uso.
+    9: hacer las primeras revisiones del codigo y proceder a la limpieza, quitar codigo basura y sin uso. EN PROCESO
     10: colocar animaciones al girar las fichas y colocarlas.
-    11: Intentar que entren las fichas en la pantalla
+    11: Intentar que entren las fichas en la pantalla - HECHO
     12: ocultar el boton de siguiente mientras el desafio actual no haya sido completado.
-    13: el BOTON de SIGUIENTE debe aparecer solo cuando el desafío esté completo.
-    14: guardar el registro del usuario en storage
-    15: verificar en la pagina sesion si hay datos de inicio de sesion guardados y que ingrese automaticamente a dicha cuenta
+    13: guardar el registro del usuario en storage -- HECHO
+    14: verificar en la pagina sesion si hay datos de inicio de sesion guardados y que ingrese automaticamente a dicha cuenta
 
 */
 

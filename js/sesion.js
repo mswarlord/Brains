@@ -4,10 +4,23 @@
 
 //DOM
 const cuenta = document.getElementById("cuenta"); //toma la etiqueta con ID cuenta y lo guarda en la variable cuenta. 
+const formRegistro = document.getElementById("formRegistro"); //guarda la etiqueta del formulario de registro
+const nombreRegistro = document.getElementById("nombreRegistro"); //guarda el input para el nombre de usuario al registrarse
+const passRegistro = document.getElementById("passRegistro"); //guarda el pinput para la contraseña que se registra
+const formInicioSesion = document.getElementById('formInicioSesion'); //guarda en la variable la etiqueta con ID formInicioSesion
+const nombreInicioSesion = document.getElementById('nombreInicioSesion'); //guarda en la variable la etiqueta con ID nombreInicioSesion
+const cuentaPassword = document.getElementById('passInicioSesion'); //guarda en la variable la etiqueta con ID passInicioSesion
+const iniciarSesion = document.getElementById("iniciarSesion"); //guarda la etiqueta con id iniciarSesion
+const contenedorCuenta = document.getElementById("contenedorCuenta"); //guarda la etiqueta con id contenedorCuenta
+const nombreCuenta = document.getElementById("nombreCuenta");////guarda la etiqueta con id contenedorCuenta
+const btnCerrarSesion = document.getElementById('cerrarSesion');
+const inputInicioSesion = document.getElementById('inputInicioSesion');
 
 //VARIABLES
+let inicioExitoso = false;
+let inicioError = 0;
 const usuarios = []; //genera el array usuarios
-
+let timer = 0;
 class Usuario{ //genera la clase constructora de objetos usuario
     constructor(nombreUsuario,passUsuario){
         this.nombreUsuario = nombreUsuario;
@@ -16,11 +29,6 @@ class Usuario{ //genera la clase constructora de objetos usuario
 }
 
 //REGISTRARSE ----------------------------------------------------------------------------------------------------------------------
-//DOM
-const formRegistro = document.getElementById("formRegistro"); //guarda la etiqueta del formulario de registro
-const nombreRegistro = document.getElementById("nombreRegistro"); //guarda el input para el nombre de usuario al registrarse
-const passRegistro = document.getElementById("passRegistro"); //guarda el pinput para la contraseña que se registra
-const inputRegistro = document.getElementById("inputRegistro"); //guarda el boton con el evento para registrarse
 
 let newUser = ""; //variable que va a tomar el nombre ingresado por el usuario al registrarse
 let newPass = ""; //variable que va a tomar la contraseña ingresada por el usuario al registrarse
@@ -52,12 +60,7 @@ formRegistro.addEventListener('submit', (e) => { //Evento para ejecutar la funci
 }) 
 
 //INICIAR SESION -------------------------------------------------------------------------------------------------------------------
-//DOM
-const formInicioSesion = document.getElementById('formInicioSesion'); //guarda en la variable la etiqueta con ID formInicioSesion
-const nombreInicioSesion = document.getElementById('nombreInicioSesion'); //guarda en la variable la etiqueta con ID nombreInicioSesion
-const cuentaPassword = document.getElementById('passInicioSesion'); //guarda en la variable la etiqueta con ID passInicioSesion
-const inputInicioSesion = document.getElementById('inputInicioSesion'); //guarda en la variable la etiqueta con ID inputInicioSesion
-const btnLogIn = document.getElementById('inputInicioSesion'); //guarda en la variable la etiqueta con ID inputInicioSesion
+
 let ingresoUser = localStorage.getItem('nombreUsuario'); //guarda en la variable el valor guardado en localStorage de la key ingresoUser.
 let ingresoPass = localStorage.getItem('passUsuario'); //guarda en la variable el valor guardado en localStorage de key ingresoPass.
 let usuariosRegistrados;
@@ -70,16 +73,40 @@ let inicioSesion = () => {//FUNCION PARA INICIAR SESION
 
     usuarios.forEach((el, i) => {                                                //recorre cada elemento del array usuarios, y en cada uno,
         let index = -1; //establece index en -1                                   
-        if (el.nombreUsuario === ingresoUser && el.passUsuario === ingresoPass){ //compara los valores nombreUsuario y passUsuario con los datos ingresados
+        if(el.nombreUsuario === ingresoUser && el.passUsuario === ingresoPass){ //compara los valores nombreUsuario y passUsuario con los datos ingresados
             index = i                                                            //si ambos coinciden, le da al index el valor del indice de ese objeto
             cuenta.innerHTML = `${(usuarios[i].nombreUsuario).toUpperCase()}`;
+            inicioExitoso = true;
+            inicioError = 0;
             ocultarFormularios();
         }
     });
+
+    if(!inicioExitoso){ //ingresa si el inicio de sesion fue erróneo
+        inicioError++; //aumenta en uno los intentos fallidos
+        if(inicioError === 3){ //si hubo 3 intentos fallidos ingresa
+            let contador = setInterval( //activa una funcion a intervalos de 1 segundo
+                function() {
+                    timer++; //suma 1 al timer
+                    inputInicioSesion.disabled = true;  //desabilita el boton de inicio
+                    if (timer >= 30){ // si el timer llega a 30 segundos ingresa
+                        clearInterval(contador); //corta el intervalo
+                        timer = 0; //reinicio el timer
+                        inicioError = 0; //reinicia los intentos fallidos
+                        inputInicioSesion.disabled = false; //habilita el boton de inicio
+                    }
+                },1000)
+        }
+
+            Swal.fire({
+            icon: 'error',
+            title: 'Datos de usuario incorrectos',
+            text: `Corrobore los datos ingresados. ${3 - inicioError} intento/s restante/s`,
+        })
+    }
 }
 
-
-//EVENTOS
+//FUNCION INICIO DE SESION
 formInicioSesion.addEventListener('submit', (e) => { //Evento que llama a la funcion para iniciar sesion
     e.preventDefault(); //metodo para que no se recargue la pagina
     localStorage.setItem('nombreUsuario', nombreInicioSesion.value); //Guarda en storage el valor de la etiqueta que se guardo en nombreInicioSesion
@@ -88,22 +115,13 @@ formInicioSesion.addEventListener('submit', (e) => { //Evento que llama a la fun
     inicioSesion(); //Funcion para el inicio de sesion
 })
 
-//*********************************************************************************************************************************
-//*********************************************************************************************************************************
-//*********************************************************************************************************************************
+//*************************************************************************************************************************
+//********************************************************** CUENTA USUARIO ***********************************************
+//*************************************************************************************************************************
 
-//UNA VEZ QUE EL USUARIO SE LOGUEA SE ELIMINA EL FORMULARIO DE INICIO DE SESION Y A SU VEZ 
-//APARECE UN MENU CON OPCIONES E INFORMACION DE LA CUENTA DEL USUARIO.-
-
-//VARIABLE DOM
-const iniciarSesion = document.getElementById("iniciarSesion"); //guarda la etiqueta con id iniciarSesion
-const contenedorCuenta = document.getElementById("contenedorCuenta"); //guarda la etiqueta con id contenedorCuenta
-const nombreCuenta = document.getElementById("nombreCuenta");////guarda la etiqueta con id contenedorCuenta
-
-//Aca voy a tratar de armar toda la seccion de la cuenta del usuario --- EN CONSTRUCCION
 contenedorCuenta.style.display = "none";//oculta contenedorCuenta por defecto
 
-//FUNCIONES
+//FUNCION OCULTAR FORMULARIO
 const ocultarFormularios = () => { //funcion que oculta los formularios de inicio y registro y muestra el contenedor de informacion del usuario
     iniciarSesion.style.display = "none"; //oculta la etiqueta con id iniciarSesion
     contenedorCuenta.style.display = "contents"; //muestra la etiqueta con id contenedorCuenta
@@ -111,64 +129,11 @@ const ocultarFormularios = () => { //funcion que oculta los formularios de inici
     nombreCuenta.innerText = localStorage.getItem("nombreUsuario").toUpperCase();
 }
 
-/* if(!!ingresoUser && !!ingresoPass) {
-    ocultarFormularios();
-} */
-!!ingresoUser && !!ingresoPass && ocultarFormularios();//realiza la misma operacion que lo comentado ut supra, pero usando el operador &&.
+!!ingresoUser && !!ingresoPass && ocultarFormularios();//llama a la funcion ocultarFormularios si ambas condiciones existen.
 
-//CERRAR SESION
-//DOM
-let btnCerrarSesion = document.getElementById('cerrarSesion');
-
-//FUNCIONES
+//FUNCION CERRAR SESION
 btnCerrarSesion.addEventListener('click', () => {
     localStorage.removeItem("nombreUsuario");
     localStorage.removeItem("passUsuario");
     window.location.reload()
 })
-
-
-//ALMACENAR OBJETOS CON JSON
-/* 
-const persona = { //crea el objeto persona
-    nombre: 'Facu',
-    apellido: 'Cantero',
-    edad: 33,
-    usuario: "MsWarLord",
-    pass: "N0t4L4m3r"
-};
-
-const _persona = JSON.stringify(persona)
-
-localStorage.setItem('objeto persona', _persona);
-
-const _personaParsed = JSON.parse(localStorage.getItem('objeto persona'));
-
-console.log(_personaParsed);
- */
-
-
-//FETCH PARA EL TP HACIENDO USO DEL TRY CATCH PARA SIMPLIFICAR EL CODIGO
-
-/* const llamarUsuarios = async () => {
-try{
-    fetch('/json/usuarios.json')
-        .then(response => response.json())
-        .then(usuarios => {
-            for(usuario in usuarios){
-                console.log(usuarios[usuario].nombre)
-            }
-        })
-}
-catch{
-    error => {
-    alert("error con el servidor")
-}}
-finally{
-    alert("fin de la petición")
-}
-}
-
-llamarUsuarios();
-console.log(llamarUsuarios);
- */
