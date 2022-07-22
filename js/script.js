@@ -3,19 +3,19 @@
 //*************************************************************************************************************************
 
 /* 
-    1: que el titulo y la dificultad cambie en el DOM en cada nivel. -- LISTO
-    2: Modificar los botones de siguiente. Listo
-    3: borrado
+    1: LISTO
+    2: LISTO
+    3: LISTO
     4: crear un input que permita seleccionar el mapa de forma numerica o por medio de una barra.
     5: crear una pagina de antesala al puzzle que permita llamar de forma grafica al mapa requerido
     6: guardar los datos de los desafios completados en el usuario logueado.
-    7: colocar un pop up cuando el usuario presiona el boton de corroborar y el mapa no esta correctamente resuelto. -- LISTO
+    7: LISTO
     8: crear una animacion cuando el usuario complete un desafio correctamente. 
     9: hacer las primeras revisiones del codigo y proceder a la limpieza, quitar codigo basura y sin uso. EN PROCESO
-    10: colocar animaciones al girar las fichas y colocarlas.
-    11: Intentar que entren las fichas en la pantalla - HECHO
+    10: LISTO.
+    11: LISTO
     12: ocultar el boton de siguiente mientras el desafio actual no haya sido completado.
-    13: guardar el registro del usuario en storage -- HECHO
+    13: LISTO
     14: verificar en la pagina sesion si hay datos de inicio de sesion guardados y que ingrese automaticamente a dicha cuenta
 
 */
@@ -30,8 +30,16 @@ const mapas = [];       // genera el array mapas.
 let fichaSeleccionada;  // indica la ficha seleccionada.
 let fichaColocada;      // indica la ficha colocada actualmente.
 let slots = [];         // array con los slots del DOM y sus estados.
-let maxDesafioCompleto; // indica el maximo desafio superado.
+let maxDesafioCompleto = 0; // indica el maximo desafio superado.
 let imgFicha;           // Variable que indica la imagen que se debe girar 
+
+//*************************************************************************************************************************
+//************************************************************ RESETS *****************************************************
+//*************************************************************************************************************************
+
+if (!localStorage.getItem('maxDesafioCompleto')){
+    localStorage.setItem('maxDesafioCompleto',0);
+}
 
 //*************************************************************************************************************************
 //************************************************************ DOM ********************************************************
@@ -153,12 +161,24 @@ const {mapaHabilitado, mapaCompleto, slotsDelMapa} = mapas; //desestructura los 
 //*************************************************************************************************************************
 //********************************************************FUNCIONES********************************************************
 //*************************************************************************************************************************
+//Oculta o revela el boton de mapa siguiente si el mapa actual aun no fue superado
+const mostrarBtnSiguiente = () => {
+    if(localStorage.getItem('maxDesafioCompleto') < mapaActual){
+        btnSiguiente.style.visibility = "hidden"
+    }else{
+        btnSiguiente.style.visibility = ""
+    }
+}
+
+mostrarBtnSiguiente();
+
 let anguloRotacion = (e) => {
     imgFicha.style.webkitTransform = `rotate(${e}deg)`; 
     imgFicha.style.mozTransform = `rotate(${e}deg)`; 
     imgFicha.style.msTransform = `rotate(${e}deg)`; 
     imgFicha.style.oTransform = `rotate(${e}deg)`; 
     imgFicha.style.transform = `rotate(${e}deg)`; 
+    imgFicha.style.transition = `0.2s`;
 }
 
 let mostrarSlots = (mapaActual) => { //funcion que muestra todos los Slots de la zona de juego
@@ -362,7 +382,7 @@ let rotarFicha = (b) => { //toma como parametro el indice del slot que llama a l
         anguloRotacion(270);
         slots[b].fichaColocada.posicion = 4;
     }else if(slots[b].fichaColocada.posicion === 4) {
-        anguloRotacion(0);
+        anguloRotacion(360);
         slots[b].fichaColocada.posicion = 1;
     }
 }
@@ -415,6 +435,7 @@ let mapaSiguiente = () => {
             mostrarSlots(mapaActual); //muestra los slots necesarios para el mapa siguiente
             limpiarMapa();
             actualizarEncabezado();
+            mostrarBtnSiguiente();
         }
     }else{
         Swal.fire({
@@ -488,26 +509,29 @@ for(let e in ficha){
 //**************************************************************************************************************************
 
 const CORROBORAR = document.getElementById("btnCorroborar");
-const msjCompletado = () => {
+const mapaCompletado = () => {
     Swal.fire({
         icon: 'success',
         title: '¡DESAFÍO COMPLETADO!',
         text: 'Felicitaciones!!! puedes pasar al siguiente desafío',
         footer: ''
     })
+    mostrarBtnSiguiente();
 }
+
 const msjIncompleto = () => {
     Toastify({
         text: `¡Ups, algo anda mal!`,
         duration: 3000    
     }).showToast();
 }
+
 const corroborarVictoria = () => {
     switch(true){
         case mapaActual === 1:
             if (slots[0]?.fichaColocada?.id === 1 && slots[0].fichaColocada.posicion === 2){
                 mapas[0].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -515,7 +539,7 @@ const corroborarVictoria = () => {
         case mapaActual === 2:
             if (slots[0].fichaColocada.id === 4 && slots[0].fichaColocada.posicion === 2){
                 mapas[1].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -523,7 +547,7 @@ const corroborarVictoria = () => {
         case mapaActual === 3:
             if (slots[1].fichaColocada.id === 4 && slots[1].fichaColocada.posicion === 1 && slots[2].fichaColocada.id === 0 && slots[2].fichaColocada.posicion === 1){
                 mapas[2].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -531,7 +555,7 @@ const corroborarVictoria = () => {
         case mapaActual === 4:
             if (slots[1].fichaColocada.id === 0 && slots[1].fichaColocada.posicion === 1 && slots[2].fichaColocada.id === 5 && slots[2].fichaColocada.posicion === 4){
                 mapas[3].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -539,7 +563,7 @@ const corroborarVictoria = () => {
         case mapaActual === 5:
             if (slots[1].fichaColocada.id === 1 && slots[1].fichaColocada.posicion === 2 && slots[2].fichaColocada.id === 2 && slots[2].fichaColocada.posicion === 3){
                 mapas[4].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -547,7 +571,7 @@ const corroborarVictoria = () => {
         case mapaActual === 6:
             if (slots[1].fichaColocada.id === 5 && slots[1].fichaColocada.posicion === 4 && slots[2].fichaColocada.id === 4 && slots[2].fichaColocada.posicion === 2){
                 mapas[5].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -555,7 +579,7 @@ const corroborarVictoria = () => {
         case mapaActual === 7:
             if (slots[1].fichaColocada.id === 4 && slots[1].fichaColocada.posicion === 1 && slots[2].fichaColocada.id === 3 && slots[2].fichaColocada.posicion === 2){
                 mapas[6].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -563,7 +587,7 @@ const corroborarVictoria = () => {
         case mapaActual === 8:
             if (slots[1].fichaColocada.id === 3 && slots[1].fichaColocada.posicion === 3 && slots[2].fichaColocada.id === 5 && slots[2].fichaColocada.posicion === 2){
                 mapas[7].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -571,7 +595,7 @@ const corroborarVictoria = () => {
         case mapaActual === 9:
             if (slots[1].fichaColocada.id === 5 && slots[1].fichaColocada.posicion === 1 && slots[2].fichaColocada.id === 6 && slots[2].fichaColocada.posicion === 3){
                 mapas[8].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -579,7 +603,7 @@ const corroborarVictoria = () => {
         case mapaActual === 10:
             if (slots[1].fichaColocada.id === 1 && slots[1].fichaColocada.posicion === 2 && slots[2].fichaColocada.id === 6 && slots[2].fichaColocada.posicion === 2){
                 mapas[9].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -587,7 +611,7 @@ const corroborarVictoria = () => {
         case mapaActual === 11:
             if (slots[3].fichaColocada.id === 0 && slots[3].fichaColocada.posicion === 1 && slots[4].fichaColocada.id === 6 && slots[4].fichaColocada.posicion === 2 && slots[5].fichaColocada.id === 4 && slots[5].fichaColocada.posicion === 2){
                 mapas[10].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -595,7 +619,7 @@ const corroborarVictoria = () => {
         case mapaActual === 12:
             if (slots[0].fichaColocada.id === 5 && slots[0].fichaColocada.posicion === 3 && slots[7].fichaColocada.id === 6 && slots[7].fichaColocada.posicion === 3 && slots[8].fichaColocada.id === 2 && slots[8].fichaColocada.posicion === 2){
                 mapas[10].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
