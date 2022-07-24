@@ -1,28 +1,7 @@
 //*************************************************************************************************************************
-//************************************************************ TAREAS *****************************************************
-//*************************************************************************************************************************
-
-/* 
-    1: LISTO
-    2: LISTO
-    3: LISTO
-    4: crear un input que permita seleccionar el mapa de forma numerica o por medio de una barra.
-    5: crear una pagina de antesala al puzzle que permita llamar de forma grafica al mapa requerido
-    6: guardar los datos de los desafios completados en el usuario logueado.
-    7: LISTO
-    8: crear una animacion cuando el usuario complete un desafio correctamente. 
-    9: hacer las primeras revisiones del codigo y proceder a la limpieza, quitar codigo basura y sin uso. EN PROCESO
-    10: LISTO.
-    11: LISTO
-    12: ocultar el boton de siguiente mientras el desafio actual no haya sido completado.
-    13: LISTO
-    14: verificar en la pagina sesion si hay datos de inicio de sesion guardados y que ingrese automaticamente a dicha cuenta
-
-*/
-
-//*************************************************************************************************************************
 //************************************************************ VARIABLES **************************************************
 //*************************************************************************************************************************
+
 let ficha = [];         // array que guarda los nodos ficha.
 let mapaActual = 1;     // Indica cual es el mapa seleccionado.
 const fichas = [];      // guarda el array de objetos ficha.
@@ -32,14 +11,7 @@ let fichaColocada;      // indica la ficha colocada actualmente.
 let slots = [];         // array con los slots del DOM y sus estados.
 let maxDesafioCompleto = 0; // indica el maximo desafio superado.
 let imgFicha;           // Variable que indica la imagen que se debe girar 
-
-//*************************************************************************************************************************
-//************************************************************ RESETS *****************************************************
-//*************************************************************************************************************************
-
-if (!localStorage.getItem('maxDesafioCompleto')){
-    localStorage.setItem('maxDesafioCompleto',0);
-}
+let mensajeX;           //guarda un mensaje aleatorio.
 
 //*************************************************************************************************************************
 //************************************************************ DOM ********************************************************
@@ -52,12 +24,22 @@ const divFicha = document.getElementById("divFichas"); // Obtiene el nodo <DIV> 
 const nroDesafio = document.getElementById("nroDesafio");
 const dificultadMapaActual = document.getElementById("dificultadMapaActual");
 const btnInformacion = document.getElementById("btnInformacion");
+const iniciarJuego = document.getElementById("iniciarJuego");
+const CORROBORAR = document.getElementById("btnCorroborar");
+
+//*************************************************************************************************************************
+//************************************************************ RESETS *****************************************************
+//*************************************************************************************************************************
+
+if (!localStorage.getItem('maxDesafioCompleto')){
+    localStorage.setItem('maxDesafioCompleto',0);
+}
 
 //*************************************************************************************************************************
 //*************************************************************** CLASES **************************************************
 //*************************************************************************************************************************
 
-//CLASE SLOT ***************************************************************************
+//CLASE SLOT 
 class Slot{//Se crea la clase Slot que establece el elemento del DOM y su estado.
     constructor(elementoDOM) {
         this.elementoDOM = elementoDOM;
@@ -86,7 +68,7 @@ class Slot{//Se crea la clase Slot que establece el elemento del DOM y su estado
     }
 }
 
-//CLASE FICHA **************************************************************************
+//CLASE FICHA 
 class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y los metodos para cambiar la posicion de las mismas
     constructor(id) {
         this.id = id;
@@ -123,7 +105,7 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
     }
 }
 
-//CLASE MAPA ***************************************************************************
+//CLASE MAPA 
 class mapa { //genera la clase constructora de objetos mapa
     constructor(nivel, img){
         this.nivel = nivel + 1;
@@ -161,6 +143,7 @@ const {mapaHabilitado, mapaCompleto, slotsDelMapa} = mapas; //desestructura los 
 //*************************************************************************************************************************
 //********************************************************FUNCIONES********************************************************
 //*************************************************************************************************************************
+
 //Oculta o revela el boton de mapa siguiente si el mapa actual aun no fue superado
 const mostrarBtnSiguiente = () => {
     if(localStorage.getItem('maxDesafioCompleto') < mapaActual){
@@ -298,11 +281,9 @@ const clickSlots = (a,b) => {   //toma como parametros el nodo del slot clickead
 }
 
 const mostrarFicha = (a) => {
-if(!!a.innerHTML.slice(17,18)){
-    ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "";
-}else{
-
-}
+    if(!!a.innerHTML.slice(17,18)){
+        ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "";
+    }
 }
 
 let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
@@ -388,7 +369,7 @@ let rotarFicha = (b) => { //toma como parametro el indice del slot que llama a l
 }
 
 for(e in slots){  //itera los elementos del array slots
-    let i = e;    //crea una variable para meter en slots[i] -- averiguar ¿por que con e no lo toma? ¿mala sintaxis?
+    let i = e;
     slots[i].elementoDOM.addEventListener('click',function() {clickSlots(slots[i].elementoDOM, i)}); //genera en cada
     //iteración un evento click en cada slot, con la función colocar ficha, y ademas el slot que se está clickeando y el nodo como parámetro.
 } 
@@ -399,7 +380,7 @@ for(e in slots){  //itera los elementos del array slots
 mapas[0].seleccionado = true;
 slots[0].elementoDOM.style.display = ""; //muestra en el DOM el Slot con indice 0 del array
 
-const limpiarMapa = () => {
+const limpiarMapa = () => { //LIMPIA LOS SLOTS DEL MAPA ANTERIOR
     for(e in slots){
         slots[e].desocuparSlot();
         if(!!ficha[e]){        
@@ -409,7 +390,7 @@ const limpiarMapa = () => {
 }
 
 
-const actualizarEncabezado = () => {
+const actualizarEncabezado = () => { //MODIFICA EL ENCABEZADO SEGUN EL MAPA
     dificultadMapaActual.innerHTML = `${mapas[mapaActual].dificultad}`;
     nroDesafio.innerText = `${mapaActual}`;
 }
@@ -447,7 +428,7 @@ let mapaSiguiente = () => {
     }
 }
 
-btnSiguiente.addEventListener('click',mapaSiguiente); //boton que pasa al mapa siguiente
+btnSiguiente.addEventListener('click',mapaSiguiente); //boton que pasa al siguiente mapa
 
 //MAPA ANTERIOR
 
@@ -470,6 +451,7 @@ let mapaAnterior = () => {
         })
     }
 }
+
 btnAnterior.addEventListener('click',mapaAnterior); //boton que pasa al mapa anterior
 
 //*********************************************************************************************************************************
@@ -504,12 +486,12 @@ let seleccionarFicha = e => {
 for(let e in ficha){
     ficha[e].addEventListener('click',function() {seleccionarFicha(e)});
 } 
+
 //**************************************************************************************************************************
 //****************************************************** CORROBORAR CONDICION DE VITORIA ************************************
 //**************************************************************************************************************************
 
-const CORROBORAR = document.getElementById("btnCorroborar");
-const mapaCompletado = () => {
+const mapaCompletado = () => { //funcion llamada cuando se complet el desafío
     Swal.fire({
         icon: 'success',
         title: '¡DESAFÍO COMPLETADO!',
@@ -519,9 +501,10 @@ const mapaCompletado = () => {
     mostrarBtnSiguiente();
 }
 
-const msjIncompleto = () => {
+const msjIncompleto = () => { //funcion llamada cuando se presiona el boton corroborar y el mapa no esta correctamente completado
+    mensajeAleatorio();
     Toastify({
-        text: `¡Ups, algo anda mal!`,
+        text: `${mensajeX}`,
         duration: 3000    
     }).showToast();
 }
@@ -676,4 +659,28 @@ let llamarInfo = () => {
     )
 }
 
-btnInformacion.addEventListener("click",llamarInfo)
+let nroMensajeAleatorio = () => {
+    return Math.floor(Math.random() * 10);
+}
+
+const mensajeAleatorio = async () => {
+    try{
+        fetch('/json/mensajes.json') //llama asincronamente a mensajes.json
+            .then(response => response.json())
+            .then(mensajeAleatorio => {
+                    mensajeX = `${mensajeAleatorio[nroMensajeAleatorio()]}` //pushea los elementos en usuarios
+            })
+    }
+    catch{
+        error => {
+            Swal.fire({//en caso de error tira un alerta
+                icon: 'error',
+                title: 'error con el servidor',
+                text: `No se pudo conectar al servidor`
+            })
+        }
+    }
+}
+
+mensajeAleatorio();
+btnInformacion.addEventListener("click",llamarInfo);

@@ -11,7 +11,7 @@
     <!-- TITULO -->
     <title>Puzzles</title>
     <!-- FAVICON -->
-    <link rel="shortcut icon" href="assets/img/ico/brain-logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/img/ico/brain-logo.png" type="image/x-icon">
     <!-- TIPOGRAFIAS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,41 +41,43 @@
         <!-- FIN NAVEGADOR -->
         <!-- MAIN -->
         <main class="main">
-            <h2 id="titulo" class="titulo text-center mt-3 mb-1">DESAFÍO <span id="nroDesafio">1</span></h2>
-            <h3 id="dificultad" class="titulo text-center mb-3">Dificultad: <span id="dificultadMapaActual">Calentamiento</span></h3>
-            <br>
-            <div id="juego">
+            <div id="iniciarJuego">
+                <h2 id="titulo" class="titulo text-center mt-3 mb-1">DESAFÍO <span id="nroDesafio">1</span></h2>
+                <h3 id="dificultad" class="titulo text-center mb-3">Dificultad: <span id="dificultadMapaActual">Calentamiento</span></h3>
+                <br>
+                <div id="juego">
 
-                <div id="informacion">
-                    <img src="../assets/img/ico/informacion.png" alt="informacion" id="btnInformacion" class="informacion">
-                </div>
-
-                <div id="zonaDeJuego">
-                    <img src="../assets/img/niveles/nivel1.png" alt="" id="mapaSeleccionado">
-
-                    <div id="slots">
-                        <!-- DIV PARA LA CREACION DE SLOTS -->
-                        <div id="slot1" class="slots"></div>
-                        <div id="slot2" class="slots"></div>
-                        <div id="slot3" class="slots"></div>
-                        <div id="slot4" class="slots"></div>
-                        <div id="slot5" class="slots"></div>
-                        <div id="slot6" class="slots"></div>
-                        <div id="slot7" class="slots"></div>
-                        <div id="slot8" class="slots"></div>
-                        <div id="slot9" class="slots"></div>
+                    <div id="informacion">
+                        <img src="../assets/img/ico/informacion.png" alt="informacion" id="btnInformacion" class="informacion">
                     </div>
 
-                </div> 
+                    <div id="zonaDeJuego">
+                        <img src="../assets/img/niveles/nivel1.png" alt="" id="mapaSeleccionado">
 
-                <div id="botonera">
-                    <button id="btnAnterior" class="btnJuego">Anterior</button>
-                    <button id="btnCorroborar" class="btnJuego">Corroborar</button>
-                    <button id="btnSiguiente" class="btnJuego">Siguiente</button>
-                </div>               
+                        <div id="slots">
+                            <!-- DIV PARA LA CREACION DE SLOTS -->
+                            <div id="slot1" class="slots"></div>
+                            <div id="slot2" class="slots"></div>
+                            <div id="slot3" class="slots"></div>
+                            <div id="slot4" class="slots"></div>
+                            <div id="slot5" class="slots"></div>
+                            <div id="slot6" class="slots"></div>
+                            <div id="slot7" class="slots"></div>
+                            <div id="slot8" class="slots"></div>
+                            <div id="slot9" class="slots"></div>
+                        </div>
+
+                    </div> 
+
+                    <div id="botonera">
+                        <button id="btnAnterior" class="btnJuego">Anterior</button>
+                        <button id="btnCorroborar" class="btnJuego">Corroborar</button>
+                        <button id="btnSiguiente" class="btnJuego">Siguiente</button>
+                    </div>               
+                </div>
+                <!-- CONTENEDOR PARA LA CREACION DE LAS FICHAS -->
+                <div id="divFichas"></div>
             </div>
-            <!-- CONTENEDOR PARA LA CREACION DE LAS FICHAS -->
-            <div id="divFichas"></div>
         </main>
         <!-- FIN BODY -->
         <!-- FOOTER -->

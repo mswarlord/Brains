@@ -1,6 +1,9 @@
 WEBAPP desarrollada integramente durante el transcurso del curso de JavaScript de la carrera, FULLSTACK de Coderhouse por Facundo Cantero Rodriguez.
 
-Inconvenientes y dudas que surgieron durante el desarrollo de la misma:
+TAREAS PENDIENTES:
 
-1.- inconvenientes al trabajar con DOM: al ejecutar el sitio no se reconocian variables definidas por eventos que deben ejecutarse antes que el DOM cargue.
-	SOLUCION: bajar la etiqueta script del html a la parte inferior del body; 
+    1: crear un input que permita seleccionar el mapa de forma numerica o por medio de una barra.
+    2: crear una pagina de antesala al puzzle que permita llamar de forma grafica al mapa requerido
+    3: guardar los datos de los desafios completados en el usuario logueado.
+    4: crear una animacion cuando el usuario complete un desafio correctamente. 
+    5: hacer las primeras revisiones del codigo y proceder a la limpieza, quitar codigo basura y sin uso. --EN PROCESO

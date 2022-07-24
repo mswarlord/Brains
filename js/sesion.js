@@ -12,9 +12,9 @@ const nombreInicioSesion = document.getElementById('nombreInicioSesion'); //guar
 const cuentaPassword = document.getElementById('passInicioSesion'); //guarda en la variable la etiqueta con ID passInicioSesion
 const iniciarSesion = document.getElementById("iniciarSesion"); //guarda la etiqueta con id iniciarSesion
 const contenedorCuenta = document.getElementById("contenedorCuenta"); //guarda la etiqueta con id contenedorCuenta
-const nombreCuenta = document.getElementById("nombreCuenta");////guarda la etiqueta con id contenedorCuenta
-const btnCerrarSesion = document.getElementById('cerrarSesion');
-const inputInicioSesion = document.getElementById('inputInicioSesion');
+const nombreCuenta = document.getElementById("nombreCuenta");//guarda la etiqueta con id contenedorCuenta
+const btnCerrarSesion = document.getElementById('cerrarSesion'); //guarda el boton cerrar sesion
+const inputInicioSesion = document.getElementById('inputInicioSesion'); //guarda el boton de inicio sesion
 
 //VARIABLES
 let inicioExitoso = false; //indica si el intento de inicio de sesión fue fallido o no.
@@ -31,11 +31,11 @@ class Usuario{ //genera la clase constructora de objetos usuario
     constructor(nombreUsuario,passUsuario){
         this.nombreUsuario = nombreUsuario;
         this.passUsuario = passUsuario;
+        this.maxDesafioAlcanzado = 1;
     }
 }
 
 //REGISTRARSE ----------------------------------------------------------------------------------------------------------------------
-//LO QUE ME COSTÓ PENSAR ESTOOOOOOOOOOOOO!
 if(!!JSON.parse(localStorage.getItem("Usuarios"))){  //itera cada elemento de los usuarios guardados en localStorage
     for(e of JSON.parse(localStorage.getItem("Usuarios"))){ //toma los datos de usuarios ya registrados, y previamente guardados en storage 
         usuarios.push(e) //y los pushea en la variable usuarios iniciando la variable cada vez que se actualiza con los usuarios ya registrados!
@@ -68,10 +68,12 @@ let inicioSesion = () => {//FUNCION PARA INICIAR SESION
     ingresoUser = nombreInicioSesion.value; //guarda en la variable, el valor de la etiqueta nombreInicioSesion. 
     ingresoPass = cuentaPassword.value; //guarda en la variable, el valor de la etiqueta cuentaPassword. 
 
-    usuarios.forEach((el, i) => {                                                //recorre cada elemento del array usuarios, y en cada uno,
+    usuarios.forEach((el, i) => {  //recorre cada elemento del array usuarios, y en cada uno,
         let index = -1; //establece index en -1                                   
         if(el.nombreUsuario === ingresoUser && el.passUsuario === ingresoPass){ //compara los valores nombreUsuario y passUsuario con los datos ingresados
-            index = i                                                            //si ambos coinciden, le da al index el valor del indice de ese objeto
+            localStorage.setItem('nombreUsuario', nombreInicioSesion.value); //Guarda en storage el valor de la etiqueta que se guardo en nombreInicioSesion
+            localStorage.setItem('passUsuario', cuentaPassword.value);
+            index = i //si ambos coinciden, le da al index el valor del indice de ese objeto
             cuenta.innerHTML = `${(usuarios[i].nombreUsuario).toUpperCase()}`; //modifica el titulo en el navegador
             inicioExitoso = true; 
             inicioError = 0;
@@ -106,8 +108,7 @@ let inicioSesion = () => {//FUNCION PARA INICIAR SESION
 //FUNCION INICIO DE SESION
 formInicioSesion.addEventListener('submit', (e) => { //Evento que llama a la funcion para iniciar sesion
     e.preventDefault(); //metodo para que no se recargue la pagina
-    localStorage.setItem('nombreUsuario', nombreInicioSesion.value); //Guarda en storage el valor de la etiqueta que se guardo en nombreInicioSesion
-    localStorage.setItem('passUsuario', cuentaPassword.value);
+
     usuariosRegistrados = JSON.parse(localStorage.getItem("Usuarios"));
     inicioSesion(); //Funcion para el inicio de sesion
 })
@@ -134,3 +135,28 @@ btnCerrarSesion.addEventListener('click', () => {
     localStorage.removeItem("passUsuario"); //elimina el pass logeado en local store
     window.location.reload(); //actualiza la pagina para cerrar la sesion
 })
+
+
+//SIMULACION DE BASE DE DATOS DE USUARIOS REGISTRADOS
+const llamarUsuarios = async () => {
+    try{
+        fetch('/json/usuarios.json') //llama asincronamente a usuarios.json
+            .then(response => response.json())
+            .then(usuariosFetch => {
+                for(e in usuariosFetch){ //itera el array en el json
+                    usuarios.push(usuariosFetch[e]) //pushea los elementos en usuarios
+                }
+            })
+    }
+    catch{
+        error => {
+            Swal.fire({//en caso de error tira un alerta
+                icon: 'error',
+                title: 'error con el servidor',
+                text: `No se pudo conectar al servidor`
+            })
+        }
+    }
+}
+
+    llamarUsuarios();// llamada a la funcion asincrona.

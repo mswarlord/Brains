@@ -8,14 +8,12 @@
 /*----------SECCION ELEMENTOS ----------*/
 @import 'components/neon';
 @import 'components/nav';
-/*----------SECCION HTMLs ----------*/
+/*----------SECCION VIEWS ----------*/
 @import 'views/instrucciones';
 @import 'views/puzzles';
 @import 'views/slots';
 @import 'views/sesion';
-
-
-
+@import 'views/antesala';
 
 #instrucciones{
     margin: 1em 3em 1em 3em;
