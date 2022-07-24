@@ -13,16 +13,8 @@
 @import 'views/puzzles';
 @import 'views/slots';
 @import 'views/sesion';
-@import 'views/antesala';
 
-#instrucciones{
-    margin: 1em 3em 1em 3em;
-    font-family: 'Kdam Thmor Pro', sans-serif;
-    color: $color-texto;
-    background-color: $color-container-background;
-    border-radius: 1em;
-    padding: 1em 1em 0.5em 1em;
-}
+
 /* ---------- LOADER ---------- */
 
 .loader {

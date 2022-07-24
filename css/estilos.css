@@ -153,8 +153,41 @@ nav ul a:active {
   padding: 2em;
   border-radius: 1em;
   color: #fde7f8;
-  font-size: 2em;
+  font-size: 1.5em;
   font-family: 'Caveat', cursive; }
+
+#simbologia li {
+  display: flex;
+  margin: 1em 0 1em 0; }
+  #simbologia li .simbolo {
+    border-radius: 100%;
+    width: 55px;
+    height: 55px;
+    margin-right: 1em; }
+    #simbologia li .simbolo--2 {
+      margin-right: 1em;
+      border-radius: 0.5em;
+      height: 55px; }
+  #simbologia li .ejemplo {
+    border-radius: 0.5em;
+    justify-items: center; }
+
+#simbologia .centrado {
+  justify-content: center;
+  position: relative; }
+  #simbologia .centrado #ejemploMensaje {
+    right: 10em;
+    box-shadow: -0.3em -0.3em 1rem 0.1em rgba(0, 0, 0, 0.15);
+    top: 6.7em;
+    position: absolute;
+    font-size: 0.7em;
+    color: black;
+    border-radius: 8px;
+    height: auto;
+    width: 8em;
+    text-align: center;
+    padding: 0.7em 1em 0.7em 1em;
+    background-color: aliceblue; }
 
 #juego {
   display: flex;
@@ -365,72 +398,6 @@ nav ul a:active {
   margin: 1em 2em 1em 2em; }
   #avatar img {
     height: 100%; }
-
-#contenedorMapas {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1em;
-  column-gap: 1.5em;
-  justify-items: center; }
-
-#antesala {
-  width: 100%;
-  display: flex;
-  flex-direction: column; }
-
-#contenedorBienvenida {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-
-.contenedorMapa {
-  background: linear-gradient(235deg, #292929 0%, #383838 47%, #4f4f4f 100%);
-  height: auto;
-  width: 250px;
-  overflow: hidden;
-  color: aliceblue;
-  position: relative;
-  transition: 0.3s;
-  border: 0px;
-  box-shadow: 0.4em 0.2em 1em #11111188; }
-  .contenedorMapa:hover {
-    margin-top: 0;
-    background: linear-gradient(235deg, #222222 0%, #333333 47%, #444444 100%);
-    box-shadow: -0.4em -0.2em 1em #11111188; }
-  .contenedorMapa img {
-    width: 100%;
-    height: auto;
-    opacity: 40%;
-    transition: 0.3s; }
-    .contenedorMapa img:hover {
-      opacity: 100%; }
-
-/* 
-.efectoTyping{
-    display: block;
-    font-family:'Courier New', Courier, monospace;
-    white-space: nowrap;
-    border-right: 3px solid;
-    width: 12ch; //numero de caracteres que tiene el mensaje
-    animation: typing 2s steps(12), blink 0.4s infinite step-end alternate;
-    overflow: hidden;
-}
-
-@keyframes typing {
-    from { width: 0}
-}
-
-@keyframes blink {
-    50% { border-color: transparent;}
-} */
-#instrucciones {
-  margin: 1em 3em 1em 3em;
-  font-family: 'Kdam Thmor Pro', sans-serif;
-  color: #fde7f8;
-  background-color: #d14ea5cc;
-  border-radius: 1em;
-  padding: 1em 1em 0.5em 1em; }
 
 /* ---------- LOADER ---------- */
 .loader {
