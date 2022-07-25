@@ -18,6 +18,7 @@ let mensajeX;           //guarda un mensaje aleatorio.
 //*************************************************************************************************************************
 
 const mapaSeleccionado = document.getElementById("mapaSeleccionado");
+const btnReset = document.getElementById('btnReset'); //boton para limpiar el mapa
 const btnSiguiente = document.getElementById('btnSiguiente');
 const btnAnterior = document.getElementById("btnAnterior");
 const divFicha = document.getElementById("divFichas"); // Obtiene el nodo <DIV> donde se van a agregar los nuevos elementos -
@@ -388,6 +389,8 @@ const limpiarMapa = () => { //LIMPIA LOS SLOTS DEL MAPA ANTERIOR
         }
     }
 }
+
+btnReset.addEventListener('click', limpiarMapa);
 
 
 const actualizarEncabezado = () => { //MODIFICA EL ENCABEZADO SEGUN EL MAPA

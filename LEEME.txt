@@ -6,4 +6,3 @@ TAREAS PENDIENTES:
     2: crear una pagina de antesala al puzzle que permita llamar de forma grafica al mapa requerido
     3: guardar los datos de los desafios completados en el usuario logueado.
     4: crear una animacion cuando el usuario complete un desafio correctamente. 
-    5: hacer las primeras revisiones del codigo y proceder a la limpieza, quitar codigo basura y sin uso. --EN PROCESO
