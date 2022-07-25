@@ -2,11 +2,9 @@
 @import 'base/reset';
 @import 'utilities/mixins';
 /*----------SECCION LAYOUT ----------*/
-
 @import 'layout/main';
 @import 'layout/footer'; 
 /*----------SECCION ELEMENTOS ----------*/
-@import 'components/neon';
 @import 'components/nav';
 /*----------SECCION VIEWS ----------*/
 @import 'views/instrucciones';
@@ -14,48 +12,6 @@
 @import 'views/slots';
 @import 'views/sesion';
 
-
-/* ---------- LOADER ---------- */
-
-.loader {
-    width: 96px;
-    box-sizing: content-box;
-    height: 48px;
-    background: #6e972c;
-    border-color: #bfe0a0;
-    border-style: solid;
-    border-width: 2px 2px 50px 2px;
-    border-radius: 100%;
-    position: relative;
-    animation: 3s yinYang linear infinite;
-  }
-  .loader:before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    background: #6e972c;
-    border: 18px solid #bfe0a0;
-    border-radius: 100%;
-    width: 12px;
-    height: 12px;
-    box-sizing: content-box;
-  }
-  .loader:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background: #bfe0a0;
-    border: 18px solid #6e972c;
-    border-radius: 100%;
-    width: 12px;
-    height: 12px;
-    box-sizing: content-box;
-  }
-  @keyframes yinYang {
-    100%{transform: rotate(360deg)}
-}
 #instrucciones {
   margin: 1em 3em 1em 3em;
   font-family: 'Kdam Thmor Pro', sans-serif;

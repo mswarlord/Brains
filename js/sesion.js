@@ -97,10 +97,11 @@ let inicioSesion = () => {//FUNCION PARA INICIAR SESION
                 },1000)
         }
 
-            Swal.fire({
+        Swal.fire({
             icon: 'error',
             title: 'Datos de usuario incorrectos',
             text: `Corrobore los datos ingresados. ${3 - inicioError} intento/s restante/s`,
+            timer: 1500
         })
     }
 }
