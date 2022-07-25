@@ -496,7 +496,9 @@ const mapaCompletado = () => { //funcion llamada cuando se complet el desafío
         icon: 'success',
         title: '¡DESAFÍO COMPLETADO!',
         text: 'Felicitaciones!!! puedes pasar al siguiente desafío',
-        footer: ''
+        footer: '',
+        showConfirmButton: false,
+        timer: 1500
     })
     mostrarBtnSiguiente();
 }

@@ -56,41 +56,11 @@
   @keyframes yinYang {
     100%{transform: rotate(360deg)}
 }
-/* ---------- FIN LOADER ---------- */  
-
-//FUENTES para la WEBAPP
-    /* FUENTES PRINCIPALES 
-    font-family: 'Orbitron', sans-serif;
-    font-family: 'Shadows Into Light', cursive;
-    font-family: 'Special Elite', cursive;
-    font-family: 'Stick No Bills', sans-serif;
-    font-family: 'Press Start 2P', cursive;
-*/
-
-/* SECUNDARIAS
-    font-family: 'Acme', sans-serif;
-    font-family: 'Bangers', cursive;
-    font-family: 'Bebas Neue', cursive;
-    font-family: 'Caveat', cursive;
-    font-family: 'Fascinate', cursive;
-    font-family: 'Indie Flower', cursive;
-    font-family: 'Kdam Thmor Pro', sans-serif;
-    font-family: 'Mali', cursive;
-    font-family: 'Merriweather', serif;
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Noto Serif JP', serif;
-    font-family: 'Oleo Script', cursive;
-    font-family: 'Orbitron', sans-serif;
-    font-family: 'Permanent Marker', cursive;
-    font-family: 'Potta One', cursive;
-    font-family: 'Press Start 2P', cursive;
-    font-family: 'PT Mono', monospace;
-    font-family: 'Rubik Moonrocks', cursive;
-    font-family: 'Russo One', sans-serif;
-    font-family: 'Sacramento', cursive;
-    font-family: 'Shadows Into Light', cursive;
-    font-family: 'Source Code Pro', monospace;
-    font-family: 'Special Elite', cursive;
-    font-family: 'Stick No Bills', sans-serif;
-    font-family: 'Yellowtail', cursive;
-*/
+#instrucciones {
+  margin: 1em 3em 1em 3em;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+  color: #fde7f8;
+  background-color: #d14ea5cc;
+  border-radius: 1em;
+  padding: 1em 1em 0.5em 1em; }
+/* ---------- FIN LOADER ---------- */
