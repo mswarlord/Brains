@@ -126,8 +126,12 @@ nav ul a:active {
   margin-bottom: 2em; }
 
 .ficha {
+  width: 200px;
+  height: 200px;
   background-color: #111;
   z-index: 999; }
+  .ficha img {
+    width: 100%; }
   .ficha img:hover {
     z-index: 1;
     visibility: 90%;

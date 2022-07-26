@@ -21,8 +21,13 @@
     margin-bottom: 2em;
 }
 .ficha{
+    width: 200px;
+    height: 200px;
     background-color: #111;
     z-index: 999;
+    & img{
+        width: 100%;
+    }
     & img:hover{
         z-index: 1;
         visibility: 90%;

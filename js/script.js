@@ -292,7 +292,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
         switch(true){ //compara todos los casos y acciona el que devuelva TRUE
             case fichaSeleccionada === 0:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha1" src="../assets/img/fichas/ficha1.png">`; //coloca la imagen de la ficha en el slot
+                a.innerHTML = `<img id="imgFicha1" src="../assets/img/fichas/ficha1.jpg">`; //coloca la imagen de la ficha en el slot
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada();//evita conflictos al seleccionar una ficha en un nuevo mapa
                 fichaSeleccionada = -1; //deselecciona la ficha seleccionada previamente
@@ -300,7 +300,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
                 break;
             case fichaSeleccionada === 1:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha2" src="../assets/img/fichas/ficha2.png">`;
+                a.innerHTML = `<img id="imgFicha2" src="../assets/img/fichas/ficha2.jpg">`;
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada();
                 fichaSeleccionada = -1;
@@ -308,7 +308,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
                 break;
             case fichaSeleccionada === 2:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha3" src="../assets/img/fichas/ficha3.png">`;
+                a.innerHTML = `<img id="imgFicha3" src="../assets/img/fichas/ficha3.jpg">`;
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada();
                 fichaSeleccionada = -1;
@@ -316,7 +316,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
                 break;
             case fichaSeleccionada === 3:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha4" src="../assets/img/fichas/ficha4.png">`;
+                a.innerHTML = `<img id="imgFicha4" src="../assets/img/fichas/ficha4.jpg">`;
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
@@ -324,7 +324,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
                 break;
             case fichaSeleccionada === 4:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha5" src="../assets/img/fichas/ficha5.png">`;
+                a.innerHTML = `<img id="imgFicha5" src="../assets/img/fichas/ficha5.jpg">`;
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
@@ -332,7 +332,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
                 break;
             case fichaSeleccionada === 5:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha6" src="../assets/img/fichas/ficha6.png">`;
+                a.innerHTML = `<img id="imgFicha6" src="../assets/img/fichas/ficha6.jpg">`;
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
@@ -340,7 +340,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
                 break;
             case fichaSeleccionada === 6:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha7" src="../assets/img/fichas/ficha7.png">`;
+                a.innerHTML = `<img id="imgFicha7" src="../assets/img/fichas/ficha7.jpg">`;
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
@@ -465,7 +465,7 @@ for (let divFichaN of fichas) {//Itera el array fichas, con for...of.
     let div = document.createElement("div");//Crea un nodo <div> en cada iteración. 
     div.id = `ficha${divFichaN.id + 1}`;//le asigno al nuevo div el ID ficha"N", donde "N" es el numero de ficha.
     div.className = `ficha`; //le asigno a cada DIV la clase ficha.
-    div.innerHTML = `<img src="../assets/img/fichas/ficha${divFichaN.id +1}.png" alt="">` //asigna a cada nodo la etiqueta IMG con el valor correspondiente al elemento de la iteración actual del array fichas
+    div.innerHTML = `<img src="../assets/img/fichas/ficha${divFichaN.id +1}.jpg" alt="">` //asigna a cada nodo la etiqueta IMG con el valor correspondiente al elemento de la iteración actual del array fichas
     divFicha.appendChild(div); //Se inserta el nuevo nodo DIV al padre en cada ciclo
 }
 
