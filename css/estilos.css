@@ -91,21 +91,24 @@ nav ul a:active {
     justify-items: center; }
 
 #simbologia .centrado {
-  justify-content: center;
+  margin: auto;
+  width: min-content;
   position: relative; }
   #simbologia .centrado #ejemploMensaje {
-    right: 10em;
-    box-shadow: -0.3em -0.3em 1rem 0.1em rgba(0, 0, 0, 0.15);
+    right: 0.5em;
+    -webkit-box-shadow: -3px -3px 15px 0px #e866c1;
+    -moz-box-shadow: -3px -3px 15px 0px #e866c1;
+    box-shadow: -3px -3px 15px 0px #e866c1;
     top: 6.7em;
     position: absolute;
-    font-size: 0.7em;
+    font-size: 0.8em;
     color: black;
     border-radius: 8px;
     height: auto;
-    width: 8em;
+    width: 6em;
     text-align: center;
-    padding: 0.7em 1em 0.7em 1em;
-    background-color: aliceblue; }
+    padding: 0.3em 0.5em 0.3em 0.5em;
+    background-color: #e2f0e2; }
 
 #juego {
   display: flex;
@@ -225,7 +228,7 @@ nav ul a:active {
   top: 60px; }
 
 #slot7 {
-  left: 143px;
+  left: 141px;
   top: 60px; }
 
 #slot8 {

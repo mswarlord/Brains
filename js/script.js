@@ -112,7 +112,6 @@ class mapa { //genera la clase constructora de objetos mapa
         this.nivel = nivel + 1;
         this.dificultad = "";
         this.img = img;
-        this.slotsDelMapa = 0;
         this.mapaCompleto = false;   //estado que indica si el mapa esta completo.
         this.mapaHabilitado = false; //estado que indica si el mapa esta habilitado para jugar.
         this.seleccionado = false;   //estado que indica si es el mapa que se esta jugando.
@@ -139,7 +138,7 @@ class mapa { //genera la clase constructora de objetos mapa
     }
 }
 
-const {mapaHabilitado, mapaCompleto, slotsDelMapa} = mapas; //desestructura los atributos mas usado en mapas
+const {mapaHabilitado, mapaCompleto} = mapas; //desestructura los atributos mas usado en mapas
 
 //*************************************************************************************************************************
 //********************************************************FUNCIONES********************************************************
@@ -215,6 +214,51 @@ let mostrarSlots = (mapaActual) => { //funcion que muestra todos los Slots de la
             slots[7].elementoDOM.style.display = "";
             slots[8].elementoDOM.style.display = "";
             break;
+        case mapaActual === 13:
+            slots[3].elementoDOM.style.display = "";
+            slots[4].elementoDOM.style.display = "";
+            slots[5].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 14:
+            slots[0].elementoDOM.style.display = "";
+            slots[7].elementoDOM.style.display = "";
+            slots[8].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 15:
+            slots[3].elementoDOM.style.display = "";
+            slots[4].elementoDOM.style.display = "";
+            slots[6].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 16:
+            slots[0].elementoDOM.style.display = "";
+            slots[7].elementoDOM.style.display = "";
+            slots[8].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 17:
+            slots[0].elementoDOM.style.display = "";
+            slots[7].elementoDOM.style.display = "";
+            slots[8].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 18:
+            slots[3].elementoDOM.style.display = "";
+            slots[5].elementoDOM.style.display = "";
+            slots[6].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 19:
+            slots[0].elementoDOM.style.display = "";
+            slots[7].elementoDOM.style.display = "";
+            slots[8].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 20:
+            slots[3].elementoDOM.style.display = "";
+            slots[4].elementoDOM.style.display = "";
+            slots[5].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 21:
+            slots[0].elementoDOM.style.display = "";
+            slots[7].elementoDOM.style.display = "";
+            slots[8].elementoDOM.style.display = "";
+            break;
     }
 }
 
@@ -238,24 +282,16 @@ for(i=0;i<7;i++){ //iteración para la creación de las fichas
 
 for(i=0;i<50;i++){ //itera 50 veces
     mapas[i]=new mapa(i,`assets/img/nivel${i+1}.jpg`); //cada iteración crea un objeto mapa dentro del array mapas
-    if(mapas[i].nivel < 3) { 
+    if(mapas[i].nivel <= 11) { //y le asigna la dificultad acorde el nivel.
         mapas[i].establecerDificultad('Calentamiento');
-        mapas[i].slotsDelMapa = 1; //si el nivel del mapa es < a 3 le coloca 1 slot
-    }else if(mapas[i].nivel < 11) {
-        mapas[i].establecerDificultad('Calentamiento');
-        mapas[i].slotsDelMapa = 2; //si el nivel del mapa es < a 11 le coloca 2 slots
-    }else if(mapas[i].nivel < 21){
+    }else if(mapas[i].nivel <= 21){
         mapas[i].establecerDificultad('Jardineando');
-        mapas[i].slotsDelMapa = 3; //si el nivel del mapa es < a 21 le coloca 3 slots
-    }else if(mapas[i].nivel < 31){
+    }else if(mapas[i].nivel <= 31){
         mapas[i].establecerDificultad('Terreno Peligroso');
-        mapas[i].slotsDelMapa = 4; //si el nivel del mapa es < a 31 le coloca 4 slots
-    }else if(mapas[i].nivel < 41){
+    }else if(mapas[i].nivel <= 41){
         mapas[i].establecerDificultad('Sólo para expertos');
-        mapas[i].slotsDelMapa = 5; //si el nivel del mapa es < a 41 le coloca 5 slots
     }else{
         mapas[i].establecerDificultad('El desafío definitivo');
-        mapas[i].slotsDelMapa = 6; //si el nivel del mapa es >= a 41 le coloca 6 slots
     }
 }
 
@@ -403,7 +439,7 @@ const actualizarEncabezado = () => { //MODIFICA EL ENCABEZADO SEGUN EL MAPA
 let mapaSiguiente = () => {
     maxDesafioCompleto = localStorage.getItem('maxDesafioCompleto');
     if(mapas[mapaActual-1].mapaCompleto || maxDesafioCompleto >= mapaActual){
-        if(mapaActual>11) {
+        if(mapaActual>19) {
             Swal.fire({
                 icon: 'error',
                 title: 'MAPA NO DISPONIBLE',
@@ -510,7 +546,9 @@ const msjIncompleto = () => { //funcion llamada cuando se presiona el boton corr
     mensajeAleatorio();
     Toastify({
         text: `${mensajeX}`,
-        duration: 3000    
+        duration: 3000,
+        gravity: `top`, 
+        position: `left`,   
     }).showToast();
 }
 
@@ -605,8 +643,98 @@ const corroborarVictoria = () => {
             }
             break;
         case mapaActual === 12:
+            if (slots[0].fichaColocada.id === 5 && slots[0].fichaColocada.posicion === 3 &&
+                slots[7].fichaColocada.id === 6 && slots[7].fichaColocada.posicion === 3 && 
+                slots[8].fichaColocada.id === 2 && slots[8].fichaColocada.posicion === 2){
+                mapas[11].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 13:
+            if (slots[3].fichaColocada.id === 3 && slots[3].fichaColocada.posicion === 3 &&
+                slots[4].fichaColocada.id === 6 && slots[4].fichaColocada.posicion === 4 && 
+                slots[5].fichaColocada.id === 1 && slots[5].fichaColocada.posicion === 3){
+                mapas[12].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 14:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 1 && 
+                slots[7].fichaColocada.id === 5 && slots[7].fichaColocada.posicion === 1 && 
+                slots[8].fichaColocada.id === 4 && slots[8].fichaColocada.posicion === 3){
+                mapas[13].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 15:
+            if (slots[3].fichaColocada.id === 1 && slots[3].fichaColocada.posicion === 2 && 
+                slots[4].fichaColocada.id === 5 && slots[4].fichaColocada.posicion === 3 && 
+                slots[6].fichaColocada.id === 6 && slots[6].fichaColocada.posicion === 1){
+                mapas[14].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 16:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 3 && 
+                slots[7].fichaColocada.id === 5 && slots[7].fichaColocada.posicion === 3 && 
+                slots[8].fichaColocada.id === 0 && slots[8].fichaColocada.posicion === 3){
+                mapas[15].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 17:
+            if (slots[0].fichaColocada.id === 3 && slots[0].fichaColocada.posicion === 4 && 
+                slots[7].fichaColocada.id === 5 && slots[7].fichaColocada.posicion === 4 && 
+                slots[8].fichaColocada.id === 6 && slots[8].fichaColocada.posicion === 3){
+                mapas[16].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 18:
+            if (slots[3].fichaColocada.id === 4 && slots[3].fichaColocada.posicion === 2 && 
+                slots[5].fichaColocada.id === 0 && slots[5].fichaColocada.posicion === 1 && 
+                slots[6].fichaColocada.id === 3 && slots[6].fichaColocada.posicion === 3){
+                mapas[17].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 19:
+            if (slots[0].fichaColocada.id === 0 && slots[0].fichaColocada.posicion === 2 && 
+                slots[7].fichaColocada.id === 6 && slots[7].fichaColocada.posicion === 3 && 
+                slots[8].fichaColocada.id === 3 && slots[8].fichaColocada.posicion === 4){
+                mapas[18].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 20:
+            if (slots[3].fichaColocada.id === 5 && slots[3].fichaColocada.posicion === 1 && 
+                slots[4].fichaColocada.id === 1 && slots[4].fichaColocada.posicion === 3 && 
+                slots[5].fichaColocada.id === 2 && slots[5].fichaColocada.posicion === 1){
+                mapas[19].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 21:
             if (slots[0].fichaColocada.id === 5 && slots[0].fichaColocada.posicion === 3 && slots[7].fichaColocada.id === 6 && slots[7].fichaColocada.posicion === 3 && slots[8].fichaColocada.id === 2 && slots[8].fichaColocada.posicion === 2){
-                mapas[10].completarMapa();
+                mapas[20].completarMapa();
                 mapaCompletado();
             }else{
                 msjIncompleto();
