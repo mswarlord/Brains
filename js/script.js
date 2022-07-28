@@ -817,3 +817,16 @@ const mensajeAleatorio = async () => {
 
 mensajeAleatorio();
 btnInformacion.addEventListener("click",llamarInfo);
+
+for (e in ficha) {
+    ficha[e].firstChild.draggable = true;
+
+    ficha[e].firstChild.addEventListener('dragstart', () => {
+        Toastify({
+            text: `La funcion de Arrastre aun no ha sido habilitada. Haz click en la pieza para seleccionarla`,
+            duration: 2000,
+            gravity: `bottom`, 
+            position: `center`
+        }).showToast();
+    });
+}
