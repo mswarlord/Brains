@@ -477,6 +477,7 @@ let mapaAnterior = () => {
         mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
         mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
         mapas[mapaActual].seleccionado = false; //indica al mapa anterior como no seleccionado.
+        mostrarBtnSiguiente();
         ocultarSlots(); //oculta todos los slots
         mostrarSlots(mapaActual); //muestra los slots necesarios para el mapa siguiente
         limpiarMapa();
