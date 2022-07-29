@@ -1,28 +1,7 @@
 //*************************************************************************************************************************
-//************************************************************ TAREAS *****************************************************
-//*************************************************************************************************************************
-
-/* 
-    1: que el titulo y la dificultad cambie en el DOM en cada nivel. -- LISTO
-    2: Modificar los botones de siguiente. Listo
-    3: borrado
-    4: crear un input que permita seleccionar el mapa de forma numerica o por medio de una barra.
-    5: crear una pagina de antesala al puzzle que permita llamar de forma grafica al mapa requerido
-    6: guardar los datos de los desafios completados en el usuario logueado.
-    7: colocar un pop up cuando el usuario presiona el boton de corroborar y el mapa no esta correctamente resuelto. -- LISTO
-    8: crear una animacion cuando el usuario complete un desafio correctamente. 
-    9: hacer las primeras revisiones del codigo y proceder a la limpieza, quitar codigo basura y sin uso. EN PROCESO
-    10: colocar animaciones al girar las fichas y colocarlas.
-    11: Intentar que entren las fichas en la pantalla - HECHO
-    12: ocultar el boton de siguiente mientras el desafio actual no haya sido completado.
-    13: guardar el registro del usuario en storage -- HECHO
-    14: verificar en la pagina sesion si hay datos de inicio de sesion guardados y que ingrese automaticamente a dicha cuenta
-
-*/
-
-//*************************************************************************************************************************
 //************************************************************ VARIABLES **************************************************
 //*************************************************************************************************************************
+
 let ficha = [];         // array que guarda los nodos ficha.
 let mapaActual = 1;     // Indica cual es el mapa seleccionado.
 const fichas = [];      // guarda el array de objetos ficha.
@@ -30,26 +9,38 @@ const mapas = [];       // genera el array mapas.
 let fichaSeleccionada;  // indica la ficha seleccionada.
 let fichaColocada;      // indica la ficha colocada actualmente.
 let slots = [];         // array con los slots del DOM y sus estados.
-let maxDesafioCompleto; // indica el maximo desafio superado.
+let maxDesafioCompleto = 0; // indica el maximo desafio superado.
 let imgFicha;           // Variable que indica la imagen que se debe girar 
+let mensajeX;           //guarda un mensaje aleatorio.
 
 //*************************************************************************************************************************
 //************************************************************ DOM ********************************************************
 //*************************************************************************************************************************
 
 const mapaSeleccionado = document.getElementById("mapaSeleccionado");
+const btnReset = document.getElementById('btnReset'); //boton para limpiar el mapa
 const btnSiguiente = document.getElementById('btnSiguiente');
 const btnAnterior = document.getElementById("btnAnterior");
 const divFicha = document.getElementById("divFichas"); // Obtiene el nodo <DIV> donde se van a agregar los nuevos elementos -
 const nroDesafio = document.getElementById("nroDesafio");
 const dificultadMapaActual = document.getElementById("dificultadMapaActual");
 const btnInformacion = document.getElementById("btnInformacion");
+const iniciarJuego = document.getElementById("iniciarJuego");
+const CORROBORAR = document.getElementById("btnCorroborar");
+
+//*************************************************************************************************************************
+//************************************************************ RESETS *****************************************************
+//*************************************************************************************************************************
+
+if (!localStorage.getItem('maxDesafioCompleto')){
+    localStorage.setItem('maxDesafioCompleto',0);
+}
 
 //*************************************************************************************************************************
 //*************************************************************** CLASES **************************************************
 //*************************************************************************************************************************
 
-//CLASE SLOT ***************************************************************************
+//CLASE SLOT 
 class Slot{//Se crea la clase Slot que establece el elemento del DOM y su estado.
     constructor(elementoDOM) {
         this.elementoDOM = elementoDOM;
@@ -78,7 +69,7 @@ class Slot{//Se crea la clase Slot que establece el elemento del DOM y su estado
     }
 }
 
-//CLASE FICHA **************************************************************************
+//CLASE FICHA 
 class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y los metodos para cambiar la posicion de las mismas
     constructor(id) {
         this.id = id;
@@ -115,13 +106,12 @@ class Ficha{//Se crea la clase Ficha donde se establece la posicion inicial y lo
     }
 }
 
-//CLASE MAPA ***************************************************************************
+//CLASE MAPA 
 class mapa { //genera la clase constructora de objetos mapa
     constructor(nivel, img){
         this.nivel = nivel + 1;
         this.dificultad = "";
         this.img = img;
-        this.slotsDelMapa = 0;
         this.mapaCompleto = false;   //estado que indica si el mapa esta completo.
         this.mapaHabilitado = false; //estado que indica si el mapa esta habilitado para jugar.
         this.seleccionado = false;   //estado que indica si es el mapa que se esta jugando.
@@ -148,17 +138,30 @@ class mapa { //genera la clase constructora de objetos mapa
     }
 }
 
-const {mapaHabilitado, mapaCompleto, slotsDelMapa} = mapas; //desestructura los atributos mas usado en mapas
+const {mapaHabilitado, mapaCompleto} = mapas; //desestructura los atributos mas usado en mapas
 
 //*************************************************************************************************************************
 //********************************************************FUNCIONES********************************************************
 //*************************************************************************************************************************
+
+//Oculta o revela el boton de mapa siguiente si el mapa actual aun no fue superado
+const mostrarBtnSiguiente = () => {
+    if(localStorage.getItem('maxDesafioCompleto') < mapaActual){
+        btnSiguiente.style.visibility = "hidden"
+    }else{
+        btnSiguiente.style.visibility = ""
+    }
+}
+
+mostrarBtnSiguiente();
+
 let anguloRotacion = (e) => {
     imgFicha.style.webkitTransform = `rotate(${e}deg)`; 
     imgFicha.style.mozTransform = `rotate(${e}deg)`; 
     imgFicha.style.msTransform = `rotate(${e}deg)`; 
     imgFicha.style.oTransform = `rotate(${e}deg)`; 
     imgFicha.style.transform = `rotate(${e}deg)`; 
+    imgFicha.style.transition = `0.2s`;
 }
 
 let mostrarSlots = (mapaActual) => { //funcion que muestra todos los Slots de la zona de juego
@@ -211,6 +214,51 @@ let mostrarSlots = (mapaActual) => { //funcion que muestra todos los Slots de la
             slots[7].elementoDOM.style.display = "";
             slots[8].elementoDOM.style.display = "";
             break;
+        case mapaActual === 13:
+            slots[3].elementoDOM.style.display = "";
+            slots[4].elementoDOM.style.display = "";
+            slots[5].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 14:
+            slots[0].elementoDOM.style.display = "";
+            slots[7].elementoDOM.style.display = "";
+            slots[8].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 15:
+            slots[3].elementoDOM.style.display = "";
+            slots[4].elementoDOM.style.display = "";
+            slots[6].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 16:
+            slots[0].elementoDOM.style.display = "";
+            slots[7].elementoDOM.style.display = "";
+            slots[8].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 17:
+            slots[0].elementoDOM.style.display = "";
+            slots[7].elementoDOM.style.display = "";
+            slots[8].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 18:
+            slots[3].elementoDOM.style.display = "";
+            slots[5].elementoDOM.style.display = "";
+            slots[6].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 19:
+            slots[0].elementoDOM.style.display = "";
+            slots[7].elementoDOM.style.display = "";
+            slots[8].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 20:
+            slots[3].elementoDOM.style.display = "";
+            slots[4].elementoDOM.style.display = "";
+            slots[5].elementoDOM.style.display = "";
+            break;
+        case mapaActual === 21:
+            slots[0].elementoDOM.style.display = "";
+            slots[7].elementoDOM.style.display = "";
+            slots[8].elementoDOM.style.display = "";
+            break;
     }
 }
 
@@ -234,24 +282,16 @@ for(i=0;i<7;i++){ //iteración para la creación de las fichas
 
 for(i=0;i<50;i++){ //itera 50 veces
     mapas[i]=new mapa(i,`assets/img/nivel${i+1}.jpg`); //cada iteración crea un objeto mapa dentro del array mapas
-    if(mapas[i].nivel < 3) { 
+    if(mapas[i].nivel <= 11) { //y le asigna la dificultad acorde el nivel.
         mapas[i].establecerDificultad('Calentamiento');
-        mapas[i].slotsDelMapa = 1; //si el nivel del mapa es < a 3 le coloca 1 slot
-    }else if(mapas[i].nivel < 11) {
-        mapas[i].establecerDificultad('Calentamiento');
-        mapas[i].slotsDelMapa = 2; //si el nivel del mapa es < a 11 le coloca 2 slots
-    }else if(mapas[i].nivel < 21){
+    }else if(mapas[i].nivel <= 21){
         mapas[i].establecerDificultad('Jardineando');
-        mapas[i].slotsDelMapa = 3; //si el nivel del mapa es < a 21 le coloca 3 slots
-    }else if(mapas[i].nivel < 31){
+    }else if(mapas[i].nivel <= 31){
         mapas[i].establecerDificultad('Terreno Peligroso');
-        mapas[i].slotsDelMapa = 4; //si el nivel del mapa es < a 31 le coloca 4 slots
-    }else if(mapas[i].nivel < 41){
+    }else if(mapas[i].nivel <= 41){
         mapas[i].establecerDificultad('Sólo para expertos');
-        mapas[i].slotsDelMapa = 5; //si el nivel del mapa es < a 41 le coloca 5 slots
     }else{
         mapas[i].establecerDificultad('El desafío definitivo');
-        mapas[i].slotsDelMapa = 6; //si el nivel del mapa es >= a 41 le coloca 6 slots
     }
 }
 
@@ -278,11 +318,9 @@ const clickSlots = (a,b) => {   //toma como parametros el nodo del slot clickead
 }
 
 const mostrarFicha = (a) => {
-if(!!a.innerHTML.slice(17,18)){
-    ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "";
-}else{
-
-}
+    if(!!a.innerHTML.slice(17,18)){
+        ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "";
+    }
 }
 
 let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
@@ -290,7 +328,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
         switch(true){ //compara todos los casos y acciona el que devuelva TRUE
             case fichaSeleccionada === 0:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha1" src="../assets/img/fichas/ficha1.png">`; //coloca la imagen de la ficha en el slot
+                a.innerHTML = `<img id="imgFicha1" src="../assets/img/fichas/ficha1.jpg">`; //coloca la imagen de la ficha en el slot
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada();//evita conflictos al seleccionar una ficha en un nuevo mapa
                 fichaSeleccionada = -1; //deselecciona la ficha seleccionada previamente
@@ -298,7 +336,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
                 break;
             case fichaSeleccionada === 1:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha2" src="../assets/img/fichas/ficha2.png">`;
+                a.innerHTML = `<img id="imgFicha2" src="../assets/img/fichas/ficha2.jpg">`;
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada();
                 fichaSeleccionada = -1;
@@ -306,7 +344,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
                 break;
             case fichaSeleccionada === 2:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha3" src="../assets/img/fichas/ficha3.png">`;
+                a.innerHTML = `<img id="imgFicha3" src="../assets/img/fichas/ficha3.jpg">`;
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada();
                 fichaSeleccionada = -1;
@@ -314,7 +352,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
                 break;
             case fichaSeleccionada === 3:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha4" src="../assets/img/fichas/ficha4.png">`;
+                a.innerHTML = `<img id="imgFicha4" src="../assets/img/fichas/ficha4.jpg">`;
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
@@ -322,7 +360,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
                 break;
             case fichaSeleccionada === 4:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha5" src="../assets/img/fichas/ficha5.png">`;
+                a.innerHTML = `<img id="imgFicha5" src="../assets/img/fichas/ficha5.jpg">`;
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
@@ -330,7 +368,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
                 break;
             case fichaSeleccionada === 5:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha6" src="../assets/img/fichas/ficha6.png">`;
+                a.innerHTML = `<img id="imgFicha6" src="../assets/img/fichas/ficha6.jpg">`;
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
@@ -338,7 +376,7 @@ let colocarFicha = (a) => { //funcion que se encarga de colocar la ficha
                 break;
             case fichaSeleccionada === 6:
                 mostrarFicha(a);
-                a.innerHTML = `<img id="imgFicha7" src="../assets/img/fichas/ficha7.png">`;
+                a.innerHTML = `<img id="imgFicha7" src="../assets/img/fichas/ficha7.jpg">`;
                 ficha[(a.innerHTML.slice(17,18)-1)].style.visibility = "hidden";
                 fichas[fichaSeleccionada].fichaSeleccionada(); 
                 fichaSeleccionada = -1;
@@ -362,13 +400,13 @@ let rotarFicha = (b) => { //toma como parametro el indice del slot que llama a l
         anguloRotacion(270);
         slots[b].fichaColocada.posicion = 4;
     }else if(slots[b].fichaColocada.posicion === 4) {
-        anguloRotacion(0);
+        anguloRotacion(360);
         slots[b].fichaColocada.posicion = 1;
     }
 }
 
 for(e in slots){  //itera los elementos del array slots
-    let i = e;    //crea una variable para meter en slots[i] -- averiguar ¿por que con e no lo toma? ¿mala sintaxis?
+    let i = e;
     slots[i].elementoDOM.addEventListener('click',function() {clickSlots(slots[i].elementoDOM, i)}); //genera en cada
     //iteración un evento click en cada slot, con la función colocar ficha, y ademas el slot que se está clickeando y el nodo como parámetro.
 } 
@@ -379,7 +417,7 @@ for(e in slots){  //itera los elementos del array slots
 mapas[0].seleccionado = true;
 slots[0].elementoDOM.style.display = ""; //muestra en el DOM el Slot con indice 0 del array
 
-const limpiarMapa = () => {
+const limpiarMapa = () => { //LIMPIA LOS SLOTS DEL MAPA ANTERIOR
     for(e in slots){
         slots[e].desocuparSlot();
         if(!!ficha[e]){        
@@ -388,8 +426,10 @@ const limpiarMapa = () => {
     }
 }
 
+btnReset.addEventListener('click', limpiarMapa);
 
-const actualizarEncabezado = () => {
+
+const actualizarEncabezado = () => { //MODIFICA EL ENCABEZADO SEGUN EL MAPA
     dificultadMapaActual.innerHTML = `${mapas[mapaActual].dificultad}`;
     nroDesafio.innerText = `${mapaActual}`;
 }
@@ -399,7 +439,7 @@ const actualizarEncabezado = () => {
 let mapaSiguiente = () => {
     maxDesafioCompleto = localStorage.getItem('maxDesafioCompleto');
     if(mapas[mapaActual-1].mapaCompleto || maxDesafioCompleto >= mapaActual){
-        if(mapaActual>11) {
+        if(mapaActual>19) {
             Swal.fire({
                 icon: 'error',
                 title: 'MAPA NO DISPONIBLE',
@@ -415,6 +455,7 @@ let mapaSiguiente = () => {
             mostrarSlots(mapaActual); //muestra los slots necesarios para el mapa siguiente
             limpiarMapa();
             actualizarEncabezado();
+            mostrarBtnSiguiente();
         }
     }else{
         Swal.fire({
@@ -426,7 +467,7 @@ let mapaSiguiente = () => {
     }
 }
 
-btnSiguiente.addEventListener('click',mapaSiguiente); //boton que pasa al mapa siguiente
+btnSiguiente.addEventListener('click',mapaSiguiente); //boton que pasa al siguiente mapa
 
 //MAPA ANTERIOR
 
@@ -436,6 +477,7 @@ let mapaAnterior = () => {
         mapaSeleccionado.src=`../assets/img/niveles/nivel${mapaActual}.png`;
         mapas[mapaActual-1].seleccionado = true; //indica al mapa actual como seleccionado.
         mapas[mapaActual].seleccionado = false; //indica al mapa anterior como no seleccionado.
+        mostrarBtnSiguiente();
         ocultarSlots(); //oculta todos los slots
         mostrarSlots(mapaActual); //muestra los slots necesarios para el mapa siguiente
         limpiarMapa();
@@ -449,6 +491,7 @@ let mapaAnterior = () => {
         })
     }
 }
+
 btnAnterior.addEventListener('click',mapaAnterior); //boton que pasa al mapa anterior
 
 //*********************************************************************************************************************************
@@ -459,7 +502,7 @@ for (let divFichaN of fichas) {//Itera el array fichas, con for...of.
     let div = document.createElement("div");//Crea un nodo <div> en cada iteración. 
     div.id = `ficha${divFichaN.id + 1}`;//le asigno al nuevo div el ID ficha"N", donde "N" es el numero de ficha.
     div.className = `ficha`; //le asigno a cada DIV la clase ficha.
-    div.innerHTML = `<img src="../assets/img/fichas/ficha${divFichaN.id +1}.png" alt="">` //asigna a cada nodo la etiqueta IMG con el valor correspondiente al elemento de la iteración actual del array fichas
+    div.innerHTML = `<img src="../assets/img/fichas/ficha${divFichaN.id +1}.jpg" alt="">` //asigna a cada nodo la etiqueta IMG con el valor correspondiente al elemento de la iteración actual del array fichas
     divFicha.appendChild(div); //Se inserta el nuevo nodo DIV al padre en cada ciclo
 }
 
@@ -483,31 +526,39 @@ let seleccionarFicha = e => {
 for(let e in ficha){
     ficha[e].addEventListener('click',function() {seleccionarFicha(e)});
 } 
+
 //**************************************************************************************************************************
 //****************************************************** CORROBORAR CONDICION DE VITORIA ************************************
 //**************************************************************************************************************************
 
-const CORROBORAR = document.getElementById("btnCorroborar");
-const msjCompletado = () => {
+const mapaCompletado = () => { //funcion llamada cuando se complet el desafío
     Swal.fire({
         icon: 'success',
         title: '¡DESAFÍO COMPLETADO!',
         text: 'Felicitaciones!!! puedes pasar al siguiente desafío',
-        footer: ''
+        footer: '',
+        showConfirmButton: false,
+        timer: 1500
     })
+    mostrarBtnSiguiente();
 }
-const msjIncompleto = () => {
+
+const msjIncompleto = () => { //funcion llamada cuando se presiona el boton corroborar y el mapa no esta correctamente completado
+    mensajeAleatorio();
     Toastify({
-        text: `¡Ups, algo anda mal!`,
-        duration: 3000    
+        text: `${mensajeX}`,
+        duration: 3000,
+        gravity: `top`, 
+        position: `left`,   
     }).showToast();
 }
+
 const corroborarVictoria = () => {
     switch(true){
         case mapaActual === 1:
             if (slots[0]?.fichaColocada?.id === 1 && slots[0].fichaColocada.posicion === 2){
                 mapas[0].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -515,7 +566,7 @@ const corroborarVictoria = () => {
         case mapaActual === 2:
             if (slots[0].fichaColocada.id === 4 && slots[0].fichaColocada.posicion === 2){
                 mapas[1].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -523,7 +574,7 @@ const corroborarVictoria = () => {
         case mapaActual === 3:
             if (slots[1].fichaColocada.id === 4 && slots[1].fichaColocada.posicion === 1 && slots[2].fichaColocada.id === 0 && slots[2].fichaColocada.posicion === 1){
                 mapas[2].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -531,7 +582,7 @@ const corroborarVictoria = () => {
         case mapaActual === 4:
             if (slots[1].fichaColocada.id === 0 && slots[1].fichaColocada.posicion === 1 && slots[2].fichaColocada.id === 5 && slots[2].fichaColocada.posicion === 4){
                 mapas[3].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -539,7 +590,7 @@ const corroborarVictoria = () => {
         case mapaActual === 5:
             if (slots[1].fichaColocada.id === 1 && slots[1].fichaColocada.posicion === 2 && slots[2].fichaColocada.id === 2 && slots[2].fichaColocada.posicion === 3){
                 mapas[4].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -547,7 +598,7 @@ const corroborarVictoria = () => {
         case mapaActual === 6:
             if (slots[1].fichaColocada.id === 5 && slots[1].fichaColocada.posicion === 4 && slots[2].fichaColocada.id === 4 && slots[2].fichaColocada.posicion === 2){
                 mapas[5].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -555,7 +606,7 @@ const corroborarVictoria = () => {
         case mapaActual === 7:
             if (slots[1].fichaColocada.id === 4 && slots[1].fichaColocada.posicion === 1 && slots[2].fichaColocada.id === 3 && slots[2].fichaColocada.posicion === 2){
                 mapas[6].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -563,7 +614,7 @@ const corroborarVictoria = () => {
         case mapaActual === 8:
             if (slots[1].fichaColocada.id === 3 && slots[1].fichaColocada.posicion === 3 && slots[2].fichaColocada.id === 5 && slots[2].fichaColocada.posicion === 2){
                 mapas[7].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -571,7 +622,7 @@ const corroborarVictoria = () => {
         case mapaActual === 9:
             if (slots[1].fichaColocada.id === 5 && slots[1].fichaColocada.posicion === 1 && slots[2].fichaColocada.id === 6 && slots[2].fichaColocada.posicion === 3){
                 mapas[8].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -579,7 +630,7 @@ const corroborarVictoria = () => {
         case mapaActual === 10:
             if (slots[1].fichaColocada.id === 1 && slots[1].fichaColocada.posicion === 2 && slots[2].fichaColocada.id === 6 && slots[2].fichaColocada.posicion === 2){
                 mapas[9].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -587,15 +638,105 @@ const corroborarVictoria = () => {
         case mapaActual === 11:
             if (slots[3].fichaColocada.id === 0 && slots[3].fichaColocada.posicion === 1 && slots[4].fichaColocada.id === 6 && slots[4].fichaColocada.posicion === 2 && slots[5].fichaColocada.id === 4 && slots[5].fichaColocada.posicion === 2){
                 mapas[10].completarMapa();
-                msjCompletado();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
             break;
         case mapaActual === 12:
+            if (slots[0].fichaColocada.id === 5 && slots[0].fichaColocada.posicion === 3 &&
+                slots[7].fichaColocada.id === 6 && slots[7].fichaColocada.posicion === 3 && 
+                slots[8].fichaColocada.id === 2 && slots[8].fichaColocada.posicion === 2){
+                mapas[11].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 13:
+            if (slots[3].fichaColocada.id === 3 && slots[3].fichaColocada.posicion === 3 &&
+                slots[4].fichaColocada.id === 6 && slots[4].fichaColocada.posicion === 4 && 
+                slots[5].fichaColocada.id === 1 && slots[5].fichaColocada.posicion === 3){
+                mapas[12].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 14:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 1 && 
+                slots[7].fichaColocada.id === 5 && slots[7].fichaColocada.posicion === 1 && 
+                slots[8].fichaColocada.id === 4 && slots[8].fichaColocada.posicion === 3){
+                mapas[13].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 15:
+            if (slots[3].fichaColocada.id === 1 && slots[3].fichaColocada.posicion === 2 && 
+                slots[4].fichaColocada.id === 5 && slots[4].fichaColocada.posicion === 3 && 
+                slots[6].fichaColocada.id === 6 && slots[6].fichaColocada.posicion === 1){
+                mapas[14].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 16:
+            if (slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 3 && 
+                slots[7].fichaColocada.id === 5 && slots[7].fichaColocada.posicion === 3 && 
+                slots[8].fichaColocada.id === 0 && slots[8].fichaColocada.posicion === 3){
+                mapas[15].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 17:
+            if (slots[0].fichaColocada.id === 3 && slots[0].fichaColocada.posicion === 4 && 
+                slots[7].fichaColocada.id === 5 && slots[7].fichaColocada.posicion === 4 && 
+                slots[8].fichaColocada.id === 6 && slots[8].fichaColocada.posicion === 3){
+                mapas[16].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 18:
+            if (slots[3].fichaColocada.id === 4 && slots[3].fichaColocada.posicion === 2 && 
+                slots[5].fichaColocada.id === 0 && slots[5].fichaColocada.posicion === 1 && 
+                slots[6].fichaColocada.id === 3 && slots[6].fichaColocada.posicion === 3){
+                mapas[17].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 19:
+            if (slots[0].fichaColocada.id === 0 && slots[0].fichaColocada.posicion === 2 && 
+                slots[7].fichaColocada.id === 6 && slots[7].fichaColocada.posicion === 3 && 
+                slots[8].fichaColocada.id === 3 && slots[8].fichaColocada.posicion === 4){
+                mapas[18].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 20:
+            if (slots[3].fichaColocada.id === 5 && slots[3].fichaColocada.posicion === 1 && 
+                slots[4].fichaColocada.id === 1 && slots[4].fichaColocada.posicion === 3 && 
+                slots[5].fichaColocada.id === 2 && slots[5].fichaColocada.posicion === 1){
+                mapas[19].completarMapa();
+                mapaCompletado();
+            }else{
+                msjIncompleto();
+            }
+            break;
+        case mapaActual === 21:
             if (slots[0].fichaColocada.id === 5 && slots[0].fichaColocada.posicion === 3 && slots[7].fichaColocada.id === 6 && slots[7].fichaColocada.posicion === 3 && slots[8].fichaColocada.id === 2 && slots[8].fichaColocada.posicion === 2){
-                mapas[10].completarMapa();
-                msjCompletado();
+                mapas[20].completarMapa();
+                mapaCompletado();
             }else{
                 msjIncompleto();
             }
@@ -652,4 +793,41 @@ let llamarInfo = () => {
     )
 }
 
-btnInformacion.addEventListener("click",llamarInfo)
+let nroMensajeAleatorio = () => {
+    return Math.floor(Math.random() * 10);
+}
+
+const mensajeAleatorio = async () => {
+    try{
+        fetch('/json/mensajes.json') //llama asincronamente a mensajes.json
+            .then(response => response.json())
+            .then(mensajeAleatorio => {
+                    mensajeX = `${mensajeAleatorio[nroMensajeAleatorio()]}` //pushea los elementos en usuarios
+            })
+    }
+    catch{
+        error => {
+            Swal.fire({//en caso de error tira un alerta
+                icon: 'error',
+                title: 'error con el servidor',
+                text: `No se pudo conectar al servidor`
+            })
+        }
+    }
+}
+
+mensajeAleatorio();
+btnInformacion.addEventListener("click",llamarInfo);
+
+for (e in ficha) {
+    ficha[e].firstChild.draggable = true;
+
+    ficha[e].firstChild.addEventListener('dragstart', () => {
+        Toastify({
+            text: `La funcion de Arrastre aun no ha sido habilitada. Haz click en la pieza para seleccionarla`,
+            duration: 2000,
+            gravity: `bottom`, 
+            position: `center`
+        }).showToast();
+    });
+}

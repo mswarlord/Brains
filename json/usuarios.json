@@ -1,5 +1,9 @@
 [
-    {"nombre": "Facundo", "apellido": "Cantero", "edad": 33, "usuario": "MsWarLord", "pass": "N0t4L4m3r"},
-    {"nombre": "Agustin", "apellido": "Cantero", "edad": 36, "usuario": "Agustin07", "pass": "S3m1S3n10r"},
-    {"nombre": "invitado", "apellido": "", "edad": 0, "usuario": "user", "pass": "1234"}
+    {"nombre": "Facundo", "apellido": "Cantero", "edad": 33, "nombreUsuario": "MsWarLord", "passUsuario": "N0t4L4m3r"},
+    {"nombre": "Agustin", "apellido": "Cantero", "edad": 36, "nombreUsuario": "Agustin07", "pass": "8168r0th3r"},
+    {"nombre": "Rodrigo", "apellido": "Sanchez", "edad": 35, "nombreUsuario": "Rodrigo_LP", "pass": "Th3V0y463r"},
+    {"nombre": "Matias", "apellido": "Balciunas", "edad": 34, "nombreUsuario": "Buchilo", "pass": "L17hu4n14n-80y"},
+    {"nombre": "German", "apellido": "Alvarez", "edad": 32, "nombreUsuario": "Twister", "pass": "7h3-K1rchn3r157"},
+    {"nombre": "Lucio", "apellido": "Testa", "edad": 33, "nombreUsuario": "Lucio", "pass": "b357Fr13nd"},
+    {"nombre": "invitado", "apellido": "Invitado", "edad": "?", "nombreUsuario": "invitado", "pass": "1234"}
 ]

@@ -1,4 +1,0 @@
-[
-    {"victoria": "mapaActual === 1 && slots[0].fichaColocada.id === 1 && slots[0].fichaColocada.posicion === 2"},
-    {"victoria": "mapaActual === 2 && slots[0].fichaColocada.id === 4 && slots[0].fichaColocada.posicion === 2"}
-    ]

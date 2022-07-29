@@ -37,7 +37,7 @@ body {
   flex-direction: column;
   align-items: center; }
 
-/*   FOOTER                                                    */
+/*   FOOTER  */
 .footer {
   color: #fde7f8;
   background-color: #d14ea5cc;
@@ -48,88 +48,6 @@ body {
   line-height: 1em; }
 
 /*----------SECCION ELEMENTOS ----------*/
-/* /* /*-------------------------------- LUCES DE NEON ----------------------------------- */
-/* @-webkit-keyframes turnonlights {
-    0%         { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    1%         { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    4%         { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    7%         { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    8%         { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    12%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    22%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    23%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 15px #ff99de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de; }
-    26%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    28%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    34%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 15px #ff99de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de; }
-    36%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    42%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    55%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 15px #ff99de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de; }
-    60%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    63%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 15px #ff99de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de; }
-    67%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    72%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    73%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    76%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    78%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    84%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 15px #ff99de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de; }
-    86%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    96%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    100%       { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 15px #ff99de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de; }
-} */
-/* 
-@-moz-keyframes turnonlights {
-    0%         { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    1%         { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    4%         { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    7%         { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    8%         { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    12%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    22%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    23%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 15px #ff99de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de; }
-    26%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    28%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    34%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 15px #ff99de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de; }
-    36%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    42%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    55%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 15px #ff99de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de; }
-    60%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    63%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 15px #ff99de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de; }
-    67%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    72%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    73%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    76%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    78%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    84%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 15px #ff99de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de; }
-    86%        { color: #6d5669; text-shadow: 0 0 3px #635861, 0 0 5px #635861; }
-    96%        { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 17px #ff00de, 0 0 38px #ff00de}
-    100%       { color: #ff55de; text-shadow: 0 0 5px #ff99de, 0 0 10px #ff99de, 0 0 15px #ff99de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de; }
-}  */
-/* 
-.title {
-    color: #222;
-    text-align: center;
-    letter-spacing: 0.15em;
-    font-weight: 700;
-    font-size: 2.6em;
-    text-transform: uppercase;
-    color: #222; text-shadow: 0px 2px 3px #555;
-} */
-/* .encendido {
-    color: $color-texto;
-    font-weight: bold;
-    text-shadow: #ec0785 0px 0px 0.2em;
-    text-align: center;
-    font-family: "Roboto Mono", monospace;
-    -webkit-animation-name: turnonlights;
-    -webkit-animation-duration: 3.0s;
-    -webkit-animation-fill-mode: both;
-    -webkit-animation-timing-function: steps(2, start);
-    -moz-animation-name: turnonlights;
-    -moz-animation-duration: 3.0s;
-    -moz-animation-fill-mode: both;
-    -moz-animation-timing-function: steps(2, start);      
-}
- */
 /*-------------------------------- NAVEGADOR ----------------------------------- */
 nav ul {
   display: flex;
@@ -146,15 +64,51 @@ nav ul a:visited {
 nav ul a:active {
   color: #f54242d0; }
 
-/*----------SECCION HTMLs ----------*/
+/*----------SECCION VIEWS ----------*/
 .instrucciones {
   background-color: #d14ea5cc;
   margin: 5em;
   padding: 2em;
   border-radius: 1em;
   color: #fde7f8;
-  font-size: 2em;
+  font-size: 1.5em;
   font-family: 'Caveat', cursive; }
+
+#simbologia li {
+  display: flex;
+  margin: 1em 0 1em 0; }
+  #simbologia li .simbolo {
+    border-radius: 100%;
+    width: 55px;
+    height: 55px;
+    margin-right: 1em; }
+    #simbologia li .simbolo--2 {
+      margin-right: 1em;
+      border-radius: 0.5em;
+      height: 55px; }
+  #simbologia li .ejemplo {
+    border-radius: 0.5em;
+    justify-items: center; }
+
+#simbologia .centrado {
+  margin: auto;
+  width: min-content;
+  position: relative; }
+  #simbologia .centrado #ejemploMensaje {
+    right: 0.5em;
+    -webkit-box-shadow: -3px -3px 15px 0px #e866c1;
+    -moz-box-shadow: -3px -3px 15px 0px #e866c1;
+    box-shadow: -3px -3px 15px 0px #e866c1;
+    top: 6.7em;
+    position: absolute;
+    font-size: 0.8em;
+    color: black;
+    border-radius: 8px;
+    height: auto;
+    width: 6em;
+    text-align: center;
+    padding: 0.3em 0.5em 0.3em 0.5em;
+    background-color: #e2f0e2; }
 
 #juego {
   display: flex;
@@ -163,7 +117,7 @@ nav ul a:active {
 
 #zonaDeJuego {
   position: relative;
-  width: 50%; }
+  width: auto; }
 
 .subtitulo {
   text-align: center;
@@ -175,8 +129,12 @@ nav ul a:active {
   margin-bottom: 2em; }
 
 .ficha {
+  width: 200px;
+  height: 200px;
   background-color: #111;
   z-index: 999; }
+  .ficha img {
+    width: 100%; }
   .ficha img:hover {
     z-index: 1;
     visibility: 90%;
@@ -270,7 +228,7 @@ nav ul a:active {
   top: 60px; }
 
 #slot7 {
-  left: 143px;
+  left: 141px;
   top: 60px; }
 
 #slot8 {
@@ -282,8 +240,6 @@ nav ul a:active {
   top: 138px; }
 
 .slots {
-  /* display: flex;
-    justify-content: center; */
   background-color: #fff3;
   position: absolute;
   height: 152px;
@@ -374,79 +330,4 @@ nav ul a:active {
   border-radius: 1em;
   padding: 1em 1em 0.5em 1em; }
 
-/* ---------- LOADER ---------- */
-.loader {
-  width: 96px;
-  box-sizing: content-box;
-  height: 48px;
-  background: #6e972c;
-  border-color: #bfe0a0;
-  border-style: solid;
-  border-width: 2px 2px 50px 2px;
-  border-radius: 100%;
-  position: relative;
-  animation: 3s yinYang linear infinite; }
-
-.loader:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  background: #6e972c;
-  border: 18px solid #bfe0a0;
-  border-radius: 100%;
-  width: 12px;
-  height: 12px;
-  box-sizing: content-box; }
-
-.loader:after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: #bfe0a0;
-  border: 18px solid #6e972c;
-  border-radius: 100%;
-  width: 12px;
-  height: 12px;
-  box-sizing: content-box; }
-
-@keyframes yinYang {
-  100% {
-    transform: rotate(360deg); } }
-
 /* ---------- FIN LOADER ---------- */
-/* FUENTES PRINCIPALES 
-    font-family: 'Orbitron', sans-serif;
-    font-family: 'Shadows Into Light', cursive;
-    font-family: 'Special Elite', cursive;
-    font-family: 'Stick No Bills', sans-serif;
-    font-family: 'Press Start 2P', cursive;
-*/
-/* SECUNDARIAS
-    font-family: 'Acme', sans-serif;
-    font-family: 'Bangers', cursive;
-    font-family: 'Bebas Neue', cursive;
-    font-family: 'Caveat', cursive;
-    font-family: 'Fascinate', cursive;
-    font-family: 'Indie Flower', cursive;
-    font-family: 'Kdam Thmor Pro', sans-serif;
-    font-family: 'Mali', cursive;
-    font-family: 'Merriweather', serif;
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Noto Serif JP', serif;
-    font-family: 'Oleo Script', cursive;
-    font-family: 'Orbitron', sans-serif;
-    font-family: 'Permanent Marker', cursive;
-    font-family: 'Potta One', cursive;
-    font-family: 'Press Start 2P', cursive;
-    font-family: 'PT Mono', monospace;
-    font-family: 'Rubik Moonrocks', cursive;
-    font-family: 'Russo One', sans-serif;
-    font-family: 'Sacramento', cursive;
-    font-family: 'Shadows Into Light', cursive;
-    font-family: 'Source Code Pro', monospace;
-    font-family: 'Special Elite', cursive;
-    font-family: 'Stick No Bills', sans-serif;
-    font-family: 'Yellowtail', cursive;
-*/
