@@ -799,7 +799,7 @@ let nroMensajeAleatorio = () => {
 
 const mensajeAleatorio = async () => {
     try{
-        fetch('json/mensajes.json') //llama asincronamente a mensajes.json
+        fetch('../json/mensajes.json') //llama asincronamente a mensajes.json
             .then(response => response.json())
             .then(mensajeAleatorio => {
                     mensajeX = `${mensajeAleatorio[nroMensajeAleatorio()]}`
